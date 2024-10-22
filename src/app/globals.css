@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #161616;
+  --foreground: #161616;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #161616;
+    --foreground: #161616;
   }
 }
 
@@ -18,4 +18,163 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 20px;
+}
+
+.typed-text {
+  display: inline-block;
+  min-height: 1rem;
+  visibility: visible;
+}
+
+.resumeContent {
+  padding-left: 100px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(60px); /* Start with a slight downward offset */
+  animation: fadeInUp 2s ease forwards;  /* Fade in and move upwards */
+}
+
+
+@media (max-width: 768px) {
+  /* Adjust font size for tablets and smaller devices */
+  .typed-text {
+    font-size: 1.5rem;  /* Slightly smaller font size for tablets */
+  }
+
+  .resumeAppBar {
+    max-width: 100px;
+  }
+
+  .resumeTabs {
+    max-width: 100px;
+    margin-right: 0px;
+  }  
+
+  .resumeContent {
+    padding-left: 10px;
+  }
+
+  .fade-in {
+    height: 100vh
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce font size for mobile phones */
+  .typed-text {
+    font-size: 1 rem;  /* Even smaller font size for very small screens */
+  }
+
+  .resumeAppBar {
+    max-width: 100px;
+  }
+
+  .resumeTabs {
+    max-width: 100px;
+    margin-right: 0px;
+  }
+
+  .resumeContent {
+    padding-left: 10px;
+  }
+
+  .fade-in {
+    height: 100vh
+  }
+}
+
+/* Preloader styling */
+.preloader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;  /* For fade-out */
+}
+
+/* Base font size and width for large screens */
+h1, h3, h6, p {
+  font-size: 1.2rem;
+}
+
+.section-content {
+  width: 720px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  /* Mobile adjustments */
+  .section-content {
+    width: 90%;  /* Adjust width for mobile */
+  }
+
+  h1, h3 {
+    font-size: 1.5rem;  /* Larger font size on mobile for readability */
+  }
+
+  h6, p {
+    font-size: 1rem;  /* Adjust smaller elements for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Very small mobile adjustments */
+  .section-content {
+    width: 95%;  /* Maximize width on smaller screens */
+  }
+
+  h1, h3 {
+    font-size: 1.25rem;  /* Further adjust font size for smaller screens */
+  }
+
+  h6, p {
+    font-size: 0.9rem;  /* Smaller text for very small devices */
+  }
+}
+
+
+/* Keyframes for fading in with upward movement */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);  /* Start with element slightly down */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);  /* Move up to its original position */
+  }
+}
+.preloader-inner svg {
+  transform: rotate(90deg);  /* Rotate the entire SVG to make the infinity horizontal */
+}
+
+.infinity-line {
+  stroke-dasharray: 400;  /* Ensure this matches the path length */
+  stroke-dashoffset: 400;  /* Initially hide the stroke */
+  animation: draw-line 4s linear forwards, fade-out 0.5s 2.5s forwards; /* Ensure it takes 6 seconds to complete */
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;  /* Fully draw the line */
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
