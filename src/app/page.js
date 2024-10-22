@@ -5,6 +5,11 @@ import Typed from 'typed.js';
 import { Box, Typography, Link } from '@mui/material';
 import TabPanel from './components/TabPanel';
 import ProjectPanel from './components/ProjectPanel';
+import AboutMePanel from './components/AboutMePanel';
+
+import { Canvas } from '@react-three/fiber';
+import Globe from './components/Globe';
+import { OrthographicCamera } from '@react-three/drei';
 
 export default function Home() {
   const typedElement = useRef(null);
@@ -113,15 +118,32 @@ export default function Home() {
       )}
 
       {!loading && (
+        
         <Box display="flex" flexDirection="column" color="white" minWidth="100%">
-          
+          <div>
+            <Canvas
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: -1, 
+              }}
+            >
+              <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[5, 5, 5]} castShadow />
+              <Globe />
+            </Canvas>
+          </div>
           {/* Section 1 */}
           <Box
             ref={sectionRefs[0]}
             height="100vh"  // Full viewport height
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={'fade-in'}
+            className={'fade-in section1'}
           >
             <Box className="section-content">
               <Typography variant="h3" component="h1">
@@ -141,33 +163,23 @@ export default function Home() {
           {/* Section 2 */}
           <Box
             ref={sectionRefs[1]}
-            height="60vh"  // Full viewport height for section 2
+            height="100vh"  // Full viewport height for section 2
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={isVisibleSection2 ? 'fade-in' : ''}
+            className={`${isVisibleSection2 ? 'fade-in' : ''} section`}
           >
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="white">
-                <span style={{ color: '#36ffe7' }}>01.</span> My Personal TLDR
-              </Typography>
-              <Typography variant="subtitle1" color="#afafaf" sx={{ mt: 2 }}>
-                I recently graduated from Harvard in Math and CS before moving out to the Bay in
-                August of 2024. I&apos;m a bit of a jack of all trades- from academia to industry to finance,
-                I&apos;ve built and deployed code to tackle all sorts of problems. I love working with all parts of the technical stack, 
-                whether that be manipulating and analyzing data, integrating backend softwares and databases with 
-                frontend platforms, or putting it all together to create scalable yet individualized experiences. Outside of the digital world,
-                I enjoy playing soccer and basketball and cooking (debatably) yummy food!
-              </Typography>
+              <AboutMePanel/>
             </Box>
           </Box>
 
           {/* Section 3 */}
           <Box
             ref={sectionRefs[2]}
-            height="50vh"  // Full viewport height for section 3
+            height="70vh"  // Full viewport height for section 3
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={isVisibleSection3 ? 'fade-in' : ''}
+            className={`${isVisibleSection3 ? 'fade-in' : ''} section`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="white">
@@ -180,10 +192,10 @@ export default function Home() {
           {/* Section 4 */}
           <Box
             ref={sectionRefs[3]}
-            minHeight="50vh"  // Full viewport height for section 3
+            height="70vh"  // Full viewport height for section 3
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={isVisibleSection4 ? 'fade-in' : ''}
+            className={`${isVisibleSection4 ? 'fade-in' : ''} section`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="white">
@@ -196,10 +208,10 @@ export default function Home() {
           {/* Section 5 */}
           <Box
             ref={sectionRefs[4]}
-            minHeight="50vh"  // Full viewport height for section 3
+            height="70vh"  // Full viewport height for section 3
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={isVisibleSection4 ? 'fade-in' : ''}
+            className={`${isVisibleSection5 ? 'fade-in' : ''} section`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="white">

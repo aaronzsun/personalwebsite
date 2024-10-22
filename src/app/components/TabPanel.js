@@ -17,9 +17,11 @@ function TabPanel(props) {
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
+      className={`tabpanel-content ${value === index ? 'fade-in-tabs' : ''}`}  // Apply fade-in-tabs class
+      style={{ backgroundColor: 'transparent' }}  // Ensure the background is transparent
     >
       {value === index && (
-        <Box sx={{ p: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: 1 }}> {/* Added margin-top */}
+        <Box sx={{ p: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: 1, backgroundColor: 'transparent' }}>  {/* Set background to transparent */}
           {children}
         </Box>
       )}
@@ -52,18 +54,17 @@ export default function VerticalTabsComponent() {
     <Box
       sx={{
         display: 'flex',
-        bgcolor: '#161616',
-        padding: 0,  // Add padding for the overall container
+        bgcolor: 'transparent',  // Set the Box background to transparent
+        padding: 0,
         mt: 3,
       }}
     >
-      {/* Vertical AppBar only for this component */}
       <AppBar
         position="relative"
         className="resumeAppBar"
         elevation={0}
         sx={{
-          bgcolor: '#161616',
+          bgcolor: 'transparent',  // Set AppBar background to transparent
           flexDirection: 'column',
           width: '150px',
         }}
@@ -74,11 +75,9 @@ export default function VerticalTabsComponent() {
           orientation="vertical"
           textColor="inherit"
           className="resumeTabs"
-          variant="scrollable"
-          aria-label="vertical tabs example"
           TabIndicatorProps={{
             style: {
-              backgroundColor: '#36ffe7', // Set color for tab indicator
+              backgroundColor: '#36ffe7',
               left: 0,
             },
           }}
@@ -87,10 +86,10 @@ export default function VerticalTabsComponent() {
               textTransform: 'none',
               fontSize: '14px',
               alignItems: 'flex-start',
-              minWidth: '120px',
-              padding: 2,  // Padding for the tabs
-              color: '#36ffe7',  // Set tab label color to #36ffe7
+              padding: 2,
+              color: '#36ffe7',
             },
+            backgroundColor: 'transparent'  // Ensure Tabs have transparent background
           }}
         >
           <Tab label="OPTIVER" {...a11yProps(0)} />
@@ -101,9 +100,8 @@ export default function VerticalTabsComponent() {
         </Tabs>
       </AppBar>
 
-      {/* Main content area */}
-      <Box className="resumeContent" sx={{ flexGrow: 1 }}>
-        <TabPanel value={value} index={0} dir={theme.direction}>
+      <Box className="resumeContent" sx={{ flexGrow: 1, backgroundColor: 'transparent' }}>  {/* Transparent background for content */}
+        <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
           <Typography className="resumePanel" variant="subtitle1" component="h6" color="#dbdbdb">
             Quantitative Trader Intern @{' '}
             <a 
@@ -118,18 +116,18 @@ export default function VerticalTabsComponent() {
               Jul 2023 - Aug 2023
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Operated independent quantitative sim desk, generating ~$50k over 4 weeks of trading Tesla options
+              - Operated independent quantitative sim desk, generating ~$50k over 4 weeks of trading Tesla options.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Developed new quantitative trading strategies by analyzing historic market flow/liquidity data and S&P 500 index correlations with Tesla volatility, Sharpe ratio of 2.8 when backtested
+              - Developed new quantitative trading strategies by analyzing historic market flow/liquidity data and S&P 500 index correlations with Tesla volatility, Sharpe ratio of 2.8 when backtested.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Gained in-depth understanding of the Black-Scholes Model (options pricing), game theory, and stochastic calculus through Optiver&apos;s trader education program
+              - Gained in-depth understanding of the Black-Scholes Model (options pricing), game theory, and stochastic calculus through Optiver&apos;s trader education program.
             </Typography>
           </Typography>
         </TabPanel>
 
-        <TabPanel className="resumePanel" value={value} index={1} dir={theme.direction}>
+        <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>
           <Typography variant="subtitle1" component="h6" color="#dbdbdb">
             Software Engineer Intern @{' '}
             <a 
@@ -151,7 +149,8 @@ export default function VerticalTabsComponent() {
             </Typography>
           </Typography>
         </TabPanel>
-        <TabPanel className="resumePanel" value={value} index={2} dir={theme.direction}>
+
+        <TabPanel className="fade-in-tabs" value={value} index={2} dir={theme.direction}>
           <Typography variant="subtitle1" component="h6" color="#dbdbdb">
             Research Fellow @{' '}
             <a 
@@ -166,17 +165,18 @@ export default function VerticalTabsComponent() {
               Feb 2021 - Aug 2021
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - With Dr. Clement McDonald, Scientific Director of the Lister Hill National Center and NIH Data Discovery Group
+              - With Dr. Clement McDonald, Scientific Director of the Lister Hill National Center and NIH Data Discovery Group.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Created EasyPATH, a syntax parsing library to convert human-written expressions into FHIRPath, increasing accessibility of healthcare informatics resources across 100+ platforms & medical institutions across the US
+              - Created EasyPATH, a syntax parsing library to convert human-written expressions into FHIRPath, increasing accessibility of healthcare informatics resources across 100+ platforms & medical institutions across the US.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
               - Wrote machine learning scripts (TensorFlow) for large COVID-19 patient datasets to determine efficacy of treatments.
             </Typography>
           </Typography>
         </TabPanel>
-        <TabPanel className="resumePanel" value={value} index={3} dir={theme.direction}>
+
+        <TabPanel className="fade-in-tabs" value={value} index={3} dir={theme.direction}>
           <Typography variant="subtitle1" component="h6" color="#dbdbdb">
             Research Intern @{' '}
             <a 
@@ -191,17 +191,15 @@ export default function VerticalTabsComponent() {
               June 2020 - August 2020
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - With Dr. Goldsmith, Group Director of the NASA JPL Structure of the Universe Division
+              - With Dr. Goldsmith, Group Director of the NASA JPL Structure of the Universe Division.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Developed python scripts to resolve foreground absorption issues in NASA spectroscopy data using procedural model generation & gaussian fitting
-            </Typography>
-            <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Utilized scripts to model and predict the chemical indicators of massive star formation, presented at NASA Symposium.
+              - Developed python scripts to resolve foreground absorption issues in NASA spectroscopy data using procedural model generation & gaussian fitting.
             </Typography>
           </Typography>
         </TabPanel>
-        <TabPanel className="resumePanel" value={value} index={4} dir={theme.direction}>
+
+        <TabPanel className="fade-in-tabs" value={value} index={4} dir={theme.direction}>
           <Typography variant="subtitle1" component="h6" color="#dbdbdb">
             Founding Software Engineer @{' '}
             <a 
@@ -216,7 +214,7 @@ export default function VerticalTabsComponent() {
               Jan 2020 - Jan 2021
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
-              - Co-Founding Software Engineer of Pakira, an online commodity trading platform to automate B2B transactions
+              - Co-Founding Software Engineer of Pakira, an online commodity trading platform to automate B2B transactions.
             </Typography>
             <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: '0.8rem', color: '#afafaf' }}>
               - Developed Pakira full-stack MVP0 in React & developed Pakira lumber forum for 200+ businesses.

@@ -1,7 +1,9 @@
+/* Tailwind imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables */
 :root {
   --background: #161616;
   --foreground: #161616;
@@ -14,6 +16,7 @@
   }
 }
 
+/* Global Styling */
 body {
   color: var(--foreground);
   background: var(--background);
@@ -21,72 +24,128 @@ body {
   margin: 20px;
 }
 
+/* Typed Text */
 .typed-text {
   display: inline-block;
   min-height: 1rem;
   visibility: visible;
 }
 
-.resumeContent {
-  padding-left: 100px;
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(60px); /* Start with a slight downward offset */
-  animation: fadeInUp 2s ease forwards;  /* Fade in and move upwards */
-}
-
-
 @media (max-width: 768px) {
-  /* Adjust font size for tablets and smaller devices */
   .typed-text {
-    font-size: 1.5rem;  /* Slightly smaller font size for tablets */
-  }
-
-  .resumeAppBar {
-    max-width: 100px;
-  }
-
-  .resumeTabs {
-    max-width: 100px;
-    margin-right: 0px;
-  }  
-
-  .resumeContent {
-    padding-left: 10px;
-  }
-
-  .fade-in {
-    height: 100vh
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  /* Further reduce font size for mobile phones */
   .typed-text {
-    font-size: 1 rem;  /* Even smaller font size for very small screens */
+    font-size: 1rem;
   }
 
-  .resumeAppBar {
-    max-width: 100px;
-  }
-
-  .resumeTabs {
-    max-width: 100px;
-    margin-right: 0px;
-  }
-
-  .resumeContent {
-    padding-left: 10px;
-  }
-
-  .fade-in {
-    height: 100vh
+  .typed-text {
+    font-size: 18px;
   }
 }
 
-/* Preloader styling */
+/* Resume Content */
+.resumeContent {
+  padding-left: 50px;
+}
+
+@media (max-width: 768px),
+(max-width: 480px),
+(max-width: 400px) {
+  .resumeContent {
+    padding-left: 10px;
+  }
+}
+
+/* Resume AppBar and Tabs */
+.resumeAppBar,
+.resumeTabs {
+  max-width: 150px;
+  margin-right: 0px;
+}
+
+.tab-panel {
+  overflow: hidden; /* This will prevent any scrollbars or arrows from appearing */
+}
+
+/* Fade-in-tabs animation */
+@keyframes fadeInTabs {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-tabs {
+  animation: fadeInTabs 0.5s ease-in forwards;
+}
+
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(60px);  /* Start with a slight downward offset */
+  animation: fadeInUp 2s ease forwards;  /* Fade in and move upwards */
+}
+
+@media (max-width: 768px),
+(max-width: 480px),
+(max-width: 400px) {
+  .fade-in {
+    height: 100vh;
+  }
+}
+
+@media (max-height: 720px) {
+  .fade-in {
+    min-height: 200vh;
+  }
+}
+
+/* Section Styling */
+.section-content {
+  width: 720px;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    width: 90%;
+    min-height: 100vh;
+  }
+
+  h1, h3 {
+    font-size: 1.5rem;
+  }
+
+  h6, p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-content {
+    width: 95%;
+    min-height: 100vh;
+  }
+
+  h1, h3 {
+    font-size: 1.25rem;
+  }
+
+  h6, p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Preloader Styling */
 .preloader {
   position: fixed;
   top: 50%;
@@ -99,51 +158,20 @@ body {
   align-items: center;
   z-index: 9999;
   opacity: 1;
-  transition: opacity 0.5s ease;  /* For fade-out */
+  transition: opacity 0.5s ease;  /* Fade-out */
 }
 
-/* Base font size and width for large screens */
-h1, h3, h6, p {
-  font-size: 1.2rem;
+.preloader-inner svg {
+  transform: rotate(90deg);  /* Rotate SVG to make the infinity horizontal */
 }
 
-.section-content {
-  width: 720px;
-  text-align: left;
+.infinity-line {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 4s linear forwards, fade-out 0.5s 2.5s forwards;
 }
 
-@media (max-width: 768px) {
-  /* Mobile adjustments */
-  .section-content {
-    width: 90%;  /* Adjust width for mobile */
-  }
-
-  h1, h3 {
-    font-size: 1.5rem;  /* Larger font size on mobile for readability */
-  }
-
-  h6, p {
-    font-size: 1rem;  /* Adjust smaller elements for mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  /* Very small mobile adjustments */
-  .section-content {
-    width: 95%;  /* Maximize width on smaller screens */
-  }
-
-  h1, h3 {
-    font-size: 1.25rem;  /* Further adjust font size for smaller screens */
-  }
-
-  h6, p {
-    font-size: 0.9rem;  /* Smaller text for very small devices */
-  }
-}
-
-
-/* Keyframes for fading in with upward movement */
+/* Keyframes for Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -153,15 +181,6 @@ h1, h3, h6, p {
     opacity: 1;
     transform: translateY(0);  /* Move up to its original position */
   }
-}
-.preloader-inner svg {
-  transform: rotate(90deg);  /* Rotate the entire SVG to make the infinity horizontal */
-}
-
-.infinity-line {
-  stroke-dasharray: 400;  /* Ensure this matches the path length */
-  stroke-dashoffset: 400;  /* Initially hide the stroke */
-  animation: draw-line 4s linear forwards, fade-out 0.5s 2.5s forwards; /* Ensure it takes 6 seconds to complete */
 }
 
 @keyframes draw-line {
