@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
@@ -27,6 +29,7 @@ const Globe = () => {
   const [scale, setScale] = useState(1.5);
   const [zoomComplete, setZoomComplete] = useState(false);
   const [opacity, setOpacity] = useState(0);  // Initial opacity for fade-in
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);  // Track screen width
   const baseRadius = 1.2;  // Base orbit radius (before scaling)
   const speed = 0.01;  // Constant speed for all dots
 
@@ -85,8 +88,12 @@ const Globe = () => {
       globeRef.current.material.transparent = true;
 
       // Slide the globe horizontally as you scroll
-      const newXPosition = Math.min(2 + scrollY * 0.01, 5);  // Max slide distance: 5 units
-      globeRef.current.position.x = newXPosition;
+      if (screenWidth >= 900) {
+        const newXPosition = Math.min(2 + scrollY * 0.01, 5);  // Max slide distance: 5 units
+        globeRef.current.position.x = newXPosition;
+      } else {
+        globeRef.current.position.x = 2;  // No movement for screens smaller than 900px
+      }
 
       // Update the position of each dot along its orbit, accounting for scale and translation
       orbitRefs.current.forEach((dotRef, index) => {

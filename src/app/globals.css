@@ -31,17 +31,13 @@ body {
   visibility: visible;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .typed-text {
     font-size: 1.5rem;
   }
 }
 
-@media (max-width: 480px) {
-  .typed-text {
-    font-size: 1rem;
-  }
-
+@media (max-width: 600px) {
   .typed-text {
     font-size: 18px;
   }
@@ -52,16 +48,27 @@ body {
   padding-left: 50px;
 }
 
-@media (max-width: 768px),
-(max-width: 480px),
-(max-width: 400px) {
+@media (max-width: 768px) {
   .resumeContent {
     padding-left: 10px;
   }
+
+  .resumeAppBar {
+    width: 50px;
+  }
+
+  .resumeTabs {
+    width: 100px;
+    margin-right: 0px;
+  }
+
 }
 
 /* Resume AppBar and Tabs */
-.resumeAppBar,
+.resumeAppBar {
+  width: 50px;
+}
+
 .resumeTabs {
   max-width: 150px;
   margin-right: 0px;
@@ -110,7 +117,7 @@ body {
   }
 
   .section {
-    min-height: 100vh;
+    min-height: 140vh;
   }
 
   h1, h3 {
@@ -131,7 +138,7 @@ body {
   }
 
   .section {
-    min-height: 120vh;
+    min-height: 140vh;
   } 
 
   h1, h3 {
@@ -173,7 +180,7 @@ body {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(60px);  /* Start with element slightly down */
+    transform: translateY(100px);  /* Start with element slightly down */
   }
   to {
     opacity: 1;
