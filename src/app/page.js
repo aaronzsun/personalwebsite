@@ -321,7 +321,7 @@ export default function Home() {
             height="70vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`section ${isVisibleSection1 ? 'fade-in' : ''}`}
+            className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
@@ -336,7 +336,7 @@ export default function Home() {
             height="40vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`section ${isVisibleSection2 ? 'fade-in' : ''}`}
+            className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
           >
             <Box className="section-content" sx={{ width: "540px", minHeight: "500px" }}>
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
@@ -351,7 +351,7 @@ export default function Home() {
             height="40vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`section ${isVisibleSection3 ? 'fade-in' : ''}`}
+            className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>

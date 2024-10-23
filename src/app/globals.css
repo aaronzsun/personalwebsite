@@ -41,10 +41,6 @@ body {
   .typed-text {
     font-size: 21px;
   }
-
-  .topSection {
-    min-height: 100vh;
-  }
 }
 
 /* Resume Content */
@@ -104,7 +100,7 @@ body {
   align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .section-content {
     width: 90%;
     text-align: left;
@@ -112,8 +108,23 @@ body {
     align-items: center;
   }
 
-  .section {
-    min-height: 140vh;
+  .topSection {
+    min-height: 110vh;
+  }
+
+  .section1 {
+    min-height: 150vh;
+  }
+
+  .section2 {
+    padding-top: 100px;
+    min-height: 700px;
+    height: 700px;
+  }
+
+  .section3 {
+    padding-top: 50px;
+    min-height: 700px;
   }
 
   h1, h3 {
@@ -132,10 +143,6 @@ body {
     justify-content: center;
     align-items: center;
   }
-
-  .section {
-    min-height: 140vh;
-  } 
 
   h1, h3 {
     font-size: 1.25rem;

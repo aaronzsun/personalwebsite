@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -155,17 +156,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Led simulated trading desk for TSLA options, generating ~50K in profit. Had my hands on all the good stuff: Neptune, Bloomberg, and good-ol Python.
             Also learned a ton about stocastic calculus and the financial markets. 
           </Typography>
@@ -183,17 +181,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Developed a new event trading strategy utilizing S&P500 and NASDAQ correlations to TSLA volatility- Sharpe of 2.8 when backtested over past 5 years of FOMC meetings.
           </Typography>
         </TabPanel>
@@ -227,17 +222,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Ideated and developed the JavaScript Package Center, an intuitive interface that aggregates components across all of HubSpot by their JavaScript libraries, accessed by 250+ engineers to assess and modify the landscape of their JS apps.
           </Typography>
           <Typography
@@ -254,17 +246,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Created a comprehensive Component Health UI that automatically assesses the "health" of each component within its JavaScript ecosystem, factoring in current version support and compatability with its JS ecosystem. 
           </Typography>
         </TabPanel>
@@ -298,17 +287,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Ideated and developed EasyPATH, a Python natural language processing library for the medicare language FHIRPath. Converts human-written expressions to FHIRPath, increasing the accessibility of healthcare informatics resources across 100+ platforms for medical institutions all around the US.
           </Typography>
           <Typography
@@ -325,17 +311,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Joined the Data Discovery Group during the peak of COVID, where we utilized reinforcement learning (deep Q) to analyze huge patient datasets to identify the most efficacious treatments.
           </Typography>
         </TabPanel>
@@ -369,17 +352,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Created spect-fitter, a collection of Python scripts to resolve foreground absorption issues with NASA's spectrometers aboard some of their biggest telescopes.
             Used a combo of procedural model generation & gaussian fitting to remove the noise from the spectrographs of massive star clusters.
           </Typography>
@@ -397,17 +377,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Utilized these new spectrographs to model and predict the chemical indicators of massive stars about to form. Got to present my work at the Jet Propulsion Laboratory Symposium.
           </Typography>
         </TabPanel>
@@ -441,17 +418,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Co-founded Pakira in collaboration with MIT and the Harvard Innovation Labs. We created the online platform to automate and centralize B2B transactions in the $20 trillion commodity industry.
           </Typography>
           <Typography
@@ -468,17 +442,14 @@ export default function VerticalTabsComponent() {
               lineHeight: '1.5',
             }}
           >
-            <span
-              style={{
+            <ArrowRightIcon
+              sx={{
                 color: '#36ffe7',
                 position: 'absolute',
-                left: '0',          // Keep bullet point aligned at the left
+                left: '0',
                 display: 'inline-block',
-                width: '20px',      // Adjust width for spacing between bullet and text
               }}
-            >
-              •
-            </span>
+            />
             Created the prototype and MVP0 for Pakira. Got to work with the full stack- utilizing a React frontend and Node backend to develop the initial forum and transaction market for 200+ businesses.
           </Typography>
         </TabPanel>
