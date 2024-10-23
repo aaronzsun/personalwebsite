@@ -161,6 +161,7 @@ export default function Home() {
               display: 'flex',
               gap: 1,
               transition: 'top 0.35s ease',  // Smooth transition for sliding effect
+              alignItems: 'center',
             }}
           >
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
@@ -206,6 +207,36 @@ export default function Home() {
               >
                 <span style={{ color: '#36ffe7' }}>03. </span> Projects
               </Link>
+              <Button 
+                component="a" 
+                href="https://aaronzsun.com/resume" 
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outlined" 
+                size="small"
+                sx={{
+                  width: { xs: "90px", sm: "90px", md: "90px" },
+                  color: '#36ffe7', 
+                  borderColor: '#36ffe7', 
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                  boxShadow: '0px 0px 0px #36ffe7', 
+                  '&:hover': {
+                    transform: 'translate(-5px, -3px)', 
+                    boxShadow: '5px 5px 0px #36ffe7', 
+                    borderColor: '#36ffe7', 
+                    backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                    cursor: "pointer"
+                  },
+                  '@media (hover: none)': {
+                    '&:hover': {
+                      transform: 'none', 
+                      boxShadow: 'none', 
+                    }
+                  }
+                }}
+              >
+                Resume
+              </Button>
             </Box>
           </Box>
 
