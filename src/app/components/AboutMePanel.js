@@ -8,7 +8,7 @@ const AboutMePanel = () => {
     <Box sx={{ maxWidth: '720px', mx: 'auto' }}>
       <Grid2 container spacing={3} alignItems="flex-start">
         {/* Text Section */}
-        <Grid2 size={{ xs: 12, sm: 6 }} sx={{ mr: 2, mt: 4 }}>
+        <Grid2 size={{ xs: 12, sm: 6 }} sx={{ mr: 2, mt: 2 }}>
             <Typography variant="subtitle2" component="h1" color="#afafaf">
             <Box component="p" sx={{ mb: 2 }}>
                 I graduated from Harvard in Math and CS in May 2024 before moving out to the Bay. From academia to industry to finance,
@@ -17,7 +17,8 @@ const AboutMePanel = () => {
             </Box>
             <Box component="p">
                 When I&apos;m offline, you can usually find me playing soccer, chugging beer, or cooking whatever yummy recipe I saw on YouTube that day. 
-                Also, in case you&apos;re wondering, that&apos;s a picture of me next to the Broad Street Pump, the source of the London Cholera epidemic of 1854.    
+                Also, in case you&apos;re wondering, that&apos;s a picture of me next to the Broad Street Pump, the source of the London Cholera epidemic of 1854 
+                (epidemiology nerds know what I&apos;m talking about).    
             </Box>
             </Typography> 
             <Box sx={{ mt: 3 }}>

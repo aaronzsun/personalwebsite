@@ -381,7 +381,7 @@ export default function Home() {
             ref={sectionRefs[3]}
             height="40vh"
             width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "100px" }}
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "100px" }} // remove marginbottom if adding more stuff
             className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
