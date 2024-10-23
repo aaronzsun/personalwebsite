@@ -48,25 +48,15 @@ body {
   padding-left: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .resumeContent {
     padding-left: 10px;
   }
-
-  .resumeAppBar {
-    width: 50px;
-  }
-
-  .resumeTabs {
-    width: 100px;
-    margin-right: 0px;
-  }
-
 }
 
 /* Resume AppBar and Tabs */
 .resumeAppBar {
-  width: 50px;
+  width: 100px;
 }
 
 .resumeTabs {

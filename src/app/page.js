@@ -128,7 +128,6 @@ export default function Home() {
 
   const scrollToSection = (index) => {
     sectionRefs[index].current.scrollIntoView({ behavior: 'smooth' });
-    handleMenuClose();
   };
 
   return (
