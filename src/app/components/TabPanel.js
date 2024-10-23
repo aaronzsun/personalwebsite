@@ -139,7 +139,7 @@ export default function VerticalTabsComponent() {
               Optiver
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jul - Aug 2023
           </Typography>
           <Typography
@@ -205,7 +205,7 @@ export default function VerticalTabsComponent() {
               HubSpot
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jul - Aug 2022
           </Typography>
           <Typography
@@ -270,7 +270,7 @@ export default function VerticalTabsComponent() {
               NIH LHNCBC
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Feb - Aug 2021
           </Typography>
           <Typography
@@ -335,7 +335,7 @@ export default function VerticalTabsComponent() {
               NASA JPL
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             June - August 2020
           </Typography>
           <Typography
@@ -401,7 +401,7 @@ export default function VerticalTabsComponent() {
               Pakira
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jan 2020 - Jan 2021
           </Typography>
           <Typography

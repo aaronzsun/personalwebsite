@@ -266,7 +266,7 @@ export default function Home() {
             className='fade-in topSection'
           >
             <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ fontWeight: "700", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
+              <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
                 <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
               </Typography>
               <Typography variant="h3" component="h1" sx={{mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
@@ -364,24 +364,71 @@ export default function Home() {
 
           <Box
             ref={sectionRefs[2]}
-            height="40vh"
+            height="70vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
           >
-            <Box className="section-content" sx={{ width: "540px", minHeight: "500px" }}>
+            <Box className="section-content" sx={{ width: "540px" }}>
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
                 <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
               </Typography>
-              <TabPanel />
+              <Box
+                sx={{
+                  display: { xs: 'none', md: 'block' }, // Hidden on small screens, visible on medium screens
+                }}
+              >
+                <TabPanel />
+              </Box>
+              <Box
+                sx={{
+                  display: { xs: 'block', md: 'none' }, // Hidden on small screens, visible on medium screens
+                }}
+              >
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 4, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                  Want to learn more about my work? Feel free to check out my resume.
+                </Typography>
+                <Button 
+                  component="a" 
+                  href="https://aaronzsun.com/resume" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined" 
+                  size="large"
+                  sx={{
+                    width: { xs: "180px", sm: "180px", md: "180px" },
+                    color: '#36ffe7', 
+                    borderColor: '#36ffe7', 
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                    boxShadow: '0px 0px 0px #36ffe7', 
+                    '&:hover': {
+                      transform: 'translate(-5px, -3px)', 
+                      boxShadow: '5px 5px 0px #36ffe7', 
+                      borderColor: '#36ffe7', 
+                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                      cursor: "pointer"
+                    },
+                    '@media (hover: none)': {
+                      '&:hover': {
+                        transform: 'none', 
+                        boxShadow: 'none', 
+                      }
+                    }
+                  }}
+                >
+                  Full Resume
+                </Button>
+              </Box>
             </Box>
           </Box>
 
           <Box
             ref={sectionRefs[3]}
-            height="40vh"
+            height="70vh"
             width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "100px" }} // remove marginbottom if adding more stuff
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "500px" }} // remove marginbottom if adding more stuff
             className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">

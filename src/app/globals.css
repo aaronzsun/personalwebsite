@@ -100,6 +100,22 @@ body {
   align-items: center;
 }
 
+.topSection {
+  min-height: 100vh;
+}
+
+.section1 {
+  min-height: 80vh;
+}
+
+.section2 {
+  min-height: 80vh;
+}
+
+.section3 {
+  min-height: 80vh;
+}
+
 @media (max-width: 600px) {
   .section-content {
     width: 90%;
@@ -117,7 +133,6 @@ body {
   }
 
   .section2 {
-    padding-top: 100px;
     min-height: 700px;
     height: 700px;
   }
