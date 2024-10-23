@@ -254,7 +254,7 @@ export default function VerticalTabsComponent() {
                 display: 'inline-block',
               }}
             />
-            Created a comprehensive Component Health UI that automatically assesses the "health" of each component within its JavaScript ecosystem, factoring in current version support and compatability with its JS ecosystem. 
+            Created a comprehensive Component Health UI that automatically assesses the health of each component within its JavaScript ecosystem, factoring in current version support and compatability with its JS ecosystem. 
           </Typography>
         </TabPanel>
 
@@ -360,7 +360,7 @@ export default function VerticalTabsComponent() {
                 display: 'inline-block',
               }}
             />
-            Created spect-fitter, a collection of Python scripts to resolve foreground absorption issues with NASA's spectrometers aboard some of their biggest telescopes.
+            Created spect-fitter, a collection of Python scripts to resolve foreground absorption issues with NASA&apos;s spectrometers aboard some of their biggest telescopes.
             Used a combo of procedural model generation & gaussian fitting to remove the noise from the spectrographs of massive star clusters.
           </Typography>
           <Typography
