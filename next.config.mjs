@@ -4,7 +4,7 @@ const nextConfig = {
       return [
         {
           source: '/resume',
-          destination: '/resume.pdf', // This assumes the file is in the public folder
+          destination: '/resume_website.pdf', // This assumes the file is in the public folder
           permanent: true, // Set to true for a 301 redirect (permanent)
         },
       ];
