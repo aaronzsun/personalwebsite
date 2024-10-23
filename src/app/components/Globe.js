@@ -1,103 +1,35 @@
 import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, Line } from '@react-three/drei';
+import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
-const generatePointOnSphere = (radius, phiFactor, thetaFactor) => {
-  const phi = Math.acos(2 * phiFactor - 1);
-  const theta = 2 * Math.PI * thetaFactor;
+// Define fixed axes for the orbits
+const orbitPlanes = [
+  { axis1: 'y', axis2: 'z' }, 
+  { axis1: 'x', axis2: 'y' }, 
+  { axis1: 'x', axis2: 'z' },
+];
 
-  const x = radius * Math.sin(phi) * Math.cos(theta);
-  const y = radius * Math.sin(phi) * Math.sin(theta);
-  const z = radius * Math.cos(phi);
-
-  return new THREE.Vector3(x, y, z);
-};
-
-const createArcBetweenPoints = (start, end, elevationFactor = 1.0) => {
-  const radius = start.length(); 
-
-  const midpoint = new THREE.Vector3().lerpVectors(start, end, 0.5);
-  const normal = midpoint.clone().normalize(); 
-  const elevatedMidpoint = midpoint.add(normal.multiplyScalar(radius * elevationFactor)); 
-
-  const controlPoint1 = new THREE.Vector3().lerpVectors(start, elevatedMidpoint, elevationFactor);
-  const controlPoint2 = new THREE.Vector3().lerpVectors(elevatedMidpoint, end, elevationFactor);
-
-  const curve = new THREE.CubicBezierCurve3(start, controlPoint1, controlPoint2, end);
-  const points = curve.getPoints(200); 
-
-  return points;
-};
-
-const SignalLine = ({ points, speed = 1, delayDuration = 1000, thickness = 5, color = '#ff1aff', startDelay = 0 }) => {
-  const [phase, setPhase] = useState('waiting'); 
-  const [progress, setProgress] = useState(0); 
-  const [delayActive, setDelayActive] = useState(false); 
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPhase('growing'); 
-    }, startDelay);
-
-    return () => clearTimeout(timer);
-  }, [startDelay]);
-
-  useFrame(() => {
-    if (delayActive || phase === 'waiting') return; 
-
-    if (phase === 'growing') {
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress + speed;
-        if (newProgress >= points.length) {
-          setPhase('disappearing');
-          return points.length; 
-        }
-        return newProgress;
-      });
-    } else if (phase === 'disappearing') {
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress - speed;
-        if (newProgress <= 0) {
-          setDelayActive(true);
-          setTimeout(() => {
-            setPhase('growing'); 
-            setDelayActive(false); 
-            setProgress(0); 
-          }, delayDuration); 
-          return 0; 
-        }
-        return newProgress;
-      });
-    }
-  });
-
-  const flooredProgress = Math.floor(progress);
-  const visiblePoints =
-    phase === 'growing'
-      ? points.slice(0, Math.min(flooredProgress, points.length))
-      : points.slice(Math.max(0, points.length - flooredProgress)); 
-
-  if (visiblePoints.length === 0) return null; 
-
+// Component to render each orbiting dot
+const OrbitDot = ({ position, color = '#ffffff', size = 0.05 }) => {
   return (
-    <Line
-      points={visiblePoints}
-      color={color}
-      lineWidth={thickness} 
-      opacity={0.8}
-    />
+    <Sphere position={position} args={[size, 16, 16]}>
+      <meshStandardMaterial color={color} />
+    </Sphere>
   );
 };
 
 const Globe = () => {
-  const colors = ['#ff1aff', '#ff8000', '#33cc33', '#ff0000', '#0066ff'];
   const globeRef = useRef();
-  const groupRef = useRef(); 
+  const orbitRefs = useRef([]);  // Refs for orbits to animate individually
   const [scrollY, setScrollY] = useState(0);
-  const [lines, setLines] = useState([]);
+  const [dots, setDots] = useState([]);
   const [scale, setScale] = useState(0.1);
   const [zoomComplete, setZoomComplete] = useState(false);
+  const baseRadius = 1.2;  // Base orbit radius (before scaling)
+  const speed = 0.01;  // Constant speed for all dots
+
+  // Scroll handler to adjust globe position
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -108,63 +40,104 @@ const Globe = () => {
     };
   }, []);
 
+  // Initialize dots with 3 equally spaced dots per orbit
   useEffect(() => {
-    const startPhiValue = [0.25, 0.45, 0.35, 0.55, 0.55, 0.75];
-    const startThetaValue = [0.1, 0.6, 0.2, 0.7, 3.74, 3.24];
-    const endPhiValue = [0.75, 0.85, 0.85, 0.95, 0.15, 0.25];
-    const endThetaValue = [1.3, 0.85, 1.4, 1.5, 3.99, 4.4];
-    const newLines = [];
-
-    for (let i = 0; i < startPhiValue.length; i++) {
-      const point1 = generatePointOnSphere(1, startPhiValue[i], startThetaValue[i]); 
-      const point2 = generatePointOnSphere(1, endPhiValue[i], endThetaValue[i]); 
-      const arcPoints = createArcBetweenPoints(point1, point2); 
-      newLines.push(arcPoints);
-    }
-    setLines(newLines);
+    const newDots = orbitPlanes.flatMap((plane) => 
+      Array(2).fill(0).map((_, i) => ({
+        angle: (i * (Math.PI * 2)) / 2,  // Space dots equally
+        speed: speed,
+        plane,
+      }))
+    );
+    setDots(newDots);
   }, []);
 
+  // Animate the globe and the dots independently
   useFrame(() => {
-    if (globeRef.current && groupRef.current) {
-      groupRef.current.rotation.y = scrollY * 0.005;
-
-      const scrollScaleFactor = Math.min(2.5 + scrollY * 0.002, 4.2); 
+    if (globeRef.current) {
+      // Globe rotation based on scroll
+      const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 2.5);
 
       if (!zoomComplete) {
         if (scale < scrollScaleFactor) {
-          setScale((prevScale) => Math.min(prevScale + 0.07, scrollScaleFactor)); 
+          setScale((prevScale) => Math.min(prevScale + 0.07, scrollScaleFactor));
         } else {
-          setZoomComplete(true); 
+          setZoomComplete(true);
         }
       }
 
       if (zoomComplete) {
-        setScale(scrollScaleFactor); 
+        setScale(scrollScaleFactor);
       }
 
-      groupRef.current.scale.set(scale, scale, scale); 
+      // Apply rotation to the globe itself
+      globeRef.current.rotation.y += 0.003;  // Rotate the globe around the Y-axis
 
-      const newXPosition = Math.min(2 + scrollY * 0.01, 5); 
-      groupRef.current.position.x = newXPosition;
+      globeRef.current.scale.set(scale, scale, scale);
+
+      // Slide the globe horizontally as you scroll
+      const newXPosition = Math.min(2 + scrollY * 0.01, 5);  // Max slide distance: 5 units
+      globeRef.current.position.x = newXPosition;
+
+      // Update the position of each dot along its orbit, accounting for scale and translation
+      orbitRefs.current.forEach((dotRef, index) => {
+        if (dotRef) {
+          const dot = dots[index];
+          
+          // Reverse the direction for dots on the YZ-plane
+          if (dot.plane.axis1 === 'x' && dot.plane.axis2 === 'y') {
+            dot.angle += dot.speed;  // Reverse the angle for YZ-plane
+          } else {
+            dot.angle -= dot.speed;  // Regular angle update for other planes
+          }
+      
+          const { axis1, axis2 } = dot.plane;
+          const currentAngle = dot.angle;
+      
+          const position = new THREE.Vector3();
+      
+          // Standard orbit with cos/sin on primary and secondary axes
+          position[axis1] = baseRadius * scale * Math.cos(currentAngle);  // Primary axis
+          position[axis2] = baseRadius * scale * Math.sin(currentAngle);  // Secondary axis
+      
+          // Apply the globe's rotation to the dots
+          
+
+          if (axis1 === 'x' && axis2 === 'z') {
+            const additionalRotationMatrix = new THREE.Matrix4().makeRotationX(globeRef.current.rotation.z + 0.35);
+            position.applyMatrix4(additionalRotationMatrix);
+          }
+          else {
+            const globeRotationMatrix = new THREE.Matrix4().makeRotationY(globeRef.current.rotation.y);
+            position.applyMatrix4(globeRotationMatrix);  // Apply the globe's rotation to the dot
+          }
+      
+          const globePosition = globeRef.current.position;  // Globe's position for translation
+          dotRef.position.set(
+            globePosition.x + position.x,
+            globePosition.y + position.y,
+            globePosition.z + position.z
+          );  // Adjust for the globe's position
+        }
+      });
     }
   });
 
   return (
-    <group ref={groupRef}>
+    <group>
+      {/* The main globe sphere */}
       <Sphere ref={globeRef} args={[1, 64, 64]}>
         <meshStandardMaterial color="#8488FF" wireframe={false} />
       </Sphere>
 
-      {lines.map((linePoints, index) => (
-        <SignalLine
+      {/* Render orbiting dots (3 per orbit plane) */}
+      {dots.map((dot, index) => (
+        <group
           key={index}
-          points={linePoints}
-          speed={0.8}
-          delayDuration={6000}
-          thickness={3}
-          color={colors[index % colors.length]} 
-          startDelay={(index * Math.random() * 3000) + 1000}
-        />
+          ref={(el) => (orbitRefs.current[index] = el)}  // Ref for each orbit
+        >
+          <OrbitDot position={[0, 0, 0]} color="#36ffe7" size={0.065} />
+        </group>
       ))}
     </group>
   );

@@ -93,20 +93,6 @@ body {
   animation: fadeInUp 2s ease forwards;  /* Fade in and move upwards */
 }
 
-@media (max-width: 768px),
-(max-width: 480px),
-(max-width: 400px) {
-  .fade-in {
-    height: 100vh;
-  }
-}
-
-@media (max-height: 720px) {
-  .fade-in {
-    min-height: 200vh;
-  }
-}
-
 /* Section Styling */
 .section-content {
   width: 720px;
@@ -118,6 +104,12 @@ body {
 @media (max-width: 768px) {
   .section-content {
     width: 90%;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section {
     min-height: 100vh;
   }
 
@@ -133,8 +125,14 @@ body {
 @media (max-width: 480px) {
   .section-content {
     width: 95%;
-    min-height: 100vh;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
   }
+
+  .section {
+    min-height: 120vh;
+  } 
 
   h1, h3 {
     font-size: 1.25rem;
