@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Typed from 'typed.js';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Typography, Link, IconButton, Menu, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import TabPanel from './components/TabPanel';
 import ProjectPanel from './components/ProjectPanel';
 import AboutMePanel from './components/AboutMePanel';
@@ -15,23 +16,50 @@ export default function Home() {
   const typedElement = useRef(null);
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [isVisibleSection1, setIsVisibleSection1] = useState(false);
-  const [isVisibleSection2, setIsVisibleSection2] = useState(false);
-  const [isVisibleSection3, setIsVisibleSection3] = useState(false);
-  const [isVisibleSection4, setIsVisibleSection4] = useState(false);
-  const [isVisibleSection5, setIsVisibleSection5] = useState(false);
-  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isMenuOpen = Boolean(anchorEl);
 
+  // State for menu visibility and initial slide-in
+  const [showMenu, setShowMenu] = useState(false); // Initially offscreen
+  const [menuLoaded, setMenuLoaded] = useState(false); // For initial load
+  const lastScrollY = useRef(0);
+
+  // Function to handle scroll direction and toggle menu visibility near the top
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY < 300 && scrollY < lastScrollY.current) {
+      // Only show the menu when scrolling up and near the top (within 200px)
+      setShowMenu(true);
+    } else {
+      // Hide the menu when scrolling down or far from the top
+      setShowMenu(false);
+    }
+
+    lastScrollY.current = scrollY; // Update last scroll position
+  };
+
+  // Add scroll event listener
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Slide the menu down on initial load
   useEffect(() => {
     window.scrollTo(0, 0);
-  
+
     const loadTimeout = setTimeout(() => {
       setPreloaderVisible(false);
       setTimeout(() => {
-        setLoading(false);  // Set loading to false after the timeout
-      }, 1000);
+        setLoading(false);
+        setMenuLoaded(true); // After preloader, trigger slide-down
+        setTimeout(() => setShowMenu(true)); // Show menu after slight delay for smooth slide
+      }, 0);
     }, 2500);
-  
+
     if (!loading && typedElement.current) {
       const options = {
         strings: [
@@ -47,57 +75,30 @@ export default function Home() {
         smartBackspace: true,
         showCursor: false,
       };
-  
+
       const typed = new Typed(typedElement.current, options);
-  
+
       return () => {
         clearTimeout(loadTimeout);
-        typed.destroy();  // Cleanup Typed.js instance when component unmounts
+        typed.destroy();
       };
     }
-  
-  }, [loading]);  // Add 'loading' to the dependency array
-  
+  }, [loading]);
 
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target === sectionRefs[0].current) {
-            setIsVisibleSection1(true);
-          } else if (entry.target === sectionRefs[1].current) {
-            setIsVisibleSection2(true);
-          } else if (entry.target === sectionRefs[2].current) {
-            setIsVisibleSection3(true);
-          } else if (entry.target === sectionRefs[3].current) {
-            setIsVisibleSection4(true);
-          } else if (entry.target === sectionRefs[4].current) {
-            setIsVisibleSection5(true);
-          }
-        }
-      });
-    }, observerOptions);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-    sectionRefs.forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
+  const scrollToSection = (index) => {
+    sectionRefs[index].current.scrollIntoView({ behavior: 'smooth' });
+    handleMenuClose();
+  };
 
-    return () => {
-      sectionRefs.forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, [sectionRefs]);
+  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 
   return (
     <>
@@ -118,8 +119,81 @@ export default function Home() {
       )}
 
       {!loading && (
-        
         <Box display="flex" flexDirection="column" color="white" minWidth="100%">
+          {/* Navigation Bar */}
+          <Box
+            position="fixed"
+            top={showMenu ? '0' : '-80px'}  // Slide in/out based on menu state
+            right={0}
+            p={4}
+            zIndex={10}
+            sx={{
+              display: 'flex',
+              gap: 1,
+              transition: 'top 0.35s ease',  // Smooth transition for sliding effect
+            }}
+          >
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+              <Link
+                component="button"
+                onClick={() => scrollToSection(1)}
+                color="inherit"
+                sx={{
+                  fontSize: '0.75rem',
+                  textDecoration: 'none',
+                  color: '#afafaf',
+                  transition: 'opacity 0.3s',
+                  '&:hover': { opacity: 0.7 },
+                }}
+              >
+                <span style={{ color: '#36ffe7' }}>01. </span> My TLDR
+              </Link>
+              <Link
+                component="button"
+                onClick={() => scrollToSection(2)}
+                color="inherit"
+                sx={{
+                  fontSize: '0.75rem',
+                  textDecoration: 'none',
+                  color: '#afafaf',
+                  transition: 'opacity 0.3s',
+                  '&:hover': { opacity: 0.7 },
+                }}
+              >
+                <span style={{ color: '#36ffe7' }}>02. </span> Where I&apos;ve Worked
+              </Link>
+              <Link
+                component="button"
+                onClick={() => scrollToSection(3)}
+                color="inherit"
+                sx={{
+                  fontSize: '0.75rem',
+                  textDecoration: 'none',
+                  color: '#afafaf',
+                  transition: 'opacity 0.3s',
+                  '&:hover': { opacity: 0.7 },
+                }}
+              >
+                <span style={{ color: '#36ffe7' }}>03. </span> Some Fun Projects
+              </Link>
+              <Link
+                component="button"
+                onClick={() => scrollToSection(4)}
+                color="inherit"
+                sx={{
+                  fontSize: '0.75rem',
+                  textDecoration: 'none',
+                  color: '#afafaf',
+                  transition: 'opacity 0.3s',
+                  '&:hover': { opacity: 0.7 },
+                }}
+              >
+                <span style={{ color: '#36ffe7' }}>04. </span> Get In Touch
+              </Link>
+            </Box>
+          </Box>
+
+          {/* Globe background */}
           <div>
             <Canvas
               style={{
@@ -128,7 +202,7 @@ export default function Home() {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                zIndex: -1, 
+                zIndex: -1,
               }}
             >
               <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
@@ -137,14 +211,9 @@ export default function Home() {
               <Globe />
             </Canvas>
           </div>
-          {/* Section 1 */}
-          <Box
-            ref={sectionRefs[0]}
-            height="100vh"  // Full viewport height
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={'fade-in section1'}
-          >
+
+          {/* Sections */}
+          <Box ref={sectionRefs[0]} height="100vh" width="100%" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className={'fade-in section1'}>
             <Box className="section-content">
               <Typography variant="h3" component="h1">
                 <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
@@ -160,65 +229,59 @@ export default function Home() {
             </Box>
           </Box>
 
-          {/* Section 2 */}
-          <Box
-            ref={sectionRefs[1]}
-            height="100vh"  // Full viewport height for section 2
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`${isVisibleSection2 ? 'fade-in' : ''} section`}
-          >
+          {/* Other sections remain the same */}
+          <Box ref={sectionRefs[1]} height="90vh" width="100%" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className={'section'}>
             <Box className="section-content">
-              <AboutMePanel/>
+              <Typography variant="h6" component="h1" color="#dbdbdb">
+                <span style={{ color: '#36ffe7' }}>01.</span> My TLDR
+              </Typography>
+              <AboutMePanel />
             </Box>
           </Box>
 
-          {/* Section 3 */}
-          <Box
-            ref={sectionRefs[2]}
-            height="70vh"  // Full viewport height for section 3
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`${isVisibleSection3 ? 'fade-in' : ''} section`}
-          >
+          <Box ref={sectionRefs[2]} height="90vh" width="100%" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className={'section'}>
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="white">
+              <Typography variant="h6" component="h1" color="#dbdbdb">
                 <span style={{ color: '#36ffe7' }}>02.</span> Where I&apos;ve Worked
               </Typography>
               <TabPanel />
             </Box>
           </Box>
 
-          {/* Section 4 */}
-          <Box
-            ref={sectionRefs[3]}
-            height="70vh"  // Full viewport height for section 3
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`${isVisibleSection4 ? 'fade-in' : ''} section`}
-          >
+          <Box ref={sectionRefs[3]} height="90vh" width="100%" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className={'section'}>
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="white">
+              <Typography variant="h6" component="h1" color="#dbdbdb">
                 <span style={{ color: '#36ffe7' }}>03.</span> Some Fun Projects
               </Typography>
-              <ProjectPanel/>
+              <ProjectPanel />
             </Box>
           </Box>
 
-          {/* Section 5 */}
-          <Box
-            ref={sectionRefs[4]}
-            height="70vh"  // Full viewport height for section 3
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`${isVisibleSection5 ? 'fade-in' : ''} section`}
-          >
+          <Box ref={sectionRefs[4]} height="70vh" width="100%" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className={'section'}>
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="white">
+              <Typography variant="h6" component="h1" color="#dbdbdb">
                 <span style={{ color: '#36ffe7' }}>04.</span> Get In Touch!
               </Typography>
-              <Typography sx={{mt: 3}}variant="subtitle1" gutterBottom color="#36ffe7"><Link href="https://www.linkedin.com/in/aaronzsun/" color="#36ffe7" target="_blank" underline="hover">LinkedIn </Link> </Typography>
-              <Typography variant="subtitle1" gutterBottom color="#36ffe7"><Link href="https://github.com/aaronzsun" color="#36ffe7" target="_blank" underline="hover">GitHub </Link> </Typography>
+              <Typography sx={{ mt: 3 }} variant="subtitle1" gutterBottom color="#36ffe7">
+                <Link 
+                  href="https://www.linkedin.com/in/aaronzsun/" 
+                  color="#36ffe7" 
+                  target="_blank" 
+                  sx={{ textDecoration: 'none', transition: 'opacity 0.3s', '&:hover': { opacity: 0.7 } }}
+                >
+                  LinkedIn
+                </Link>
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom color="#36ffe7">
+                <Link 
+                  href="https://github.com/aaronzsun" 
+                  color="#36ffe7" 
+                  target="_blank" 
+                  sx={{ textDecoration: 'none', transition: 'opacity 0.3s', '&:hover': { opacity: 0.7 } }}
+                >
+                  GitHub
+                </Link>
+              </Typography>
             </Box>
           </Box>
         </Box>

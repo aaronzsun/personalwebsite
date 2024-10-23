@@ -90,7 +90,7 @@ body {
 .fade-in {
   opacity: 0;
   transform: translateY(60px);  /* Start with a slight downward offset */
-  animation: fadeInUp 2s ease forwards;  /* Fade in and move upwards */
+  animation: fadeInUp 3s ease forwards;  /* Fade in and move upwards */
 }
 
 /* Section Styling */

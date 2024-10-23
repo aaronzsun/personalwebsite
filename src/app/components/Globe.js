@@ -24,8 +24,9 @@ const Globe = () => {
   const orbitRefs = useRef([]);  // Refs for orbits to animate individually
   const [scrollY, setScrollY] = useState(0);
   const [dots, setDots] = useState([]);
-  const [scale, setScale] = useState(0.1);
+  const [scale, setScale] = useState(1.5);
   const [zoomComplete, setZoomComplete] = useState(false);
+  const [opacity, setOpacity] = useState(0);  // Initial opacity for fade-in
   const baseRadius = 1.2;  // Base orbit radius (before scaling)
   const speed = 0.01;  // Constant speed for all dots
 
@@ -70,10 +71,18 @@ const Globe = () => {
         setScale(scrollScaleFactor);
       }
 
+      // Apply opacity for fade-in effect
+      if (opacity < 1) {
+        setOpacity((prevOpacity) => Math.min(prevOpacity + 0.01, 1));  // Fade in over time
+      }
+
       // Apply rotation to the globe itself
       globeRef.current.rotation.y += 0.003;  // Rotate the globe around the Y-axis
-
       globeRef.current.scale.set(scale, scale, scale);
+
+      // Set opacity for globe material
+      globeRef.current.material.opacity = opacity;
+      globeRef.current.material.transparent = true;
 
       // Slide the globe horizontally as you scroll
       const newXPosition = Math.min(2 + scrollY * 0.01, 5);  // Max slide distance: 5 units
@@ -127,7 +136,7 @@ const Globe = () => {
     <group>
       {/* The main globe sphere */}
       <Sphere ref={globeRef} args={[1, 64, 64]}>
-        <meshStandardMaterial color="#8488FF" wireframe={false} />
+        <meshStandardMaterial color="#8488FF" wireframe={false} opacity={opacity} transparent />
       </Sphere>
 
       {/* Render orbiting dots (3 per orbit plane) */}
