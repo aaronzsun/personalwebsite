@@ -356,7 +356,7 @@ export default function Home() {
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                <span style={{ color: '#36ffe7' }}>01.</span> My TLDR
+                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>01.</span> My TLDR
               </Typography>
               <AboutMePanel />
             </Box>
@@ -371,7 +371,7 @@ export default function Home() {
           >
             <Box className="section-content" sx={{ width: "540px", minHeight: "500px" }}>
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
-                <span style={{ color: '#36ffe7' }}>02.</span> Where I&apos;ve Worked
+                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
               </Typography>
               <TabPanel />
             </Box>
@@ -381,12 +381,12 @@ export default function Home() {
             ref={sectionRefs[3]}
             height="40vh"
             width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "100px" }}
             className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                <span style={{ color: '#36ffe7' }}>03.</span> Stuff I&apos;ve Built
+                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>03.</span> Stuff I&apos;ve Built
               </Typography>
               <ProjectPanel />
             </Box>
