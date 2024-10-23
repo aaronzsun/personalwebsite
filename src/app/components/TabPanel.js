@@ -21,7 +21,7 @@ function TabPanel(props) {
       style={{ backgroundColor: 'transparent' }}  // Ensure the background is transparent
     >
       {value === index && (
-        <Box sx={{ p: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: 1, backgroundColor: 'transparent' }}>  {/* Set background to transparent */}
+        <Box sx={{ p: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: 0.5, backgroundColor: 'transparent' }}>  {/* Set background to transparent */}
           {children}
         </Box>
       )}
@@ -56,7 +56,7 @@ export default function VerticalTabsComponent() {
         display: 'flex',
         bgcolor: 'transparent',  // Set the Box background to transparent
         padding: 0,
-        mt: 3,
+        margin: 0,
       }}
     >
       <AppBar
@@ -64,46 +64,70 @@ export default function VerticalTabsComponent() {
         className="resumeAppBar"
         elevation={0}
         sx={{
-          bgcolor: 'transparent',  // Set AppBar background to transparent
+          bgcolor: 'transparent',
           flexDirection: 'column',
-          width: { xs: "90px", sm: "90px", md: "150px" },
+          width: { xs: "70px", sm: "70px", md: "120px" },
         }}
       >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          orientation="vertical"
-          textColor="inherit"
-          className="resumeTabs"
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: '#36ffe7',
-              left: 0,
-            },
-          }}
+        <Box
           sx={{
-            '.MuiTab-root': {
-              textTransform: 'none',
-              fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1rem' },
-              alignItems: 'flex-start',
-              padding: { xs: 2, sm: 2, md: 2 },
-              paddingLeft: { xs: 1.2, sm: 1.2, md: 2 },
-              color: '#36ffe7',
-            },
-            backgroundColor: 'transparent'  // Ensure Tabs have transparent background
+            position: 'relative',
+            height: 'auto', // Adjust the height to fit the content of the Tabs
           }}
         >
-          <Tab label="OPTIVER" {...a11yProps(0)} />
-          <Tab label="HUBSPOT" {...a11yProps(1)} />
-          <Tab label="NIH" {...a11yProps(2)} />
-          <Tab label="NASA" {...a11yProps(3)} />
-          <Tab label="PAKIRA" {...a11yProps(4)} />
-        </Tabs>
+          <Box
+            sx={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: '2px',  // Width of the gray background
+              bgcolor: '#afafaf',  // Gray color for the entire indicator background
+              opacity: 0.2,
+            }}
+          />
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            orientation="vertical"
+            textColor="inherit"
+            className="resumeTabs"
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: '#36ffe7', // Entire bar is gray by default
+                left: 0,
+                width: '2px', // Width of the indicator
+              },
+            }}
+            sx={{
+              '.MuiTab-root': {
+                textTransform: 'none',
+                fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.8rem' },
+                alignItems: 'flex-start',
+                padding: { xs: 0, sm: 0, md: 0 },
+                paddingLeft: { xs: 1.2, sm: 1.2, md: 2 },
+                minHeight: { xs: '30px', sm: '35px', md: '40px' },
+                height: { xs: '30px', sm: '35px', md: '40px' },
+              },
+              '.Mui-selected': {
+                color: '#36ffe7',  // Selected tab text color
+                backgroundColor: 'rgba(255, 255, 255, .1)'
+              },
+            }}
+          >
+            <Tab label="Optiver" {...a11yProps(0)} disableRipple/>
+            <Tab label="HubSpot" {...a11yProps(1)} disableRipple/>
+            <Tab label="NIH" {...a11yProps(2)} disableRipple/>
+            <Tab label="NASA JPL" {...a11yProps(3)} disableRipple/>
+            <Tab label="Pakira" {...a11yProps(4)} disableRipple/>
+          </Tabs>
+        </Box>
       </AppBar>
 
-      <Box className="resumeContent" sx={{ flexGrow: 1, backgroundColor: 'transparent' }}>  {/* Transparent background for content */}
+
+      <Box className="resumeContent" sx={{ flexGrow: 1, backgroundColor: 'transparent', minHeight: "300px" }}>  {/* Transparent background for content */}
         <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
-          <Typography className="resumePanel" component="h6" color="#dbdbdb" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.2rem' }, mb: { xs: "8px", sm: "8px", md: "12px" }, mt: { xs: "5px", sm: "5px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
             Quantitative Trader Intern @{' '}
             <a 
               href="https://optiver.com/" 
@@ -114,23 +138,68 @@ export default function VerticalTabsComponent() {
               Optiver
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '1rem' } }}>
-            Jul 2023 - Aug 2023
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+            Jul - Aug 2023
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Operated independent quantitative sim desk, generating ~$50k over 4 weeks of trading Tesla options.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Led simulated trading desk for TSLA options, generating ~50K in profit. Had my hands on all the good stuff: Neptune, Bloomberg, and good-ol Python.
+            Also learned a ton about stocastic calculus and the financial markets. 
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Developed new quantitative trading strategies by analyzing historic market flow/liquidity data and S&P 500 index correlations with Tesla volatility, Sharpe ratio of 2.8 when backtested.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Developed a new event trading strategy utilizing S&P500 and NASDAQ correlations to TSLA volatility- Sharpe of 2.8 when backtested over past 5 years of FOMC meetings.
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Gained in-depth understanding of the Black-Scholes Model (options pricing), game theory, and stochastic calculus through Optiver&apos;s trader education program.
-          </Typography>
-          
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.2rem' }, mb: { xs: "8px", sm: "8px", md: "12px" }, mt: { xs: "5px", sm: "5px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
             Software Engineer Intern @{' '}
             <a 
               href="https://www.hubspot.com/" 
@@ -141,19 +210,67 @@ export default function VerticalTabsComponent() {
               HubSpot
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '1rem' } }}>
-            Jul 2022 - Aug 2022
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+            Jul - Aug 2022
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Led creation of Storybook-UI Packages Application, an interface that aggregates all storybook enabled packages at HubSpot and their relevant information, accessed by hundreds of engineers for internal development.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Ideated and developed the JavaScript Package Center, an intuitive interface that aggregates components across all of HubSpot by their JavaScript libraries, accessed by 250+ engineers to assess and modify the landscape of their JS apps.
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Developed Component Health UI alongside component tooling team, automatically providing developers with graded assessments of the compatibility of their Storybook-UI applications.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Created a comprehensive Component Health UI that automatically assesses the "health" of each component within its JavaScript ecosystem, factoring in current version support and compatability with its JS ecosystem. 
           </Typography>
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={2} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.2rem' }, mb: { xs: "8px", sm: "8px", md: "12px" }, mt: { xs: "5px", sm: "5px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
             Research Fellow @{' '}
             <a 
               href="https://lhncbc.nlm.nih.gov/" 
@@ -164,22 +281,67 @@ export default function VerticalTabsComponent() {
               NIH LHNCBC
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '1rem' } }}>
-            Feb 2021 - Aug 2021
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+            Feb - Aug 2021
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> With Dr. Clement McDonald, Scientific Director of the Lister Hill National Center and NIH Data Discovery Group.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Ideated and developed EasyPATH, a Python natural language processing library for the medicare language FHIRPath. Converts human-written expressions to FHIRPath, increasing the accessibility of healthcare informatics resources across 100+ platforms for medical institutions all around the US.
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Created EasyPATH, a syntax parsing library to convert human-written expressions into FHIRPath, increasing accessibility of healthcare informatics resources across 100+ platforms & medical institutions across the US.
-          </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Wrote machine learning scripts (TensorFlow) for large COVID-19 patient datasets to determine efficacy of treatments.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Joined the Data Discovery Group during the peak of COVID, where we utilized reinforcement learning (deep Q) to analyze huge patient datasets to identify the most efficacious treatments.
           </Typography>
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={3} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.2rem' }, mb: { xs: "8px", sm: "8px", md: "12px" }, mt: { xs: "5px", sm: "5px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
             Research Intern @{' '}
             <a 
               href="https://www.jpl.nasa.gov/" 
@@ -190,19 +352,68 @@ export default function VerticalTabsComponent() {
               NASA JPL
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '1rem' } }}>
-            June 2020 - August 2020
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+            June - August 2020
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> With Dr. Goldsmith, Group Director of the NASA JPL Structure of the Universe Division.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Created spect-fitter, a collection of Python scripts to resolve foreground absorption issues with NASA's spectrometers aboard some of their biggest telescopes.
+            Used a combo of procedural model generation & gaussian fitting to remove the noise from the spectrographs of massive star clusters.
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Developed python scripts to resolve foreground absorption issues in NASA spectroscopy data using procedural model generation & gaussian fitting.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Utilized these new spectrographs to model and predict the chemical indicators of massive stars about to form. Got to present my work at the Jet Propulsion Laboratory Symposium.
           </Typography>
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={4} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.2rem' }, mb: { xs: "8px", sm: "8px", md: "12px" }, mt: { xs: "5px", sm: "5px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
             Founding Software Engineer @{' '}
             <a 
               href="https://www.pakira.com/" 
@@ -213,14 +424,62 @@ export default function VerticalTabsComponent() {
               Pakira
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '1rem' } }}>
+          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "20px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jan 2020 - Jan 2021
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Co-Founding Software Engineer of Pakira, an online commodity trading platform to automate B2B transactions.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Co-founded Pakira in collaboration with MIT and the Harvard Innovation Labs. We created the online platform to automate and centralize B2B transactions in the $20 trillion commodity industry.
           </Typography>
-          <Typography variant="body2" component="p" sx={{ mb: 1, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }, color: '#afafaf' }}>
-            <span style={{ color: '#36ffe7', marginRight: '5px' }}>•</span> Developed Pakira full-stack MVP0 in React & developed Pakira lumber forum for 200+ businesses.
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              mb: 1,
+              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              color: '#afafaf',
+              textAlign: 'left',  // Justify the content
+              textIndent: '0',       // No negative indentation
+              paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+              position: 'relative',  // Position relative for the bullet point
+              lineHeight: '1.5',
+            }}
+          >
+            <span
+              style={{
+                color: '#36ffe7',
+                position: 'absolute',
+                left: '0',          // Keep bullet point aligned at the left
+                display: 'inline-block',
+                width: '20px',      // Adjust width for spacing between bullet and text
+              }}
+            >
+              •
+            </span>
+            Created the prototype and MVP0 for Pakira. Got to work with the full stack- utilizing a React frontend and Node backend to develop the initial forum and transaction market for 200+ businesses.
           </Typography>
         </TabPanel>
       </Box>

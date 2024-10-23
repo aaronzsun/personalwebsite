@@ -92,7 +92,7 @@ export default function Home() {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.7,
+      threshold: 0.85,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -230,20 +230,19 @@ export default function Home() {
           {/* Sections */}
           <Box
             ref={sectionRefs[0]}
-            height="100vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className='fade-in'
+            className='fade-in topSection'
           >
             <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ mb: { xs: 0, sm: 0, md: 1}, fontSize: { xs: '2rem', sm: '2rem', md: '3.5rem' }  }}>
+              <Typography variant="h3" component="h1" sx={{ fontWeight: "700", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
                 <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
               </Typography>
-              <Typography variant="h3" component="h1">
+              <Typography variant="h3" component="h1" sx={{mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
                 <span ref={typedElement} className="typed-text"></span>
               </Typography>
-              <Typography variant="subtitle1" color="#afafaf" sx={{ mt: 1 }}>
-                I&apos;m a software engineer and data-enthusiast passionate about delivering great digital experiences. <br></br>
+              <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 3, md: 4 }, mb: { xs: 2, sm: 2, md: 0}, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' } }}>
+                I&apos;m a software engineer and data-enthusiast passionate about delivering great digital experiences.
                 I specialize in building full-stack products with elegant and intuitive designs. 
                 I&apos;m currently based in San Francisco seeking new challenges.
               </Typography>
@@ -267,6 +266,7 @@ export default function Home() {
                     boxShadow: '5px 5px 0px #36ffe7', 
                     borderColor: '#36ffe7', 
                     backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                    cursor: "pointer"
                   },
                   '@media (hover: none)': {
                     '&:hover': {
@@ -298,6 +298,7 @@ export default function Home() {
                     boxShadow: '5px 5px 0px #36ffe7', 
                     borderColor: '#36ffe7', 
                     backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                    cursor: "pointer"
                   },
                   '@media (hover: none)': {
                     '&:hover': {
@@ -317,13 +318,13 @@ export default function Home() {
 
           <Box
             ref={sectionRefs[1]}
-            height="90vh"
+            height="70vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             className={`section ${isVisibleSection1 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
                 <span style={{ color: '#36ffe7' }}>01.</span> My TLDR
               </Typography>
               <AboutMePanel />
@@ -332,13 +333,13 @@ export default function Home() {
 
           <Box
             ref={sectionRefs[2]}
-            height="90vh"
+            height="40vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             className={`section ${isVisibleSection2 ? 'fade-in' : ''}`}
           >
-            <Box className="section-content">
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4 }}>
+            <Box className="section-content" sx={{ width: "540px", minHeight: "500px" }}>
+              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
                 <span style={{ color: '#36ffe7' }}>02.</span> Where I&apos;ve Worked
               </Typography>
               <TabPanel />
@@ -347,14 +348,14 @@ export default function Home() {
 
           <Box
             ref={sectionRefs[3]}
-            height="90vh"
+            height="40vh"
             width="100%"
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             className={`section ${isVisibleSection3 ? 'fade-in' : ''}`}
           >
             <Box className="section-content">
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold' }}>
-                <span style={{ color: '#36ffe7' }}>03.</span> Some Fun Projects
+              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
+                <span style={{ color: '#36ffe7' }}>03.</span> Stuff I&apos;ve Built
               </Typography>
               <ProjectPanel />
             </Box>
