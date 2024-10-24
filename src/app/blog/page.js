@@ -134,6 +134,7 @@ export default function Blog() {
                     variant="outlined" 
                     size="small"
                     sx={{
+                        textDecoration: 'none',
                         display: { xs: 'flex', sm: 'flex', md: 'flex' },
                         fontFamily: 'var(--font-iosevka), monospace',
                         width: { xs: "110px", sm: "110px", md: "110px" },

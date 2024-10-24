@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button, Link } from '@mui/material';
 
-const Contact = () => {
+const Blog = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', }}>
         <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 4, mt:  { xs: 2, sm: 4, md: 4 }, fontSize: { xs: '0.9rem', sm: '1rem', md: '1rem' }}}>
@@ -44,4 +44,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Blog;
