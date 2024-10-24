@@ -19,6 +19,7 @@ import ProjectDisplayMobileHub from './components/ProjectDisplayMobileHub';
 import ProjectDisplaySpotifyRec from './components/ProjectDisplaySpotifyRec';
 import ProjectDisplayMobileSpotifyRec from './components/ProjectDisplayMobileSpotifyRec';
 import Contact from './components/Contact'
+import Blog from './components/Blog'
 
 const interTight = localFont({
   src: "./fonts/InterTight.ttf",
@@ -55,8 +56,9 @@ export default function Home() {
   const [isVisibleSection2, setIsVisibleSection2] = useState(false);
   const [isVisibleSection3, setIsVisibleSection3] = useState(false);
   const [isVisibleSection4, setIsVisibleSection4] = useState(false);
+  const [isVisibleSection5, setIsVisibleSection5] = useState(false);
 
-  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -136,6 +138,8 @@ export default function Home() {
             setIsVisibleSection3(true);
           } else if (entry.target === sectionRefs[3].current) {
             setIsVisibleSection4(true);
+          } else if (entry.target === sectionRefs[4].current) {
+            setIsVisibleSection4(true);
           }
         }
       });
@@ -203,7 +207,7 @@ export default function Home() {
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
-                    fontSize: '0.75rem',
+                    fontSize: { xs: '0.55rem', sm: '0.75rem', md: '0.75rem' },
                     textDecoration: 'none',
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
@@ -218,7 +222,7 @@ export default function Home() {
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
-                    fontSize: '0.75rem',
+                    fontSize: { xs: '0.55rem', sm: '0.75rem', md: '0.75rem' },
                     textDecoration: 'none',
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
@@ -233,7 +237,7 @@ export default function Home() {
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
-                    fontSize: '0.75rem',
+                    fontSize: { xs: '0.55rem', sm: '0.75rem', md: '0.75rem' },
                     textDecoration: 'none',
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
@@ -247,16 +251,31 @@ export default function Home() {
                   onClick={() => scrollToSection(3)}
                   color="inherit"
                   sx={{
-                    mr: { xs: 0.5, sm: 1.5, md: 1.5 },
                     fontFamily: 'var(--font-iosevka), monospace',
-                    fontSize: '0.75rem',
+                    fontSize: { xs: '0.55rem', sm: '0.75rem', md: '0.75rem' },
                     textDecoration: 'none',
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
                     '&:hover': { opacity: 0.7 },
                   }}
                 >
-                  <span style={{ color: '#36ffe7' }}>04. </span> CONTACT
+                  <span style={{ color: '#36ffe7' }}>04. </span> BLOG
+                </Link>
+                <Link
+                  component="button"
+                  onClick={() => scrollToSection(4)}
+                  color="inherit"
+                  sx={{
+                    mr: { xs: 0.5, sm: 1.5, md: 1.5 },
+                    fontFamily: 'var(--font-iosevka), monospace',
+                    fontSize: { xs: '0.55rem', sm: '0.75rem', md: '0.75rem' },
+                    textDecoration: 'none',
+                    color: '#afafaf',
+                    transition: 'opacity 0.3s',
+                    '&:hover': { opacity: 0.7 },
+                  }}
+                >
+                  <span style={{ color: '#36ffe7' }}>05. </span> CONTACT
                 </Link>
                 <Button 
                   component="a" 
@@ -371,7 +390,6 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[0]}
-              height="70vh"
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
               className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
@@ -386,7 +404,6 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[1]}
-              height="70vh"
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
               className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
@@ -450,9 +467,8 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[2]}
-              minHeight="140vh"
               width="100%"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: { xs: 0, sm: 0, md: 10 } }} // remove marginbottom if adding more stuff
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: { xs: 0, sm: 0, md: 10 }, pt: 5 }} // remove marginbottom if adding more stuff
               className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
             >
               <Box className="section-content">
@@ -506,10 +522,55 @@ export default function Home() {
                 </Box>
               </Box>
             </Box>
-
             <Box
               ref={sectionRefs[3]}
-              height="40vh"
+              width="100%"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',   // Centers content horizontally
+                alignItems: 'center',       // Centers content vertically
+                textAlign: 'center',        // Ensures text is centered
+                pt: 5,
+              }}
+              className={`section section4 ${isVisibleSection4 ? 'fade-in' : ''}`}
+            >
+              <Box
+                className="section-content"
+                sx={{
+                  width: { xs: '90%', md: '540px' },
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  justifyContent: 'center', 
+                  alignItems: 'center'
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  color="#dbdbdb"
+                  sx={{
+                    fontWeight: 'bold',
+                    fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' },
+                    textAlign: 'center', 
+                  }}
+                >
+                  <span
+                    style={{
+                      color: '#36ffe7',
+                      fontSize: '0.8em',
+                      fontFamily: 'var(--font-iosevka), monospace',
+                    }}
+                  >
+                    04.
+                  </span>{' '}
+                  Stuff I Think About
+                </Typography>
+                <Blog/>
+              </Box>
+            </Box>
+
+            <Box
+              ref={sectionRefs[4]}
               width="100%"
               sx={{
                 display: 'flex',
@@ -517,7 +578,7 @@ export default function Home() {
                 alignItems: 'center',       // Centers content vertically
                 textAlign: 'center',        // Ensures text is centered
               }}
-              className={`section section4 ${isVisibleSection4 ? 'fade-in' : ''}`}
+              className={`section section5 ${isVisibleSection4 ? 'fade-in' : ''}`}
             >
               <Box
                 className="section-content"
@@ -543,7 +604,7 @@ export default function Home() {
                       fontFamily: 'var(--font-iosevka), monospace',
                     }}
                   >
-                    04.
+                    05.
                   </span>{' '}
                   Let&apos;s Connect!
                 </Typography>
@@ -552,7 +613,7 @@ export default function Home() {
             </Box>
             <Box sx={{
                   textAlign: 'center',  // Center the text inside this Box as well
-                  mt: '300px'
+                  mt: '240px'
                 }}>
               <Typography variant="body2" component="a" color="#afafaf" href="https://github.com/aaronzsun" 
               sx={{

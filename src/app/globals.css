@@ -130,6 +130,16 @@ body {
   min-height: 80vh;
 }
 
+
+.section4 {
+  min-height: 50vh;
+}
+
+
+.section5 {
+  min-height: 50vh;
+}
+
 @media (max-width: 600px) {
   .section-content {
     width: 90%;
@@ -152,6 +162,14 @@ body {
 
   .section3 {
     min-height: 120vh;
+  }
+
+  .section4 {
+    min-height: 60vh;
+  }
+
+  .section5 {
+    min-height: 60vh;
   }
 
   h1, h3 {
