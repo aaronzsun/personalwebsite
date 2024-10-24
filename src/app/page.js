@@ -238,10 +238,25 @@ export default function Home() {
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
                     '&:hover': { opacity: 0.7 },
-                    mr: 1.5,
                   }}
                 >
                   <span style={{ color: '#36ffe7' }}>03. </span> PROJECTS
+                </Link>
+                <Link
+                  component="button"
+                  onClick={() => scrollToSection(3)}
+                  color="inherit"
+                  sx={{
+                    mr: 1.5,
+                    fontFamily: 'var(--font-iosevka), monospace',
+                    fontSize: '0.75rem',
+                    textDecoration: 'none',
+                    color: '#afafaf',
+                    transition: 'opacity 0.3s',
+                    '&:hover': { opacity: 0.7 },
+                  }}
+                >
+                  <span style={{ color: '#36ffe7' }}>04. </span> CONTACT
                 </Link>
                 <Button 
                   component="a" 
@@ -434,9 +449,9 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[2]}
-              minHeight="70vh"
+              minHeight="140vh"
               width="100%"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "300px", mt: { xs: 0, sm: 0, md: 10 } }} // remove marginbottom if adding more stuff
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: { xs: 0, sm: 0, md: 10 } }} // remove marginbottom if adding more stuff
               className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
             >
               <Box className="section-content">
@@ -493,7 +508,7 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[3]}
-              height="20vh"
+              height="40vh"
               width="100%"
               sx={{
                 display: 'flex',
