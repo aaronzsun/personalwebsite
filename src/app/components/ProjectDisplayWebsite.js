@@ -4,11 +4,11 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 const ProjectDisplayWebsite = () => {
   const title = "My Personal Site";
-  const description = "My personal website- and where you are right now. Built entirely from scratch and deployed on Vercel. Responsive design for mobile phones and tablets as well. Took some design inspirations from Brittany Chiang.";
+  const description = "My personal website- and where you are right now. Built entirely from scratch and deployed on Vercel. Responsive design for mobile phones and tablets as well. Took some design inspirations from Brittany Chiang, but all code is mine.";
   const technologies = ["React", "JavaScript", "MUI", "Three.JS", "NextJS"]
   const imageSrc = "mywebsite.png"
-  const githubLink = "https://github.com"
-  const liveLink = "https://github.com"
+  const githubLink = "https://github.com/aaronzsun/personalwebsite/"
+  const liveLink = "https://github.com/aaronzsun/personalwebsite/"
 
   return (
     <Box
@@ -103,7 +103,7 @@ const ProjectDisplayWebsite = () => {
             <Typography
               key={index}
               variant="body2"
-              sx={{ color: '#dbdbdb', fontSize: '0.85rem' }}
+              sx={{ color: '#afafaf', fontSize: '0.85rem' }}
             >
               {tech}
             </Typography>

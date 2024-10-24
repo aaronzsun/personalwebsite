@@ -7,8 +7,8 @@ const ProjectDisplayMobileWebsite = () => {
     const description = "Twitter, Instagram, Facebook, BeReal... overwhelmed by the sheer number of social media platforms? Connect and share them all with your friends in one place with Hub- built with all the social functionality of your favorite sites.";
     const technologies = ["Flask", "HTML", "CSS", "JavaScript", "SQL"]
     const imageSrc = "hub.png"
-    const githubLink = "https://github.com"
-    const liveLink = "https://github.com"
+    const githubLink = "https://github.com/aaronzsun/hub"
+    const liveLink = "https://github.com/aaronzsun/hub"
 
   return (
     <Box
@@ -65,7 +65,7 @@ const ProjectDisplayMobileWebsite = () => {
       {/* Technologies */}
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2, position: 'relative', zIndex: 1 }}>
         {technologies.map((tech, index) => (
-          <Typography key={index} variant="body2" sx={{ color: '#dbdbdb', fontSize: '0.85rem' }}>
+          <Typography key={index} variant="body2" sx={{ color: '#afafaf', fontSize: '0.85rem' }}>
             {tech}
           </Typography>
         ))}

@@ -5,7 +5,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 const ProjectDisplayMobileWebsite = () => {
     const title = "Better Spotify Recs";
     const description = "Sick of Spotify giving you terrible song recommendations? Get personalized information on your profile, as well as recommendations for songs and artists based on your profile from OpenAI.";
-    const technologies = ["React", "Spotify API", "OpenAI API", "Django", "Heroku"]
+    const technologies = ["React", "Spotify API", "OpenAI API", "Django" ]
     const imageSrc = "spotifyrec.png"
     const githubLink = "https://github.com"
     const liveLink = "https://github.com"  
@@ -65,7 +65,7 @@ const ProjectDisplayMobileWebsite = () => {
       {/* Technologies */}
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2, position: 'relative', zIndex: 1 }}>
         {technologies.map((tech, index) => (
-          <Typography key={index} variant="body2" sx={{ color: '#dbdbdb', fontSize: '0.85rem' }}>
+          <Typography key={index} variant="body2" sx={{ color: '#afafaf', fontSize: '0.85rem' }}>
             {tech}
           </Typography>
         ))}
