@@ -290,6 +290,7 @@ export default function Home() {
                   variant="outlined" 
                   size="small"
                   sx={{
+                    textDecoration: 'none',
                     display: { xs: 'none', sm: 'flex', md: 'flex' },
                     fontFamily: 'var(--font-iosevka), monospace',
                     width: { xs: "90px", sm: "90px", md: "90px" },
@@ -362,6 +363,7 @@ export default function Home() {
                   onClick={() => scrollToSection(0)}
                   size="large"
                   sx={{
+                      textDecoration: 'none',
                       mr: 3,
                       fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "140px", sm: "140px", md: "140px" },
@@ -443,6 +445,7 @@ export default function Home() {
                     variant="outlined" 
                     size="large"
                     sx={{
+                      textDecoration: 'none',
                       fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "180px", sm: "180px", md: "180px" },
                       color: '#36ffe7', 

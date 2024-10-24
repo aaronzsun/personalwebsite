@@ -128,7 +128,7 @@ export default function Blog() {
               }}
             >
               <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
-                <Link href="/" passHref>
+                <Link href="/" passHref sx={{ textDecoration: 'none' }}>
                     <Button 
                     component="a" 
                     variant="outlined" 
@@ -181,6 +181,7 @@ export default function Blog() {
                   onClick={() => scrollToSection()}
                   size="large"
                   sx={{
+                      textDecoration: 'none',
                       fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "140px", sm: "140px", md: "140px" },
                       mt: { xs: 4, sm: 1, md: 1 },

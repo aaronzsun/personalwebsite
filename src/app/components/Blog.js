@@ -9,7 +9,9 @@ const Blog = () => {
             <br/><br/> Check them all out on my blog.
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <Link href="/blog" passHref>
+            <Link href="/blog" sx = {{
+                textDecoration: 'none'
+            }}passHref>
                 <Button 
                     component="a" 
                     variant="outlined" 
