@@ -198,7 +198,7 @@ export default function Home() {
               <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
                 <Link
                   component="button"
-                  onClick={() => scrollToSection(1)}
+                  onClick={() => scrollToSection(0)}
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
@@ -213,7 +213,7 @@ export default function Home() {
                 </Link>
                 <Link
                   component="button"
-                  onClick={() => scrollToSection(2)}
+                  onClick={() => scrollToSection(1)}
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
@@ -228,7 +228,7 @@ export default function Home() {
                 </Link>
                 <Link
                   component="button"
-                  onClick={() => scrollToSection(3)}
+                  onClick={() => scrollToSection(2)}
                   color="inherit"
                   sx={{
                     fontFamily: 'var(--font-iosevka), monospace',
