@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Typed from 'typed.js';
 import { Box, Typography, Link, Button } from '@mui/material';
 import TabPanel from './components/TabPanel';
+import TabPanelMobile from './components/TabPanelMobile'
 import ProjectPanel from './components/ProjectPanel';
 import AboutMePanel from './components/AboutMePanel';
 import { Canvas } from '@react-three/fiber';
@@ -369,25 +370,26 @@ export default function Home() {
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
           >
-            <Box className="section-content" sx={{ width: "540px" }}>
+            <Box className="section-content" sx={{ width: { xs: "90%", md: "540px"} }}>
               <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
                 <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
               </Typography>
               <Box
                 sx={{
-                  display: { xs: 'none', md: 'block' }, // Hidden on small screens, visible on medium screens
+                  display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
                 }}
               >
                 <TabPanel />
               </Box>
               <Box
                 sx={{
-                  display: { xs: 'block', md: 'none' }, // Hidden on small screens, visible on medium screens
+                  display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
                 }}
               >
+                <TabPanelMobile />
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 4, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 6, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
                   Want to learn more about my work? Feel free to check out my resume.
                 </Typography>
                 <Button 

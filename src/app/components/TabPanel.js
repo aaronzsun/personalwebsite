@@ -103,7 +103,7 @@ export default function VerticalTabsComponent() {
             sx={{
               '.MuiTab-root': {
                 textTransform: 'none',
-                fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.8rem' },
+                fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' },
                 alignItems: 'flex-start',
                 padding: { xs: 0, sm: 0, md: 0 },
                 paddingLeft: { xs: 1.2, sm: 1.2, md: 2 },
@@ -128,7 +128,7 @@ export default function VerticalTabsComponent() {
 
       <Box className="resumeContent" sx={{ flexGrow: 1, backgroundColor: 'transparent', minHeight: "300px" }}>  {/* Transparent background for content */}
         <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
             Quantitative Trader Intern @{' '}
             <a 
               href="https://optiver.com/" 
@@ -139,7 +139,7 @@ export default function VerticalTabsComponent() {
               Optiver
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jul - Aug 2023
           </Typography>
           <Typography
@@ -147,7 +147,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -172,7 +172,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -194,7 +194,7 @@ export default function VerticalTabsComponent() {
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
             Software Engineer Intern @{' '}
             <a 
               href="https://www.hubspot.com/" 
@@ -205,7 +205,7 @@ export default function VerticalTabsComponent() {
               HubSpot
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jul - Aug 2022
           </Typography>
           <Typography
@@ -213,7 +213,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -237,7 +237,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -259,7 +259,7 @@ export default function VerticalTabsComponent() {
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={2} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
             Research Fellow @{' '}
             <a 
               href="https://lhncbc.nlm.nih.gov/" 
@@ -270,7 +270,7 @@ export default function VerticalTabsComponent() {
               NIH LHNCBC
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Feb - Aug 2021
           </Typography>
           <Typography
@@ -278,7 +278,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -302,7 +302,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -324,7 +324,7 @@ export default function VerticalTabsComponent() {
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={3} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
             Research Intern @{' '}
             <a 
               href="https://www.jpl.nasa.gov/" 
@@ -335,7 +335,7 @@ export default function VerticalTabsComponent() {
               NASA JPL
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             June - August 2020
           </Typography>
           <Typography
@@ -343,7 +343,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -368,7 +368,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -390,7 +390,7 @@ export default function VerticalTabsComponent() {
         </TabPanel>
 
         <TabPanel className="fade-in-tabs" value={value} index={4} dir={theme.direction}>
-          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+          <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
             Founding Software Engineer @{' '}
             <a 
               href="https://www.pakira.com/" 
@@ -401,7 +401,7 @@ export default function VerticalTabsComponent() {
               Pakira
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf',mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jan 2020 - Jan 2021
           </Typography>
           <Typography
@@ -409,7 +409,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation
@@ -433,7 +433,7 @@ export default function VerticalTabsComponent() {
             component="p"
             sx={{
               mb: 1,
-              fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+              fontSize: { xs: '0.8rem', sm: '0.9rem', md: '0.9rem' },
               color: '#afafaf',
               textAlign: 'left',  // Justify the content
               textIndent: '0',       // No negative indentation

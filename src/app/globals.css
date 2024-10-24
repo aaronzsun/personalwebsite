@@ -66,6 +66,18 @@ body {
   margin-right: 0px;
 }
 
+/* Resume AppBar and Tabs Mobile */
+
+.resumeAppBar {
+  margin: 0;
+  padding: 0;
+}
+
+.resumeTabs {
+  margin: 0;
+  padding: 0;
+}
+
 .tab-panel {
   overflow: hidden; /* This will prevent any scrollbars or arrows from appearing */
 }
