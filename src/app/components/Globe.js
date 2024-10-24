@@ -27,7 +27,6 @@ const Globe = () => {
   const [scrollY, setScrollY] = useState(0);
   const [dots, setDots] = useState([]);
   const [scale, setScale] = useState(1.5);
-  const [zoomComplete, setZoomComplete] = useState(false);
   const [opacity, setOpacity] = useState(0);  // Initial opacity for fade-in
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);  // Track screen width
   const baseRadius = 1.2;  // Base orbit radius (before scaling)
@@ -60,39 +59,35 @@ const Globe = () => {
   useFrame(() => {
     if (globeRef.current) {
       // Globe rotation based on scroll
-      const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 2.5);
+      if (screenWidth >= 600) {
+        const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 2.5);
 
-      if (!zoomComplete) {
-        if (scale < scrollScaleFactor) {
-          setScale((prevScale) => Math.min(prevScale + 0.07, scrollScaleFactor));
-        } else {
-          setZoomComplete(true);
-        }
-      }
-
-      if (zoomComplete) {
         setScale(scrollScaleFactor);
+
+        // Apply scaling
+        globeRef.current.scale.set(scale, scale, scale);
+      } else {
+        // Reset to default scale if screen is less than 600px
+        globeRef.current.scale.set(1.5, 1.5, 1.5);
       }
 
-      // Apply opacity for fade-in effect
+      // Handle opacity for fade-in effect
       if (opacity < 1) {
-        setOpacity((prevOpacity) => Math.min(prevOpacity + 0.01, 1));  // Fade in over time
+        setOpacity((prevOpacity) => Math.min(prevOpacity + 0.01, 1));
       }
 
-      // Apply rotation to the globe itself
-      globeRef.current.rotation.y += 0.003;  // Rotate the globe around the Y-axis
-      globeRef.current.scale.set(scale, scale, scale);
+      // Apply rotation
+      globeRef.current.rotation.y += 0.003;
 
-      // Set opacity for globe material
       globeRef.current.material.opacity = opacity;
       globeRef.current.material.transparent = true;
 
       // Slide the globe horizontally as you scroll
-      if (screenWidth >= 900) {
-        const newXPosition = Math.min(2 + scrollY * 0.01, 5);  // Max slide distance: 5 units
+      if (screenWidth >= 600) {
+        const newXPosition = Math.min(3 + scrollY * 0.01, 4.5);  // Max slide distance: 5 units
         globeRef.current.position.x = newXPosition;
       } else {
-        globeRef.current.position.x = 2;  // No movement for screens smaller than 900px
+        globeRef.current.position.x = 3;  // No movement for screens smaller than 900px
       }
 
       // Update the position of each dot along its orbit, accounting for scale and translation
