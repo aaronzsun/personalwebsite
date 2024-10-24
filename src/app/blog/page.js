@@ -169,7 +169,7 @@ export default function Blog() {
               className='fade-in topSection'
             >
               <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
                   <span style={{ color: '#36ffe7' }}> Hello World! I&apos;m Aaron. </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '4rem' }  }}>
@@ -218,8 +218,14 @@ export default function Blog() {
               sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}
             >
               <Box className="section-content">
-                <BlogPost2/>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+                  <span style={{ color: 'white' }}> Featured </span>
+                </Typography>
                 <BlogPost1/>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+                  <span style={{ color: 'white' }}> Other Posts </span>
+                </Typography>
+                <BlogPost2/>
               </Box>
             </Box>
           </Box>

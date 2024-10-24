@@ -33,8 +33,8 @@ const BlogPost2 = () => {
           }}
         />
         {/* Blog Post Title */}
-        <Typography variant="h6" sx={{ color: 'white' }}>
-          <Typography variant="h6" component="span" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Oct 23:</Typography>
+        <Typography variant="h6" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, color: 'white' }}>
+          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Oct 23:</Typography>
             Some Thoughts on San Francisco vs. New York City
         </Typography>
       </Box>
