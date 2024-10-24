@@ -125,7 +125,7 @@ const BlogPost2 = () => {
                     component="span"
                     sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', marginRight: 1 }}
                     >
-                    Joe's:
+                    Joe&apos;s:
                     </Typography>
                     <Typography
                     variant="body1"
