@@ -13,6 +13,15 @@ import { OrthographicCamera } from '@react-three/drei';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./theme/theme"
 import localFont from "next/font/local";
+import ProjectDisplayWebsite from './components/ProjectDisplayWebsite';
+import ProjectDisplayMobileWebsite from './components/ProjectDisplayMobileWebsite';
+import ProjectDisplayHub from './components/ProjectDisplayHub';
+import ProjectDisplayMobileHub from './components/ProjectDisplayMobileHub';
+import ProjectDisplaySpotifyRec from './components/ProjectDisplaySpotifyRec';
+import ProjectDisplayMobileSpotifyRec from './components/ProjectDisplayMobileSpotifyRec';
+
+
+
 
 const openSans = localFont({
   src: "./fonts/OpenSans.ttf",
@@ -439,16 +448,59 @@ export default function Home() {
 
             <Box
               ref={sectionRefs[3]}
-              height="70vh"
+              minHeight="70vh"
               width="100%"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "500px" }} // remove marginbottom if adding more stuff
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "300px", mt: { xs: 0, sm: 0, md: 10 } }} // remove marginbottom if adding more stuff
               className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
             >
               <Box className="section-content">
                 <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
                   <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>03.</span> Stuff I&apos;ve Built
                 </Typography>
-                <ProjectPanel />
+                <Box
+                  sx={{
+                    display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplayHub/>
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplayMobileHub/>
+                </Box>
+                <Box sx={{ mb: { xs: 6, sm: 6, md: 10 } }}/>
+                <Box
+                  sx={{
+                    display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplaySpotifyRec/>
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplayMobileSpotifyRec/>
+                </Box>
+                <Box sx={{ mb: { xs: 6, sm: 6, md: 10 } }} />
+                <Box
+                  sx={{
+                    display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplayWebsite/>
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <ProjectDisplayMobileWebsite/>
+                </Box>
               </Box>
             </Box>
           </Box>
