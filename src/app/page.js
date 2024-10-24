@@ -196,7 +196,7 @@ export default function Home() {
                 alignItems: 'center',
               }}
             >
-              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+              <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
                 <Link
                   component="button"
                   onClick={() => scrollToSection(0)}
@@ -247,7 +247,7 @@ export default function Home() {
                   onClick={() => scrollToSection(3)}
                   color="inherit"
                   sx={{
-                    mr: 1.5,
+                    mr: { xs: 0.5, sm: 1.5, md: 1.5 },
                     fontFamily: 'var(--font-iosevka), monospace',
                     fontSize: '0.75rem',
                     textDecoration: 'none',
@@ -266,6 +266,7 @@ export default function Home() {
                   variant="outlined" 
                   size="small"
                   sx={{
+                    display: { xs: 'none', sm: 'flex', md: 'flex' },
                     fontFamily: 'var(--font-iosevka), monospace',
                     width: { xs: "90px", sm: "90px", md: "90px" },
                     color: '#36ffe7', 
