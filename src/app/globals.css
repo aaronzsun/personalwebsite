@@ -145,13 +145,11 @@ body {
   }
 
   .section2 {
-    min-height: 700px;
-    height: 700px;
+    min-height: 120vh;
   }
 
   .section3 {
-    padding-top: 50px;
-    min-height: 700px;
+    min-height: 120vh;
   }
 
   h1, h3 {

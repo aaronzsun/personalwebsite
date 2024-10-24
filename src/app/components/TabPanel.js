@@ -119,7 +119,7 @@ export default function VerticalTabsComponent() {
             <Tab label="Optiver" {...a11yProps(0)} disableRipple/>
             <Tab label="HubSpot" {...a11yProps(1)} disableRipple/>
             <Tab label="NIH" {...a11yProps(2)} disableRipple/>
-            <Tab label="NASA JPL" {...a11yProps(3)} disableRipple/>
+            <Tab label="NASA" {...a11yProps(3)} disableRipple/>
             <Tab label="Pakira" {...a11yProps(4)} disableRipple/>
           </Tabs>
         </Box>
