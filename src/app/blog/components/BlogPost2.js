@@ -58,8 +58,8 @@ const BlogPost2 = () => {
             being amongst so much. A lot of my friends always had their calendars packed with events, shows, or bars they wanted to check out, but after being
             there for a little while I felt a bit weird that those things didn&apos;t really interest me. <br/><br/>
             I didn&apos;t realize why I felt that way until I moved to San Francisco. Being outside in the sunny weather and surrounded by nature made me realize
-            that what I really crave is the outdoors, which was something New York could never really satisfy for me (outside of some great pickup basketball games
-            at the local city courts). Personally, I haven&apos;t ever been interested in fashion or fine dining or even seeing my favorite artists- I really
+            that my interests just didn&apos;t align with New York. I love nature, sports, and fresh air, which was something New York could never really satisfy for me
+            (outside of some great pickup basketball games at the local city courts). Personally, I haven&apos;t ever been interested in fashion or fine dining or even seeing my favorite artists- I really
             just like spending time with a couple close friends in a quiet and relaxing place. I&apos;ve come to accept that the culture of New York maybe just
             wasn&apos;t for me, which was difficult for a while because it felt like everyone else was so drawn to it. <br/><br/>
             That being said, I really do love New York and everyone there. It&apos;s a great place to be, but if you&apos;re like me, you definitely have to
