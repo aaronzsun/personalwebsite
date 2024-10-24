@@ -211,8 +211,8 @@ export default function Blog() {
               sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}
             >
               <Box className="section-content">
-                <BlogPost1/>
                 <BlogPost2/>
+                <BlogPost1/>
               </Box>
             </Box>
           </Box>
