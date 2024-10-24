@@ -98,14 +98,14 @@ const BlogPost1 = () => {
             The simple menu is not very visually appealing and clutters the top of our website, yet it does exactly what it says which makes it super easy to use.
             The fancier menu is super cool to look at and declutters our site, but hard to understand. So what would make a menu great? One, every part of the
             menu should do exactly what it says. There&apos;s no need for fancy icons or hieroglyphs that make using our menu more difficult. That doesn&apos;t
-            mean that we can&apos;t make our menu visually appealing though. Two, we shouldn&apos;t anything to our menu that doesn&apos;t need to be there. 
+            mean that we can&apos;t make our menu visually appealing though. Two, we shouldn&apos;t include anything to our menu that doesn&apos;t need to be there. 
             We don&apos;t need a label for the menu if it&apos;s functionality is intuitive, and we also don&apos;t need to even see the menu if someone&apos;s 
             reading content on the page and has no plans of navigating. A good menu should be properly labeled so each navigation option is clearly 
             communicated, not have any additional display that isn&apos;t necessarily, and only be visible when someone actually needs it (or be simple
-            to find if someone we&apos;re to want to use it). <br/><br/>
+            to find if someone were to want to use it). <br/><br/>
             While we only examined a simple menu in this case, principles like these can and should be applied to all parts of web design. Everything on
-            your page or application should do exactly what it says. Anything that doesn&apos;t need to be there really just shouldn&apos;t be there. And
-            when it&apos;s not there and someone might need it, they should be able to find it quickly. Obviously, we have to make it visually
+            your page or application should do exactly what it says. Anything that doesn&apos;t need to be there really just shouldn&apos;t be there. When 
+            it&apos;s not there and someone might need it, they should be able to find it quickly. And obviously, we have to make it visually
             appealing too. Easier said than done though. If you&spo;re a new web developer and want to take a look at some designs that I think apply
             these principles well, definitely check out <Link
                 href="https://mui.com/material-ui/"

@@ -51,8 +51,8 @@ const BlogPost2 = () => {
             there&apos;s a ton of fresh and healthy food everywhere in the city and Irving St has been a treasure trove of delicious asian food. I do
             really dispise walking uphill though. I have a couple friends and family in the bay and its been super nice hanging out with them. <br/><br/>
             When it comes to New York, there are some really great things about being in the metropolitan center of the world. It feels like everybody is there-
-            almost all my college friends found there way to New York one way or another and its definitely an oasis for social butterflies. The food
-            is delicious: as much as I don&apos;t want to admit it, the food in New York City is definitely on another level. Personally, I&apos;m not a huge
+            almost all my college friends found their way to New York one way or another and its definitely an oasis for social butterflies. The food
+            is delicious: and as much as I don&apos;t want to admit it, the food in New York City is definitely on another level. Personally, I&apos;m not a huge
             fan of fine-dining though, so San Francisco still checks every box for me. <br/><br/> 
             Something I did feel in New York was this sense of isolation despite
             being amongst so much. A lot of my friends always had their calendars packed with events, shows, or bars they wanted to check out, but after being
