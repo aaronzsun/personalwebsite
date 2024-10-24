@@ -46,7 +46,7 @@ const ProjectDisplayMobileWebsite = () => {
             mb: 1,
             zIndex: 1
           }}>
-          Frontend API
+          API Interface
         </Typography>
       {/* Project Title */}
       <Typography

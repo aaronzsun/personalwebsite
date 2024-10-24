@@ -23,6 +23,7 @@ body {
   display: inline-block;
   min-height: 1.1rem;
   visibility: visible;
+  color: '#d7d7d7';
 }
 
 .topSection {

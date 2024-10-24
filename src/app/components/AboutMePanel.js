@@ -16,13 +16,13 @@ const AboutMePanel = () => {
                 whether that be manipulating data, building and integrating backend/frontend frameworks, or putting it all together to create scalable applications.
             </Box>
             <Box component="p">
-                When I&apos;m offline, you can usually find me playing soccer, chugging beer, or cooking whatever yummy recipe I saw on YouTube that day. 
+                When I&apos;m offline, you can usually find me playing soccer, exploring San Francisco, or cooking whatever yummy recipe I saw on YouTube that day. 
                 Also, in case you&apos;re wondering, that&apos;s a picture of me next to the Broad Street Pump, the source of the London Cholera epidemic of 1854 
                 (epidemiology nerds know what I&apos;m talking about).    
             </Box>
             </Typography> 
             <Box sx={{ mt: 3 }}>
-            <Typography variant="subtitle2" color="#afafaf" sx={{ mb: 2 }}> Some technologies I&apos;ve been working with recently:</Typography>
+            <Typography variant="subtitle2" color="#afafaf" sx={{ mb: 2 }}> Some technologies I&apos;ve been messing with recently:</Typography>
             <Box component="ul" sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, mt: 1, pl: 2, listStyleType: 'none' }}>
                 <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
                 <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px'}} /> JavaScript

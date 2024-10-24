@@ -45,7 +45,7 @@ const ProjectDisplayWebsite = () => {
             color: '#36ffe7',
             mb: 1,
           }}>
-          Frontend API
+          API Interface
         </Typography>
         {/* Project Title */}
         <Typography

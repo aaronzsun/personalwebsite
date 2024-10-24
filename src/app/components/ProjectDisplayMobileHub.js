@@ -4,7 +4,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 
 const ProjectDisplayMobileWebsite = () => {
     const title = "Hub Social Network";
-    const description = "Twitter, Instagram, Facebook, BeReal... overwhelmed by the sheer number of social media platforms? Connect and share them all with your friends in one place with Hub- built with all the social functionality of your favorite sites.";
+    const description = "Twitter, Instagram, Facebook, BeReal... overwhelmed by the sheer number of social media platforms? Connect and share them all with your friends in one place with Hub- equipped with all the functionality of your favorite sites.";
     const technologies = ["Flask", "HTML", "CSS", "JavaScript", "SQL"]
     const imageSrc = "hub.png"
     const githubLink = "https://github.com/aaronzsun/hub"
