@@ -390,7 +390,7 @@ export default function Home() {
                   <TabPanelMobile />
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                  <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 6, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                  <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt:  { xs: 1, sm: 1, md: 6 }, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
                     Want to learn more about my work? Feel free to check out my resume.
                   </Typography>
                   <Button 
@@ -492,7 +492,6 @@ export default function Home() {
               height="20vh"
               width="100%"
               sx={{
-                mb: '200px', // spacing at bottom (remove for more)
                 display: 'flex',
                 justifyContent: 'center',   // Centers content horizontally
                 alignItems: 'center',       // Centers content vertically
@@ -531,7 +530,21 @@ export default function Home() {
                 <Contact />
               </Box>
             </Box>
-
+            <Box sx={{
+                  textAlign: 'center',  // Center the text inside this Box as well
+                  mt: '300px'
+                }}>
+              <Typography variant="body2" component="a" color="#afafaf" href="https://github.com/aaronzsun" 
+              sx={{
+                textDecoration: "none",
+                '&hover': {
+                  cursor: 'pointer',
+                }
+              }}
+              >
+                Built and Designed by Aaron Sun
+              </Typography>
+            </Box>
           </Box>
           </main>
         </ThemeProvider>
