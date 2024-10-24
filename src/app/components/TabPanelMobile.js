@@ -354,7 +354,7 @@ export default function HorizontalTabsComponent() {
             </a>
           </Typography>
           <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
-            June - August 2020
+            Jun - Aug 2020
           </Typography>
           <Typography
             variant="body2"
