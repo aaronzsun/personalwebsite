@@ -106,7 +106,7 @@ const BlogPost1 = () => {
             While we only examined a simple menu in this case, principles like these can and should be applied to all parts of web design. Everything on
             your page or application should do exactly what it says. Anything that doesn&apos;t need to be there really just shouldn&apos;t be there. When 
             it&apos;s not there and someone might need it, they should be able to find it quickly. And obviously, we have to make it visually
-            appealing too. Easier said than done though. If you&spo;re a new web developer and want to take a look at some designs that I think apply
+            appealing too. Easier said than done though. If you&apos;re a new web developer and want to take a look at some designs that I think apply
             these principles well, definitely check out <Link
                 href="https://mui.com/material-ui/"
                 target="_blank"
