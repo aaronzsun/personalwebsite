@@ -144,7 +144,7 @@ export default function Home() {
           } else if (entry.target === sectionRefs[3].current) {
             setIsVisibleSection4(true);
           } else if (entry.target === sectionRefs[4].current) {
-            setIsVisibleSection4(true);
+            setIsVisibleSection5(true);
           }
         }
       });
