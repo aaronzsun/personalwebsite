@@ -112,7 +112,7 @@ const BlogPost2 = () => {
                     </Typography>
                 </Box>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf', mt: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf', mt: 2, mb: 3.5 }}>
                 <ArrowRightIcon
                     sx={{
                     color: '#36ffe7',
@@ -132,10 +132,83 @@ const BlogPost2 = () => {
                     component="span"
                     sx={{ display: 'inline', color: '#afafaf' }}
                     >
-                    The one in Father Demo Square. It&apos;s definitely overpriced and New Yorkers will hate me for this but its my favorite quick slice.
+                    The one in Father Demo Square. It&apos;s definitely overpriced and New Yorkers will hate me for this but I don&apos;t care- its my favorite quick slice.
                     </Typography>
                 </Box>
-            </Box>            
+            </Box>
+            While I&apos;m at it, here&apos;s some of my favorite spots in San Francisco so far: <br/><br/>  
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf' }}>
+                <ArrowRightIcon
+                    sx={{
+                    color: '#36ffe7',
+                    marginRight: '6px',
+                    }}
+                />
+                <Box>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', marginRight: 1 }}
+                    >
+                    Yuanbao Baozi:
+                    </Typography>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ display: 'inline', color: '#afafaf' }}
+                    >
+                    On Irving St. The beef noodle soup is so good. I like the dumplings a lot too.
+                    </Typography>
+                </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf', mt: 2 }}>
+                <ArrowRightIcon
+                    sx={{
+                    color: '#36ffe7',
+                    marginRight: '6px',
+                    }}
+                />
+                <Box>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', marginRight: 1 }}
+                    >
+                    Kevin&apos;s Noodle House:
+                    </Typography>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ display: 'inline', color: '#afafaf' }}
+                    >
+                    I love pho so this find was huge for me. Also, my friend told me to try the combo plate and it was also delicious. Super affordable too.
+                    </Typography>
+                </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf', mt: 2, mb: 3.5 }}>
+                <ArrowRightIcon
+                    sx={{
+                    color: '#36ffe7',
+                    marginRight: '6px',
+                    }}
+                />
+                <Box>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', marginRight: 1 }}
+                    >
+                    Speedy&apos;s Tacos:
+                    </Typography>
+                    <Typography
+                    variant="body1"
+                    component="span"
+                    sx={{ display: 'inline', color: '#afafaf' }}
+                    >
+                    This is in Sunnyvale but the way their beef burrito made me feel made it a must mention.
+                    </Typography>
+                </Box>
+            </Box>  
           </Typography>
         </Box>
       </Collapse>

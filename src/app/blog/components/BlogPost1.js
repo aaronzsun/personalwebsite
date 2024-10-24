@@ -34,7 +34,7 @@ const BlogPost1 = () => {
         />
         {/* Blog Post Title */}
         <Typography variant="h6" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, color: 'white' }}>
-          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2023 Dec 10:</Typography>
+          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2023 Jan 08:</Typography>
            Intuitive Design: Balancing Simplicity & Functionality
         </Typography>
       </Box>

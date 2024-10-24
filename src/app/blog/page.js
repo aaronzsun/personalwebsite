@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 import BlogPost1 from './components/BlogPost1';
 import BlogPost2 from './components/BlogPost2';
 import BlogPost3 from './components/BlogPost3';
+import BlogPost4 from './components/BlogPost4';
 
 
 
@@ -171,11 +172,17 @@ export default function Blog() {
               className='fade-in topSection'
             >
               <Box className="section-content">
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mb: { xs: 5, sm: 3.5, md: 3.5}, fontSize: { xs: '1rem', sm: '1.4rem', md: '1.4rem' }  }}>
                   <span style={{ color: '#36ffe7' }}> Hello World! I&apos;m Aaron. </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '4rem' }  }}>
                   <span style={{ color: 'white' }}> This is my blog. </span>
+                </Typography>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1.2rem', sm: '1.7rem', md: '1.7rem' }  }}>
+                  <span style={{ color: '#afafaf' }}> I write about random stuff. </span>
+                </Typography>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 2, sm: 6, md: 6}, fontSize: { xs: '1.2rem', sm: '1.7rem', md: '1.7rem' }  }}>
+                  <span style={{ color: '#afafaf' }}> Or life. </span>
                 </Typography>
                 <Button 
                   variant="outlined" 
@@ -234,6 +241,7 @@ export default function Blog() {
                 </Typography>
                 <BlogPost2/>
                 <BlogPost1/>
+                <BlogPost4/>
               </Box>
             </Box>
           </Box>
