@@ -67,7 +67,7 @@ export default function VerticalTabsComponent() {
         sx={{
           bgcolor: 'transparent',
           flexDirection: 'column',
-          width: { xs: "70px", sm: "70px", md: "120px" },
+          width: { xs: "60px", sm: "60px", md: "90px" },
         }}
       >
         <Box
@@ -109,6 +109,7 @@ export default function VerticalTabsComponent() {
                 paddingLeft: { xs: 1.2, sm: 1.2, md: 2 },
                 minHeight: { xs: '30px', sm: '35px', md: '40px' },
                 height: { xs: '30px', sm: '35px', md: '40px' },
+                fontFamily: 'var(--font-iosevka), monospace',
               },
               '.Mui-selected': {
                 color: '#36ffe7',  // Selected tab text color
@@ -139,7 +140,7 @@ export default function VerticalTabsComponent() {
               Optiver
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', ml: 1, color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jul - Aug 2023
           </Typography>
           <Typography
@@ -205,7 +206,7 @@ export default function VerticalTabsComponent() {
               HubSpot
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jul - Aug 2022
           </Typography>
           <Typography
@@ -267,10 +268,10 @@ export default function VerticalTabsComponent() {
               rel="noopener noreferrer" 
               style={{ color: '#36ffe7', textDecoration: 'none' }}
             >
-              NIH LHNCBC
+              NIH Lister Hill Center
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Feb - Aug 2021
           </Typography>
           <Typography
@@ -332,10 +333,10 @@ export default function VerticalTabsComponent() {
               rel="noopener noreferrer" 
               style={{ color: '#36ffe7', textDecoration: 'none' }}
             >
-              NASA JPL
+              NASA Jet Propulsion Lab
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace',ml: 1, color: '#afafaf', mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             June - August 2020
           </Typography>
           <Typography
@@ -401,7 +402,7 @@ export default function VerticalTabsComponent() {
               Pakira
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ ml: 1, color: '#afafaf',mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', ml: 1, color: '#afafaf',mb: { xs: "15px", m: "15px", md: "15px" }, fontSize: { xs: '0.6rem', sm: '0.7rem', md: '0.7rem' } }}>
             Jan 2020 - Jan 2021
           </Typography>
           <Typography

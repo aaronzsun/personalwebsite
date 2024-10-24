@@ -22,25 +22,25 @@ const AboutMePanel = () => {
             </Box>
             </Typography> 
             <Box sx={{ mt: 3 }}>
-            <Typography variant="subtitle2" color="#afafaf"> Some technologies I&apos;ve been working with recently:</Typography>
+            <Typography variant="subtitle2" color="#afafaf" sx={{ mb: 2 }}> Some technologies I&apos;ve been working with recently:</Typography>
             <Box component="ul" sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, mt: 1, pl: 2, listStyleType: 'none' }}>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> JavaScript
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px'}} /> JavaScript
                 </Typography>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> React
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> React
                 </Typography>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> OpenAI API
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> OpenAI API
                 </Typography>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> TypeScript
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> TypeScript
                 </Typography>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> Python
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> Python
                 </Typography>
-                <Typography component="li" variant="body2" color="#afafaf">
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px', verticalAlign: 'middle' }} /> Three.js
+                <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> Three.js
                 </Typography>
             </Box>
             </Box>

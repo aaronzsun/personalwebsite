@@ -37,11 +37,22 @@ const ProjectDisplayMobileWebsite = () => {
         },
       }}
     >
+      <Typography variant="subtitle2"
+          component="h3"
+          sx={{
+            fontFamily: 'var(--font-iosevka), monospace',
+            fontWeight: 'bold',
+            color: '#36ffe7',
+            mb: 1,
+            zIndex: 1
+          }}>
+          Frontend API
+        </Typography>
       {/* Project Title */}
       <Typography
         variant="h5"
         component="h3"
-        sx={{ fontWeight: 'bold', mb: 2, position: 'relative', zIndex: 1, color: "#36ffe7"}}
+        sx={{ fontWeight: 'bold', mb: 2, position: 'relative', zIndex: 1, color: "white"}}
       >
         {title}
       </Typography>
@@ -65,7 +76,7 @@ const ProjectDisplayMobileWebsite = () => {
       {/* Technologies */}
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2, position: 'relative', zIndex: 1 }}>
         {technologies.map((tech, index) => (
-          <Typography key={index} variant="body2" sx={{ color: '#afafaf', fontSize: '0.85rem' }}>
+          <Typography key={index} variant="body2" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', fontSize: '0.85rem' }}>
             {tech}
           </Typography>
         ))}

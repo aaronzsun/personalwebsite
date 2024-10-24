@@ -5,7 +5,6 @@ import Typed from 'typed.js';
 import { Box, Typography, Link, Button } from '@mui/material';
 import TabPanel from './components/TabPanel';
 import TabPanelMobile from './components/TabPanelMobile'
-import ProjectPanel from './components/ProjectPanel';
 import AboutMePanel from './components/AboutMePanel';
 import { Canvas } from '@react-three/fiber';
 import Globe from './components/Globe';
@@ -19,15 +18,26 @@ import ProjectDisplayHub from './components/ProjectDisplayHub';
 import ProjectDisplayMobileHub from './components/ProjectDisplayMobileHub';
 import ProjectDisplaySpotifyRec from './components/ProjectDisplaySpotifyRec';
 import ProjectDisplayMobileSpotifyRec from './components/ProjectDisplayMobileSpotifyRec';
+import Contact from './components/Contact'
 
-
-
-
-const openSans = localFont({
-  src: "./fonts/OpenSans.ttf",
-  variable: "--font-open-sans",
+const interTight = localFont({
+  src: "./fonts/InterTight.ttf",
+  variable: "--font-inter-tight",
   weight: "100 900",
 });
+
+const iosevka = localFont({
+  src: "./fonts/Iosevka-Light.ttf",
+  variable: "--font-iosevka",
+  weight: "100 900",
+});
+
+const iosevkaMed = localFont({
+  src: "./fonts/Iosevka-Medium.ttf",
+  variable: "--font-iosevka-med",
+  weight: "100 900",
+});
+
 
 export default function Home() {
   const typedElement = useRef(null);
@@ -111,7 +121,7 @@ export default function Home() {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.85,
+      threshold: 0.25,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -169,7 +179,7 @@ export default function Home() {
 
       {!loading && (
         <ThemeProvider theme={theme}>
-          <main className={`${openSans.variable} antialiased`}>
+          <main className={`${interTight.variable} ${iosevka.variable} ${iosevkaMed.variable} antialiased`}>
           <Box display="flex" flexDirection="column" color="white" minWidth="100%">
             {/* Navigation Bar */}
             <Box
@@ -191,6 +201,7 @@ export default function Home() {
                   onClick={() => scrollToSection(1)}
                   color="inherit"
                   sx={{
+                    fontFamily: 'var(--font-iosevka), monospace',
                     fontSize: '0.75rem',
                     textDecoration: 'none',
                     color: '#afafaf',
@@ -205,6 +216,7 @@ export default function Home() {
                   onClick={() => scrollToSection(2)}
                   color="inherit"
                   sx={{
+                    fontFamily: 'var(--font-iosevka), monospace',
                     fontSize: '0.75rem',
                     textDecoration: 'none',
                     color: '#afafaf',
@@ -219,11 +231,13 @@ export default function Home() {
                   onClick={() => scrollToSection(3)}
                   color="inherit"
                   sx={{
+                    fontFamily: 'var(--font-iosevka), monospace',
                     fontSize: '0.75rem',
                     textDecoration: 'none',
                     color: '#afafaf',
                     transition: 'opacity 0.3s',
                     '&:hover': { opacity: 0.7 },
+                    mr: 1.5,
                   }}
                 >
                   <span style={{ color: '#36ffe7' }}>03. </span> PROJECTS
@@ -236,6 +250,7 @@ export default function Home() {
                   variant="outlined" 
                   size="small"
                   sx={{
+                    fontFamily: 'var(--font-iosevka), monospace',
                     width: { xs: "90px", sm: "90px", md: "90px" },
                     color: '#36ffe7', 
                     borderColor: '#36ffe7', 
@@ -281,16 +296,15 @@ export default function Home() {
 
             {/* Sections */}
             <Box
-              ref={sectionRefs[0]}
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
               className='fade-in topSection'
             >
               <Box className="section-content">
-                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '4rem' }  }}>
                   <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
                   <span ref={typedElement} className="typed-text"></span>
                 </Typography>
                 <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 3, md: 4 }, mb: { xs: 2, sm: 2, md: 0}, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' } }}>
@@ -299,72 +313,54 @@ export default function Home() {
                   I&apos;m currently based in San Francisco seeking new challenges.
                 </Typography>
                 <Button 
-                  component="a" 
-                  href="https://github.com/aaronzsun" 
-                  target="_blank"
-                  rel="noopener noreferrer"
                   variant="outlined" 
+                  component="a" 
+                  onClick={() => scrollToSection(0)}
                   size="large"
                   sx={{
-                    width: { xs: "100px", sm: "100px", md: "140px" },
-                    mt: 4,
-                    mr: 4,
-                    color: '#36ffe7', 
-                    borderColor: '#36ffe7', 
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                    boxShadow: '0px 0px 0px #36ffe7', 
-                    '&:hover': {
+                      mr: 3,
+                      fontFamily: 'var(--font-iosevka), monospace',
+                      width: { xs: "140px", sm: "140px", md: "140px" },
+                      mt: 4,
+                      color: '#36ffe7', 
+                      borderColor: '#36ffe7', 
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                      boxShadow: '0px 0px 0px #36ffe7', 
+                      '&:hover': {
                       transform: 'translate(-5px, -3px)', 
                       boxShadow: '5px 5px 0px #36ffe7', 
                       borderColor: '#36ffe7', 
                       backgroundColor: 'rgba(54, 255, 231, 0.1)', 
                       cursor: "pointer"
-                    },
-                    '@media (hover: none)': {
+                      },
+                      '@media (hover: none)': {
                       '&:hover': {
-                        transform: 'none', 
-                        boxShadow: 'none', 
+                          transform: 'none', 
+                          boxShadow: 'none', 
                       }
-                    }
+                      },
+                      '@media (max-width: 600px)': {
+                      size: 'large', // Use small size variant on small screens
+                      }
                   }}
-                >
-                  GitHub
+                  >
+                  About Me
                 </Button>
+              </Box>
+            </Box>
 
-                <Button 
-                  variant="outlined" 
-                  component="a" 
-                  href="https://linkedin.com/in/aaronzsun" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="large"
-                  sx={{
-                    width: { xs: "100px", sm: "100px", md: "140px" },
-                    mt: 4,
-                    color: '#36ffe7', 
-                    borderColor: '#36ffe7', 
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                    boxShadow: '0px 0px 0px #36ffe7', 
-                    '&:hover': {
-                      transform: 'translate(-5px, -3px)', 
-                      boxShadow: '5px 5px 0px #36ffe7', 
-                      borderColor: '#36ffe7', 
-                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                      cursor: "pointer"
-                    },
-                    '@media (hover: none)': {
-                      '&:hover': {
-                        transform: 'none', 
-                        boxShadow: 'none', 
-                      }
-                    },
-                    '@media (max-width: 600px)': {
-                      size: 'small', // Use small size variant on small screens
-                    }
-                  }}
-                >
-                  LinkedIn
-                </Button>      
+            <Box
+              ref={sectionRefs[0]}
+              height="70vh"
+              width="100%"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
+            >
+              <Box className="section-content">
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> My TLDR
+                </Typography>
+                <AboutMePanel />
               </Box>
             </Box>
 
@@ -373,26 +369,11 @@ export default function Home() {
               height="70vh"
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
-            >
-              <Box className="section-content">
-                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>01.</span> My TLDR
-                </Typography>
-                <AboutMePanel />
-              </Box>
-            </Box>
-
-            <Box
-              ref={sectionRefs[2]}
-              height="70vh"
-              width="100%"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
               className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
             >
               <Box className="section-content" sx={{ width: { xs: "90%", md: "540px"} }}>
-                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
-                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' }}}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace' }}>02.</span> Where I&apos;ve Worked
                 </Typography>
                 <Box
                   sx={{
@@ -420,6 +401,7 @@ export default function Home() {
                     variant="outlined" 
                     size="large"
                     sx={{
+                      fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "180px", sm: "180px", md: "180px" },
                       color: '#36ffe7', 
                       borderColor: '#36ffe7', 
@@ -447,19 +429,20 @@ export default function Home() {
             </Box>
 
             <Box
-              ref={sectionRefs[3]}
+              ref={sectionRefs[2]}
               minHeight="70vh"
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "300px", mt: { xs: 0, sm: 0, md: 10 } }} // remove marginbottom if adding more stuff
               className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
             >
               <Box className="section-content">
-                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>03.</span> Stuff I&apos;ve Built
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 2, fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Stuff I&apos;ve Built
                 </Typography>
                 <Box
                   sx={{
                     display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
+                    mt: 10,
                   }}
                 >
                   <ProjectDisplayHub/>
@@ -503,6 +486,52 @@ export default function Home() {
                 </Box>
               </Box>
             </Box>
+
+            <Box
+              ref={sectionRefs[3]}
+              height="20vh"
+              width="100%"
+              sx={{
+                mb: '200px', // spacing at bottom (remove for more)
+                display: 'flex',
+                justifyContent: 'center',   // Centers content horizontally
+                alignItems: 'center',       // Centers content vertically
+                textAlign: 'center',        // Ensures text is centered
+              }}
+              className={`section section4 ${isVisibleSection4 ? 'fade-in' : ''}`}
+            >
+              <Box
+                className="section-content"
+                sx={{
+                  width: { xs: '90%', md: '540px' },
+                  textAlign: 'center',  // Center the text inside this Box as well
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  color="#dbdbdb"
+                  sx={{
+                    fontWeight: 'bold',
+                    fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' },
+                    textAlign: 'center',   // Center the Typography content
+                  }}
+                >
+                  <span
+                    style={{
+                      color: '#36ffe7',
+                      fontSize: '0.8em',
+                      fontFamily: 'var(--font-iosevka), monospace',
+                    }}
+                  >
+                    04.
+                  </span>{' '}
+                  Call Me?
+                </Typography>
+                <Contact />
+              </Box>
+            </Box>
+
           </Box>
           </main>
         </ThemeProvider>

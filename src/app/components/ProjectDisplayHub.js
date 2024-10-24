@@ -63,13 +63,23 @@ const ProjectDisplayWebsite = () => {
           borderRadius: '2px',
         }}
       >
+        <Typography variant="subtitle2"
+          component="h3"
+          sx={{
+            fontFamily: 'var(--font-iosevka), monospace',
+            fontWeight: 'bold',
+            color: '#36ffe7',
+            mb: 1,
+          }}>
+          Full-Stack
+        </Typography>
         {/* Project Title */}
         <Typography
           variant="h5"
           component="h3"
           sx={{
             fontWeight: 'bold',
-            color: '#36ffe7',
+            color: 'white',
             mb: 2,
           }}
         >
@@ -103,7 +113,7 @@ const ProjectDisplayWebsite = () => {
             <Typography
               key={index}
               variant="body2"
-              sx={{ color: '#afafaf', fontSize: '0.85rem' }}
+              sx={{ color: '#afafaf', fontSize: '0.85rem', fontFamily: 'var(--font-iosevka), monospace' }}
             >
               {tech}
             </Typography>

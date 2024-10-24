@@ -15,14 +15,13 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-open-sans), sans-serif;
   margin: 20px;
 }
 
 /* Typed Text */
 .typed-text {
   display: inline-block;
-  min-height: 1rem;
+  min-height: 1.1rem;
   visibility: visible;
 }
 
@@ -96,15 +95,17 @@ body {
   animation: fadeInTabs 0.5s ease-in forwards;
 }
 
-
 /* Fade-in Animation */
 .fade-in {
   opacity: 0;
-  transform: translateY(60px);  /* Start with a slight downward offset */
   animation: fadeInUp 2.5s ease forwards;  /* Fade in and move upwards */
 }
 
 /* Section Styling */
+.section {
+  opacity: 0;
+}
+
 .section-content {
   width: 800px;
   text-align: left;
@@ -137,11 +138,11 @@ body {
   }
 
   .topSection {
-    min-height: 110vh;
+    min-height: 120vh;
   }
 
   .section1 {
-    min-height: 150vh;
+    min-height: 160vh;
   }
 
   .section2 {

@@ -121,6 +121,7 @@ export default function HorizontalTabsComponent() {
               minWidth: { xs: '60px', sm: '100px', md: '100px' },  // Width adjustments
               width: { xs: '60px', sm: '100px', md: '100px' },  // Set tab width
               margin: 0,
+              fontFamily: 'var(--font-iosevka), monospace',
             },
             '.Mui-selected': {
               color: '#36ffe7',
@@ -156,7 +157,7 @@ export default function HorizontalTabsComponent() {
               Optiver
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jul - Aug 2023
           </Typography>
           <Typography
@@ -284,10 +285,10 @@ export default function HorizontalTabsComponent() {
               rel="noopener noreferrer" 
               style={{ color: '#36ffe7', textDecoration: 'none' }}
             >
-              NIH LHNCBC
+              NIH Lister Hill Center
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Feb - Aug 2021
           </Typography>
           <Typography
@@ -349,10 +350,10 @@ export default function HorizontalTabsComponent() {
               rel="noopener noreferrer" 
               style={{ color: '#36ffe7', textDecoration: 'none' }}
             >
-              NASA JPL
+              NASA Jet Propulsion Lab
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             June - August 2020
           </Typography>
           <Typography
@@ -418,7 +419,7 @@ export default function HorizontalTabsComponent() {
               Pakira
             </a>
           </Typography>
-          <Typography variant="body2" component="p" sx={{ color: '#afafaf',mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+          <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf',mb: { xs: "15px", m: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
             Jan 2020 - Jan 2021
           </Typography>
           <Typography
