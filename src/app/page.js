@@ -586,7 +586,7 @@ export default function Home() {
                 alignItems: 'center',       // Centers content vertically
                 textAlign: 'center',        // Ensures text is centered
               }}
-              className={`section section5 ${isVisibleSection4 ? 'fade-in' : ''}`}
+              className={`section section5 ${isVisibleSection5 ? 'fade-in' : ''}`}
             >
               <Box
                 className="section-content"
