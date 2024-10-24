@@ -525,7 +525,7 @@ export default function Home() {
                   >
                     04.
                   </span>{' '}
-                  Let&apos; Connect!
+                  Let&apos;s Connect!
                 </Typography>
                 <Contact />
               </Box>
