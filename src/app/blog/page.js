@@ -8,6 +8,8 @@ import localFont from "next/font/local";
 
 import BlogPost1 from './components/BlogPost1';
 import BlogPost2 from './components/BlogPost2';
+import BlogPost3 from './components/BlogPost3';
+
 
 
 const interTight = localFont({
@@ -217,15 +219,21 @@ export default function Blog() {
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}
             >
-              <Box className="section-content">
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+              <Box className="section-content" sx = {{
+                pr: 4
+              }}>
+                <Typography variant="subtitle2" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }  }}>
+                  <span style={{ color: '#36ffe7' }}> [click a post to read] </span>
+                </Typography>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem' }  }}>
                   <span style={{ color: 'white' }}> Featured </span>
                 </Typography>
-                <BlogPost1/>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1rem', sm: '1.5rem', md: '1.5rem' }  }}>
+                <BlogPost3/>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.3rem' }, mt: 8  }}>
                   <span style={{ color: 'white' }}> Other Posts </span>
                 </Typography>
                 <BlogPost2/>
+                <BlogPost1/>
               </Box>
             </Box>
           </Box>
