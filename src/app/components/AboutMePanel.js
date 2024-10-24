@@ -5,7 +5,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const AboutMePanel = () => {
   return (
-    <Box sx={{ maxWidth: '720px', mx: 'auto' }}>
+    <Box sx={{ mx: 'auto' }}>
       <Grid2 container spacing={3} alignItems="flex-start">
         {/* Text Section */}
         <Grid2 size={{ xs: 12, sm: 6 }} sx={{ mr: 2, mt: 2 }}>
@@ -13,7 +13,7 @@ const AboutMePanel = () => {
             <Box component="p" sx={{ mb: 2 }}>
                 I graduated from Harvard in Math and CS in May 2024 before moving out to the Bay. From academia to industry to finance,
                 I&apos;ve built and deployed code to tackle all sorts of problems. I love working with all parts of the technical stack, 
-                whether that be manipulating data, building + integrating backend and frontend, or putting it all together to create scalable applications.
+                whether that be manipulating data, building and integrating backend/frontend frameworks, or putting it all together to create scalable applications.
             </Box>
             <Box component="p">
                 When I&apos;m offline, you can usually find me playing soccer, chugging beer, or cooking whatever yummy recipe I saw on YouTube that day. 

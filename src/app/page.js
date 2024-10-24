@@ -10,6 +10,15 @@ import AboutMePanel from './components/AboutMePanel';
 import { Canvas } from '@react-three/fiber';
 import Globe from './components/Globe';
 import { OrthographicCamera } from '@react-three/drei';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./theme/theme"
+import localFont from "next/font/local";
+
+const openSans = localFont({
+  src: "./fonts/OpenSans.ttf",
+  variable: "--font-open-sans",
+  weight: "100 900",
+});
 
 export default function Home() {
   const typedElement = useRef(null);
@@ -150,257 +159,75 @@ export default function Home() {
       )}
 
       {!loading && (
-        <Box display="flex" flexDirection="column" color="white" minWidth="100%">
-          {/* Navigation Bar */}
-          <Box
-            position="fixed"
-            top={showMenu ? '0' : '-80px'}  // Slide in/out based on menu state
-            right={0}
-            p={4}
-            zIndex={10}
-            sx={{
-              display: 'flex',
-              gap: 1,
-              transition: 'top 0.35s ease',  // Smooth transition for sliding effect
-              alignItems: 'center',
-            }}
-          >
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-              <Link
-                component="button"
-                onClick={() => scrollToSection(1)}
-                color="inherit"
-                sx={{
-                  fontSize: '0.75rem',
-                  textDecoration: 'none',
-                  color: '#afafaf',
-                  transition: 'opacity 0.3s',
-                  '&:hover': { opacity: 0.7 },
-                }}
-              >
-                <span style={{ color: '#36ffe7' }}>01. </span> TLDR
-              </Link>
-              <Link
-                component="button"
-                onClick={() => scrollToSection(2)}
-                color="inherit"
-                sx={{
-                  fontSize: '0.75rem',
-                  textDecoration: 'none',
-                  color: '#afafaf',
-                  transition: 'opacity 0.3s',
-                  '&:hover': { opacity: 0.7 },
-                }}
-              >
-                <span style={{ color: '#36ffe7' }}>02. </span> Work
-              </Link>
-              <Link
-                component="button"
-                onClick={() => scrollToSection(3)}
-                color="inherit"
-                sx={{
-                  fontSize: '0.75rem',
-                  textDecoration: 'none',
-                  color: '#afafaf',
-                  transition: 'opacity 0.3s',
-                  '&:hover': { opacity: 0.7 },
-                }}
-              >
-                <span style={{ color: '#36ffe7' }}>03. </span> Projects
-              </Link>
-              <Button 
-                component="a" 
-                href="https://aaronzsun.com/resume" 
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outlined" 
-                size="small"
-                sx={{
-                  width: { xs: "90px", sm: "90px", md: "90px" },
-                  color: '#36ffe7', 
-                  borderColor: '#36ffe7', 
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                  boxShadow: '0px 0px 0px #36ffe7', 
-                  '&:hover': {
-                    transform: 'translate(-5px, -3px)', 
-                    boxShadow: '5px 5px 0px #36ffe7', 
-                    borderColor: '#36ffe7', 
-                    backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                    cursor: "pointer"
-                  },
-                  '@media (hover: none)': {
-                    '&:hover': {
-                      transform: 'none', 
-                      boxShadow: 'none', 
-                    }
-                  }
-                }}
-              >
-                Resume
-              </Button>
-            </Box>
-          </Box>
-
-          <div>
-            <Canvas
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: -1,
+        <ThemeProvider theme={theme}>
+          <main className={`${openSans.variable} antialiased`}>
+          <Box display="flex" flexDirection="column" color="white" minWidth="100%">
+            {/* Navigation Bar */}
+            <Box
+              position="fixed"
+              top={showMenu ? '0' : '-80px'}  // Slide in/out based on menu state
+              right={0}
+              p={4}
+              zIndex={10}
+              sx={{
+                display: 'flex',
+                gap: 1,
+                transition: 'top 0.35s ease',  // Smooth transition for sliding effect
+                alignItems: 'center',
               }}
             >
-              <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[5, 5, 5]} castShadow />
-              <Globe />
-            </Canvas>
-          </div>
-
-          {/* Sections */}
-          <Box
-            ref={sectionRefs[0]}
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className='fade-in topSection'
-          >
-            <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
-                <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
-              </Typography>
-              <Typography variant="h3" component="h1" sx={{mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
-                <span ref={typedElement} className="typed-text"></span>
-              </Typography>
-              <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 3, md: 4 }, mb: { xs: 2, sm: 2, md: 0}, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' } }}>
-                I&apos;m a software engineer and data-enthusiast passionate about delivering great digital experiences.
-                I specialize in building full-stack products with elegant and intuitive designs. 
-                I&apos;m currently based in San Francisco seeking new challenges.
-              </Typography>
-              <Button 
-                component="a" 
-                href="https://github.com/aaronzsun" 
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outlined" 
-                size="large"
-                sx={{
-                  width: { xs: "100px", sm: "100px", md: "140px" },
-                  mt: 4,
-                  mr: 4,
-                  color: '#36ffe7', 
-                  borderColor: '#36ffe7', 
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                  boxShadow: '0px 0px 0px #36ffe7', 
-                  '&:hover': {
-                    transform: 'translate(-5px, -3px)', 
-                    boxShadow: '5px 5px 0px #36ffe7', 
-                    borderColor: '#36ffe7', 
-                    backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                    cursor: "pointer"
-                  },
-                  '@media (hover: none)': {
-                    '&:hover': {
-                      transform: 'none', 
-                      boxShadow: 'none', 
-                    }
-                  }
-                }}
-              >
-                GitHub
-              </Button>
-
-              <Button 
-                variant="outlined" 
-                component="a" 
-                href="https://linkedin.com/in/aaronzsun" 
-                target="_blank"
-                rel="noopener noreferrer"
-                size="large"
-                sx={{
-                  width: { xs: "100px", sm: "100px", md: "140px" },
-                  mt: 4,
-                  color: '#36ffe7', 
-                  borderColor: '#36ffe7', 
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                  boxShadow: '0px 0px 0px #36ffe7', 
-                  '&:hover': {
-                    transform: 'translate(-5px, -3px)', 
-                    boxShadow: '5px 5px 0px #36ffe7', 
-                    borderColor: '#36ffe7', 
-                    backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                    cursor: "pointer"
-                  },
-                  '@media (hover: none)': {
-                    '&:hover': {
-                      transform: 'none', 
-                      boxShadow: 'none', 
-                    }
-                  },
-                  '@media (max-width: 600px)': {
-                    size: 'small', // Use small size variant on small screens
-                  }
-                }}
-              >
-                LinkedIn
-              </Button>      
-            </Box>
-          </Box>
-
-          <Box
-            ref={sectionRefs[1]}
-            height="70vh"
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
-          >
-            <Box className="section-content">
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>01.</span> My TLDR
-              </Typography>
-              <AboutMePanel />
-            </Box>
-          </Box>
-
-          <Box
-            ref={sectionRefs[2]}
-            height="70vh"
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
-          >
-            <Box className="section-content" sx={{ width: { xs: "90%", md: "540px"} }}>
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
-                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
-              </Typography>
-              <Box
-                sx={{
-                  display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
-                }}
-              >
-                <TabPanel />
-              </Box>
-              <Box
-                sx={{
-                  display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
-                }}
-              >
-                <TabPanelMobile />
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 6, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
-                  Want to learn more about my work? Feel free to check out my resume.
-                </Typography>
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+                <Link
+                  component="button"
+                  onClick={() => scrollToSection(1)}
+                  color="inherit"
+                  sx={{
+                    fontSize: '0.75rem',
+                    textDecoration: 'none',
+                    color: '#afafaf',
+                    transition: 'opacity 0.3s',
+                    '&:hover': { opacity: 0.7 },
+                  }}
+                >
+                  <span style={{ color: '#36ffe7' }}>01. </span> TLDR
+                </Link>
+                <Link
+                  component="button"
+                  onClick={() => scrollToSection(2)}
+                  color="inherit"
+                  sx={{
+                    fontSize: '0.75rem',
+                    textDecoration: 'none',
+                    color: '#afafaf',
+                    transition: 'opacity 0.3s',
+                    '&:hover': { opacity: 0.7 },
+                  }}
+                >
+                  <span style={{ color: '#36ffe7' }}>02. </span> WORK
+                </Link>
+                <Link
+                  component="button"
+                  onClick={() => scrollToSection(3)}
+                  color="inherit"
+                  sx={{
+                    fontSize: '0.75rem',
+                    textDecoration: 'none',
+                    color: '#afafaf',
+                    transition: 'opacity 0.3s',
+                    '&:hover': { opacity: 0.7 },
+                  }}
+                >
+                  <span style={{ color: '#36ffe7' }}>03. </span> PROJECTS
+                </Link>
                 <Button 
                   component="a" 
                   href="https://aaronzsun.com/resume" 
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="outlined" 
-                  size="large"
+                  size="small"
                   sx={{
-                    width: { xs: "180px", sm: "180px", md: "180px" },
+                    width: { xs: "90px", sm: "90px", md: "90px" },
                     color: '#36ffe7', 
                     borderColor: '#36ffe7', 
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
@@ -420,27 +247,213 @@ export default function Home() {
                     }
                   }}
                 >
-                  Full Resume
+                  Resume
                 </Button>
               </Box>
             </Box>
-          </Box>
 
-          <Box
-            ref={sectionRefs[3]}
-            height="70vh"
-            width="100%"
-            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "500px" }} // remove marginbottom if adding more stuff
-            className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
-          >
-            <Box className="section-content">
-              <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
-                <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>03.</span> Stuff I&apos;ve Built
-              </Typography>
-              <ProjectPanel />
+            <div>
+              <Canvas
+                style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  zIndex: -1,
+                }}
+              >
+                <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[5, 5, 5]} castShadow />
+                <Globe />
+              </Canvas>
+            </div>
+
+            {/* Sections */}
+            <Box
+              ref={sectionRefs[0]}
+              width="100%"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              className='fade-in topSection'
+            >
+              <Box className="section-content">
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '3.5rem' }  }}>
+                  <span style={{ color: '#36ffe7' }}>Hi, I&apos;m Aaron. </span>
+                </Typography>
+                <Typography variant="h3" component="h1" sx={{mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
+                  <span ref={typedElement} className="typed-text"></span>
+                </Typography>
+                <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 3, md: 4 }, mb: { xs: 2, sm: 2, md: 0}, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' } }}>
+                  I&apos;m a software engineer and data-enthusiast passionate about delivering great digital experiences.
+                  I specialize in building full-stack products with elegant and intuitive designs. 
+                  I&apos;m currently based in San Francisco seeking new challenges.
+                </Typography>
+                <Button 
+                  component="a" 
+                  href="https://github.com/aaronzsun" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined" 
+                  size="large"
+                  sx={{
+                    width: { xs: "100px", sm: "100px", md: "140px" },
+                    mt: 4,
+                    mr: 4,
+                    color: '#36ffe7', 
+                    borderColor: '#36ffe7', 
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                    boxShadow: '0px 0px 0px #36ffe7', 
+                    '&:hover': {
+                      transform: 'translate(-5px, -3px)', 
+                      boxShadow: '5px 5px 0px #36ffe7', 
+                      borderColor: '#36ffe7', 
+                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                      cursor: "pointer"
+                    },
+                    '@media (hover: none)': {
+                      '&:hover': {
+                        transform: 'none', 
+                        boxShadow: 'none', 
+                      }
+                    }
+                  }}
+                >
+                  GitHub
+                </Button>
+
+                <Button 
+                  variant="outlined" 
+                  component="a" 
+                  href="https://linkedin.com/in/aaronzsun" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  sx={{
+                    width: { xs: "100px", sm: "100px", md: "140px" },
+                    mt: 4,
+                    color: '#36ffe7', 
+                    borderColor: '#36ffe7', 
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                    boxShadow: '0px 0px 0px #36ffe7', 
+                    '&:hover': {
+                      transform: 'translate(-5px, -3px)', 
+                      boxShadow: '5px 5px 0px #36ffe7', 
+                      borderColor: '#36ffe7', 
+                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                      cursor: "pointer"
+                    },
+                    '@media (hover: none)': {
+                      '&:hover': {
+                        transform: 'none', 
+                        boxShadow: 'none', 
+                      }
+                    },
+                    '@media (max-width: 600px)': {
+                      size: 'small', // Use small size variant on small screens
+                    }
+                  }}
+                >
+                  LinkedIn
+                </Button>      
+              </Box>
+            </Box>
+
+            <Box
+              ref={sectionRefs[1]}
+              height="70vh"
+              width="100%"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              className={`section section1 ${isVisibleSection1 ? 'fade-in' : ''}`}
+            >
+              <Box className="section-content">
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>01.</span> My TLDR
+                </Typography>
+                <AboutMePanel />
+              </Box>
+            </Box>
+
+            <Box
+              ref={sectionRefs[2]}
+              height="70vh"
+              width="100%"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              className={`section section2 ${isVisibleSection2 ? 'fade-in' : ''}`}
+            >
+              <Box className="section-content" sx={{ width: { xs: "90%", md: "540px"} }}>
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', mb: 4, fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' }}}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>02.</span> Where I&apos;ve Worked
+                </Typography>
+                <Box
+                  sx={{
+                    display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <TabPanel />
+                </Box>
+                <Box
+                  sx={{
+                    display: { xs: 'block', sm: 'none', md: 'none' }, // Hidden on small screens, visible on medium screens
+                  }}
+                >
+                  <TabPanelMobile />
+                </Box>
+                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt: 6, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                    Want to learn more about my work? Feel free to check out my resume.
+                  </Typography>
+                  <Button 
+                    component="a" 
+                    href="https://aaronzsun.com/resume" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined" 
+                    size="large"
+                    sx={{
+                      width: { xs: "180px", sm: "180px", md: "180px" },
+                      color: '#36ffe7', 
+                      borderColor: '#36ffe7', 
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                      boxShadow: '0px 0px 0px #36ffe7', 
+                      '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        borderColor: '#36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                      },
+                      '@media (hover: none)': {
+                        '&:hover': {
+                          transform: 'none', 
+                          boxShadow: 'none', 
+                        }
+                      }
+                    }}
+                  >
+                    Full Resume
+                  </Button>
+                </Box>
+              </Box>
+            </Box>
+
+            <Box
+              ref={sectionRefs[3]}
+              height="70vh"
+              width="100%"
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "500px" }} // remove marginbottom if adding more stuff
+              className={`section section3 ${isVisibleSection3 ? 'fade-in' : ''}`}
+            >
+              <Box className="section-content">
+                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ mb: 4, fontWeight: 'bold', fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem' } }}>
+                  <span style={{ color: '#36ffe7', fontSize: '0.8em' }}>03.</span> Stuff I&apos;ve Built
+                </Typography>
+                <ProjectPanel />
+              </Box>
             </Box>
           </Box>
-        </Box>
+          </main>
+        </ThemeProvider>
       )}
     </>
   );

@@ -15,7 +15,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-open-sans), sans-serif;
   margin: 20px;
 }
 
@@ -106,7 +106,7 @@ body {
 
 /* Section Styling */
 .section-content {
-  width: 720px;
+  width: 800px;
   text-align: left;
   justify-content: center;
   align-items: center;
