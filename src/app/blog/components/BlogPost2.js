@@ -84,7 +84,7 @@ const BlogPost2 = () => {
                     component="span"
                     sx={{ display: 'inline', color: '#afafaf' }}
                     >
-                    The most delicious pizza I&apos;ve ever had. Run by Mark Iocono in Carroll Gardens, Brooklyn. But be prepared to wait and you have to line up early just to get your name down.
+                    The most delicious pizza I&apos;ve ever had. Run by Mark Iacono in Carroll Gardens, Brooklyn. But be prepared to wait and you have to line up early just to get your name down.
                     </Typography>
                 </Box>
             </Box>
