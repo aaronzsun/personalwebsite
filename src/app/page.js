@@ -63,7 +63,12 @@ export default function Home() {
   const handleScroll = () => {
     const scrollY = window.scrollY;
 
-    if (scrollY < 300 && scrollY < lastScrollY.current) {
+    if (scrollY < 0) return;
+
+    const isMobile = window.innerWidth <= 768;  // Adjust the width as per your breakpoint
+    const threshold = isMobile ? 150 : 300;
+
+    if (scrollY < threshold && scrollY < lastScrollY.current) {
       setShowMenu(true);
     } else {
       setShowMenu(false);
