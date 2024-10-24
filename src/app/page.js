@@ -488,6 +488,7 @@ export default function Home() {
             </Box>
 
             <Box
+              ref={sectionRefs[3]}
               height="20vh"
               width="100%"
               sx={{
