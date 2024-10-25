@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
+import * as THREE from 'three';
 
 import { Box, Typography, Button, Link, Slider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -26,13 +27,23 @@ import Mars from './components/Mars';
 import SolarSystem from './components/SolarSystem';
 import StarField from './components/StarField';
 
-const AlwaysLookingCamera = ({ position, zoom }) => {
+const AlwaysLookingCamera = ({ position, zoom, rotationXZ }) => {
   const { camera } = useThree();
 
   useFrame(() => {
-    camera.position.set(position[0], position[1], position[2]);
-    camera.lookAt(0, 0, 0);
-    camera.zoom = zoom - (position[1] * 0.05); // Adjust zoom based on Y position
+    // Convert rotationXZ from degrees to radians
+    const angle = THREE.MathUtils.degToRad(rotationXZ);
+
+    // Set camera position based on the angle, keeping it at the specified distance from the sun
+    const distance = Math.sqrt(position[0] ** 2 + position[2] ** 2); // Calculate distance from origin
+    const x = distance * Math.cos(angle);
+    const z = distance * Math.sin(angle);
+
+    camera.position.set(x, position[1], z); // Maintain Y position, rotate XZ
+    camera.lookAt(0, 0, 0);                 // Always look at the center (sun)
+    
+    // Adjust zoom based on Y position
+    camera.zoom = zoom - (position[1] * 0.05);
     camera.updateProjectionMatrix();
   });
 
@@ -78,11 +89,13 @@ export default function Three() {
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const [menuLoaded, setMenuLoaded] = useState(false); // For initial load
   const lastScrollY = useRef(0);
+
   const [activeCategory, setActiveCategory] = useState('planets'); // Default to planets
   const [transitioning, setTransitioning] = useState(false); // Added for transition effect
   const [fadeIn, setFadeIn] = useState(true); // For content fade-in
-  const [cameraZoom, setCameraZoom] = useState(16); // Default zoom level
+  const [cameraZoom, setCameraZoom] = useState(20); // Default zoom level
   const [yPosition, setYPosition] = useState(20); // Initial Y position
+  const [rotationXZ, setRotationXZ] = useState(0);
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -90,7 +103,7 @@ export default function Three() {
     if (scrollY < 0) return;
 
     const isMobile = window.innerWidth <= 768;  // Adjust the width as per your breakpoint
-    const threshold = isMobile ? 150 : 300;
+    const threshold = isMobile ? 100 : 200;
 
     if (scrollY < threshold && scrollY < lastScrollY.current) {
       setShowMenu(true);
@@ -107,20 +120,6 @@ export default function Three() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    const updateZoom = () => {
-      setCameraZoom(window.innerWidth < 600 ? 13 : 16); // Zoom out on small screens
-    };
-
-    // Initial check and add resize event listener
-    updateZoom();
-    window.addEventListener('resize', updateZoom);
-
-    // Cleanup the event listener on unmount
-    return () => window.removeEventListener('resize', updateZoom);
-  }, []);
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,6 +140,19 @@ export default function Three() {
     }
   }, [loading]);
 
+  useEffect(() => {
+    const updateZoom = () => {
+      setCameraZoom(window.innerWidth < 600 ? 13 : 16); // Zoom out on small screens
+    };
+
+    // Initial check and add resize event listener
+    updateZoom();
+    window.addEventListener('resize', updateZoom);
+
+    // Cleanup the event listener on unmount
+    return () => window.removeEventListener('resize', updateZoom);
+  }, []);
+
 
   const handleToggle = (category) => {
     setTransitioning(true); // Show preloader during transition
@@ -154,8 +166,6 @@ export default function Three() {
 
 
   // Slide the menu down on initial load
-
-
   const sectionRef = useRef(null);
 
   // Function to scroll to the section
@@ -201,7 +211,7 @@ export default function Three() {
               <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
                 <Link href="/" sx={{ textDecoration: 'none' }}>
                     <Button 
-                    component="h1" 
+                    component="button" 
                     variant="outlined" 
                     size="small"
                     sx={{
@@ -677,49 +687,69 @@ export default function Three() {
                   width: '100%',
                   minHeight: '100vh', // Set full height of viewport for better scaling
                   overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
-                  pb: 20,
+                  pb: 10,
                 }}
                 >
                   <Box
                     sx={{
-                      width: { xs: '150px', sm: '240px', md: '240px' },
+                      width: { xs: '200px', sm: '500px', md: '500px' },
                       p: 2,
                       pl: 4,
                       pr: 4,
                       background: 'transparent',
                       borderRadius: 2,
                       display: 'flex',
-                      justifyContent: 'center',
+                      gap: 2,
+                      flexDirection: { xs: 'column', sm: 'row' },
+                      justifyContent: 'space-between',
                       alignItems: 'center',
-                      flexDirection: 'column',
                       border: '2px solid #36ffe7',
                     }}
                   >
-                    <Typography
-                      variant="h3"
-                      component="h1"
-                      sx={{
-                        fontFamily: 'var(--font-iosevka), monospace',
-                        fontWeight: "500",
-                        mb: { xs: 1, sm: 1.5, md: 1.5 },
-                        fontSize: { xs: '0.6rem', sm: '1rem', md: '1rem' },
-                      }}
-                    >
-                      <span style={{ color: '#36ffe7' }}> Adjust Y-View </span>
-                    </Typography>
-                    <Slider
-                      value={yPosition}
-                      min={0}
-                      max={50}
-                      step={1}
-                      onChange={(e, value) => setYPosition(value)}
-                      valueLabelDisplay="auto"
-                      aria-labelledby="y-position-slider"
-                      sx={{
-                        height: 4, // Slim slider height
-                        color: '#36ffe7',
-                      }}
-                    />
+                    <Box>
+                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                        Rotate Y
+                      </Typography>
+                      <Slider
+                        value={yPosition}
+                        min={-70}
+                        max={70}
+                        step={1}
+                        onChange={(e, value) => setYPosition(value)}
+                        valueLabelDisplay="auto"
+                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
+                      />
+                    </Box>
+
+                    <Box>
+                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                        Scale Zoom
+                      </Typography>
+                      <Slider
+                        value={cameraZoom}
+                        min={1}
+                        max={50}
+                        step={1}
+                        onChange={(e, value) => setCameraZoom(value)}
+                        valueLabelDisplay="auto"
+                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
+                      />
+                    </Box>
+
+                    <Box>
+                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                        Rotate X
+                      </Typography>
+                      <Slider
+                        value={rotationXZ}
+                        min={-180}
+                        max={180}
+                        step={1}
+                        onChange={(e, value) => setRotationXZ(value)}
+                        valueLabelDisplay="auto"
+                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
+                      />
+                    </Box>
                   </Box>
                   <Box
                     sx={{
@@ -728,12 +758,12 @@ export default function Three() {
                       alignItems: 'center',
                       flexDirection: 'column',
                       width: '90%',
-                      height: '90vh', // Set full height of viewport for better scaling
+                      height: { xs: '70vh', sm: '80vh', md: '80vh'}, // Set full height of viewport for better scaling
                       minHeight: { xs: '500px', sm: '600px', md: '700px'},
                       overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
-                      mt: 10,
+                      mt: 4,
                       border: "1px solid #36ffe7",
-                      borderRadius: "2px"
+                      borderRadius: "10px"
                     }}
                     >
                     <Canvas
@@ -741,10 +771,10 @@ export default function Three() {
                         display: 'block',
                       }}
                     >
-                      <StarField numStars={5000} radius={100} />
+                      <StarField numStars={8000} radius={90} />
                       <ambientLight intensity={1} />
                       <pointLight position={[0, 0, 0]} intensity={10} distance={100} decay={2} castShadow />
-                      <AlwaysLookingCamera position={[0, yPosition, 36]} zoom={cameraZoom} />
+                      <AlwaysLookingCamera position={[0, yPosition, 36]} zoom={cameraZoom} rotationXZ={rotationXZ} />
 
                       <SolarSystem />
                     </Canvas>

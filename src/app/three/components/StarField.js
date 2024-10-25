@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 import { Points, PointMaterial } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 const StarField = ({ numStars = 1000, radius = 500 }) => {
   // Generate random star positions within a spherical distribution

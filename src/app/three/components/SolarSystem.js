@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useRef, useState, useEffect  } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import SSMercury from './SSMercury';
 import SSVenus from './SSVenus';
@@ -11,29 +11,11 @@ import SSSaturn from './SSSaturn';
 import SSUranus from './SSUranus';
 import SSNeptune from './SSNeptune';
 import SSSun from './SSSun';
-import AsteroidBelt from './AsteroidBelt'; // Adjust the import path as needed
-
+import AsteroidBelt from './AsteroidBelt';
 
 const SolarSystem = () => {
-  const [distanceScale, setDistanceScale] = useState(1); // 1 for full size, 0.7 for mobile
+  const [distanceScale, setDistanceScale] = useState(1); // Scale for distances (1 = full size)
 
-  useEffect(() => {
-    // Function to update the scale based on screen width
-    const updateScale = () => {
-      if (window.innerWidth <= 600) {
-        setDistanceScale(0.4);
-      } else if (window.innerWidth <= 900) {
-        setDistanceScale(0.5);
-      } else {
-        setDistanceScale(1);
-      }
-    };
-
-    // Initial check and event listener for screen resizing
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale); // Cleanup
-  }, []);
   const planets = [
     { component: <SSMercury />, distance: 5 * distanceScale, speed: 0.5 },
     { component: <SSVenus />, distance: 6.5 * distanceScale, speed: 0.4 },
@@ -45,14 +27,32 @@ const SolarSystem = () => {
     { component: <SSNeptune />, distance: 30 * distanceScale, speed: 0.34 },
   ];
 
-  // Reference for each planet's orbit
-  const orbits = planets.map(() => useRef());
+  // Initialize refs for each planet's orbit after defining planets
+  const orbits = useRef(planets.map(() => ({ current: null })));
+
+  useEffect(() => {
+    // Update distance scale based on screen width
+    const updateScale = () => {
+      if (window.innerWidth <= 600) {
+        setDistanceScale(0.4);
+      } else if (window.innerWidth <= 900) {
+        setDistanceScale(0.5);
+      } else {
+        setDistanceScale(1);
+      }
+    };
+
+    // Initial check and event listener for resizing
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale); // Cleanup
+  }, []);
 
   // Animate each planet's orbit
   useFrame(({ clock }) => {
     planets.forEach((planet, index) => {
-      if (orbits[index].current) {
-        orbits[index].current.rotation.y = clock.getElapsedTime() * planet.speed;
+      if (orbits.current[index]) {
+        orbits.current[index].rotation.y = clock.getElapsedTime() * planet.speed;
       }
     });
   });
@@ -64,9 +64,9 @@ const SolarSystem = () => {
 
       <AsteroidBelt numAsteroids={200} innerRadius={12.7 * distanceScale} outerRadius={14.3 * distanceScale} />
 
-      {/* Render each planet with its distance and orbit speed */}
+      {/* Render each planet with its orbit and position */}
       {planets.map((planet, index) => (
-        <group key={index} ref={orbits[index]} position={[0, 0, 0]}>
+        <group key={index} ref={(el) => (orbits.current[index] = el)} position={[0, 0, 0]}>
           <group position={[planet.distance, 0, 0]}>
             {planet.component}
           </group>

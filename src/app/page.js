@@ -44,7 +44,6 @@ export default function Home() {
   const typedElement = useRef(null);
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   // State for menu visibility and initial slide-in
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
