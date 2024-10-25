@@ -72,7 +72,7 @@ const Globe = () => {
 
       // Update the orbiting dot's position based on the globe's position
       if (dotRef.current) {
-        const baseRadius = isMobile ? 1.4 : 1.7;  // Adjust orbit radius for mobile vs desktop
+        const baseRadius = isMobile ? 1.15 : 1.7;  // Adjust orbit radius for mobile vs desktop
         setDotAngle((prevAngle) => prevAngle + speed);  // Reverse orbit direction
 
         const position = new THREE.Vector3();
@@ -93,7 +93,7 @@ const Globe = () => {
     <group>
       {/* The main globe sphere with animated position */}
       <animated.group position={springPosition}>
-        <Sphere ref={globeRef} args={isMobile ? [1.2, 64, 64] : [1.4, 64, 64]}>  {/* Adjust globe size */}
+        <Sphere ref={globeRef} args={isMobile ? [0.85, 64, 64] : [1.3, 64, 64]}>  {/* Adjust globe size */}
           <meshStandardMaterial map={earthTexture} />
         </Sphere>
       </animated.group>

@@ -17,7 +17,7 @@ const Contact = () => {
         sx={{
             mr: 3,
             fontFamily: 'var(--font-iosevka), monospace',
-            width: { xs: "100px", sm: "100px", md: "140px" },
+            width: { xs: "100px", sm: "140px", md: "140px" },
             mt: 4,
             color: '#36ffe7', 
             borderColor: '#36ffe7', 

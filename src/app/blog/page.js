@@ -77,7 +77,7 @@ export default function Blog() {
       setTimeout(() => {
         setLoading(false);
         setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true));
+        setTimeout(() => setShowMenu(true), 300);
       }, 0);
     }, 3000);
 

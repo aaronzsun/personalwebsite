@@ -12,11 +12,11 @@ import localFont from "next/font/local";
 
 import Globe from './components/Globe'
 import Cube from './components/Cube'
-// import DodecahedronGeometry from './components/Dodecahedron';
-// import TorusKnotGeometry from './components/TorusKnot';
 import Saturn from './components/Saturn';
 import Sun from './components/Sun';
-// import TextGeometryComponent from './components/Text';
+import Cube2 from './components/Cube2';
+import Cube3 from './components/Cube3';
+
 
 
 const interTight = localFont({
@@ -39,14 +39,45 @@ const iosevkaMed = localFont({
 
 
 export default function Three() {
-  const typedElement = useRef(null);
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const [menuLoaded, setMenuLoaded] = useState(false); // For initial load
   const lastScrollY = useRef(0);
+  const [activeCategory, setActiveCategory] = useState('planets'); // Default to planets
+  const [transitioning, setTransitioning] = useState(false); // Added for transition effect
+  const [fadeIn, setFadeIn] = useState(true); // For content fade-in
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const loadTimeout = setTimeout(() => {
+      setPreloaderVisible(false);
+      setTimeout(() => {
+        setLoading(false);
+        setMenuLoaded(true);
+        setTimeout(() => setShowMenu(true), 300);
+      }, 1000);
+    }, 3000);
+
+    if (!loading) {
+      return () => {
+        clearTimeout(loadTimeout);
+      };
+    }
+  }, [loading]);
+  
+  const handleToggle = (category) => {
+    setTransitioning(true); // Show preloader during transition
+    setFadeIn(false); // Reset fade-in
+    setTimeout(() => {
+      setActiveCategory(category); // Set new category
+      setTransitioning(false); // End transition
+      setTimeout(() => setFadeIn(true), 300)
+    }, 2000); // Duration of the preloader
+  };
+
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -74,24 +105,6 @@ export default function Three() {
 
 
   // Slide the menu down on initial load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const loadTimeout = setTimeout(() => {
-      setPreloaderVisible(false);
-      setTimeout(() => {
-        setLoading(false);
-        setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true));
-      }, 0);
-    }, 3000);
-
-    if (!loading) {
-      return () => {
-        clearTimeout(loadTimeout);
-      };
-    }
-  }, [loading]);
 
 
   const sectionRef = useRef(null);
@@ -223,78 +236,227 @@ export default function Three() {
             <Box
                 width="100%"
                 ref={sectionRef}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                sx={{ 
+                  pt: 5,
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  height: { xs: '20vh', sm: '20vh', md: '20vh' },
+                  minHeight: { xs: '20vh', sm: '20vh', md: '20vh' }
+                }}
             >
-                <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
-                    <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> Earth & Moon
-                    </Typography>
-                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                    {/* Wrap the Globe in Canvas */}
-                        <Canvas>
-                        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} castShadow />
-                            <Globe/>
-                        </Canvas>
-                    </Box>
+                <Box sx={{ 
+                  width: { xs: '90%', md: '540px' },
+                  textAlign: 'center',  // Center the text inside this Box as well
+                }}>
+                  <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.2rem', sm: '1.6rem', md: '1.6rem' } }}>
+                    SELECT CATEGORY
+                  </Typography>
+                  <Button 
+                    variant="outlined" 
+                    onClick={() => handleToggle('planets')}
+                    size="large"
+                    sx={{
+                        mr: 3,
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        width: { xs: "100px", sm: "140px", md: "140px" },
+                        mt: 4,
+                        color: '#36ffe7', 
+                        borderColor: '#36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: '0px 0px 0px #36ffe7', 
+                        '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        borderColor: '#36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                        },
+                        '@media (hover: none)': {
+                        '&:hover': {
+                            transform: 'none', 
+                            boxShadow: 'none', 
+                        }
+                        },
+                        '@media (max-width: 600px)': {
+                        size: 'small', // Use small size variant on small screens
+                        }
+                    }}
+                    >
+                    Planets
+                  </Button>
+                  <Button 
+                    variant="outlined" 
+                    onClick={() => handleToggle('blocks')}
+                    size="large"
+                    sx={{
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        width: { xs: "100px", sm: "140px", md: "140px" },
+                        mt: 4,
+                        color: '#36ffe7', 
+                        borderColor: '#36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: '0px 0px 0px #36ffe7', 
+                        '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        borderColor: '#36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                        },
+                        '@media (hover: none)': {
+                        '&:hover': {
+                            transform: 'none', 
+                            boxShadow: 'none', 
+                        }
+                        },
+                        '@media (max-width: 600px)': {
+                        size: 'small', // Use small size variant on small screens
+                        }
+                    }}
+                    >
+                    Blocks
+                  </Button>          
                 </Box>
             </Box>
-            <Box
-                width="100%"
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-            >
-                <Box className="section-content" sx={{ overflow: 'visible', textAlign: 'right', position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
-                    <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>02.</span> Minecraft Cobblestone
-                    </Typography>
-                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                    {/* Wrap the Globe in Canvas */}
-                        <Canvas>
-                        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} castShadow />
-                            <Cube/>
-                        </Canvas>
+            <Box sx={{ width: '100%', position: 'relative', minHeight: '80vh', height: '80vh', alignItems: 'center', justifyContent: 'center' }}>
+                {transitioning && (
+                      <div className={`preloader ${transitioning ? 'fade-out' : ''}`} style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div className="preloader-inner">
+                          <svg viewBox="0 0 100 100" width="150" height="150">
+                            <path
+                              className="infinity-line"
+                              d="M50 50 C20 90, 80 90, 50 50 C20 10, 80 10, 50 50"
+                              stroke="#36ffe7"
+                              fill="none"
+                              strokeWidth="2"
+                            />
+                          </svg>
+                        </div>
+                    </div>
+                )}
+                <Box sx={{ opacity: fadeIn ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
+                {!transitioning && activeCategory === 'planets' && (
+                    <Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> Earth & Moon
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Globe/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', textAlign: 'right', position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>02.</span> The Sun
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Sun/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Saturn & Rings
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Saturn/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
-                </Box>
-            </Box>
-            <Box
-                width="100%"
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            >
-                <Box className="section-content" sx={{ overflow: 'visible',position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
-                    <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Saturn & Rings
-                    </Typography>
-                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                    {/* Wrap the Globe in Canvas */}
-                        <Canvas>
-                        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} castShadow />
-                            <Saturn/>
-                        </Canvas>
+                )}
+                {!transitioning && activeCategory === 'blocks' && (
+                    <Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' },  width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> Cobblestone
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Cube/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', textAlign: 'right', position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>02.</span> Oak Log
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Cube3/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                        >
+                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Snowy Grass
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Cube2/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
-                </Box>
-            </Box>
-            <Box
-                width="100%"
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-            >
-                <Box sx={{ p:0, m:0, overflow: 'visible', textAlign: 'right', position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
-                    <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>04.</span> The Sun (Me)
-                    </Typography>
-                    <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                    {/* Wrap the Globe in Canvas */}
-                        <Canvas>
-                        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} castShadow />
-                            <Sun/>
-                        </Canvas>
-                    </Box>
+                )}
                 </Box>
             </Box>
           </Box>
