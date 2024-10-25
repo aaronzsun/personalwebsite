@@ -123,7 +123,7 @@ const BlogPost5 = () => {
                         &quot;Yesterday is history, <br/>
                         tomorrow is a mystery, <br/>
                         and today is a gift. <br/>
-                        That is why they call it the present. &quot; <br/><br/>
+                        That is why they call it the present.&quot; <br/><br/>
                     <Typography variant="body1" component="span" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7' }}>
                         - Master Oogway (but I think Bill Keane first)
                     </Typography>
