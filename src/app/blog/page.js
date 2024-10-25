@@ -176,7 +176,7 @@ export default function Blog() {
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mb: { xs: 5, sm: 3.5, md: 3.5}, fontSize: { xs: '1rem', sm: '1.4rem', md: '1.4rem' }  }}>
                   <span style={{ color: '#36ffe7' }}> Hello World! I&apos;m Aaron. </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '4rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
                   <span style={{ color: 'white' }}> This is my blog. </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1.2rem', sm: '1.7rem', md: '1.7rem' }  }}>

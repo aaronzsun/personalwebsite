@@ -95,8 +95,8 @@ export default function Home() {
         setLoading(false);
         setMenuLoaded(true);
         setTimeout(() => setShowMenu(true));
-      }, 0);
-    }, 3000);
+      }, 1500);
+    }, 2000);
 
     if (!loading && typedElement.current) {
       const options = {
@@ -434,8 +434,8 @@ export default function Home() {
                   <TabPanelMobile />
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                  <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt:  { xs: 1, sm: 1, md: 6 }, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
-                    Want to learn more about my work? Feel free to check out my resume.
+                  <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt:  { xs: 1, sm: 1, md: 4 }, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                    Want to learn more about my work?
                   </Typography>
                   <Button 
                     component="a" 
@@ -530,7 +530,7 @@ export default function Home() {
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 3, mt:  { xs: 5, sm: 5, md: 6 }, fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }}}>
-                    Some Three.JS stuff I made.
+                    Some things I built with Three.JS
                   </Typography>
                   <Button 
                     component="a" 
@@ -540,6 +540,7 @@ export default function Home() {
                     variant="outlined" 
                     size="large"
                     sx={{
+                      mb: 6,
                       textDecoration: 'none',
                       fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "250px", sm: "250px", md: "250px" },

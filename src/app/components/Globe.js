@@ -1,36 +1,41 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
+import { TextureLoader } from 'three';
 
-// Define fixed axes for the orbits
-const orbitPlanes = [
-  { axis1: 'y', axis2: 'z' }, 
-  { axis1: 'x', axis2: 'y' }, 
-  { axis1: 'x', axis2: 'z' },
-];
+const OrbitDot = ({ position, texturePath, size, opacity }) => {
+  const dotRef = useRef();  // Ref for the dot's rotation
+  const dotTexture = useLoader(TextureLoader, texturePath);
 
-// Component to render each orbiting dot
-const OrbitDot = ({ position, color = '#ffffff', size = 0.05 }) => {
+  // Rotate the dot around its own axis
+  useFrame(() => {
+    if (dotRef.current) {
+      dotRef.current.rotation.y -= 0.005;  // Adjust the speed of rotation here
+    }
+  });
+
   return (
-    <Sphere position={position} args={[size, 16, 16]}>
-      <meshStandardMaterial color={color} />
+    <Sphere ref={dotRef} position={position} args={[size, 16, 16]}>
+      <meshStandardMaterial color="#C0C0C0" map={dotTexture} opacity={opacity} transparent={true}/>
     </Sphere>
   );
 };
 
 const Globe = () => {
   const globeRef = useRef();
-  const orbitRefs = useRef([]);  // Refs for orbits to animate individually
+  const orbitRef = useRef();  // Ref for the orbiting dot
   const [scrollY, setScrollY] = useState(0);
-  const [dots, setDots] = useState([]);
   const [scale, setScale] = useState(1.5);
   const [opacity, setOpacity] = useState(0);  // Initial opacity for fade-in
+  const [dotOpacity, setDotOpacity] = useState(0);  // Opacity for OrbitDot fade-in
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);  // Track screen width
-  const baseRadius = 1.2;  // Base orbit radius (before scaling)
-  const speed = 0.01;  // Constant speed for all dots
+  const baseRadius = 1.3;  // Base orbit radius (before scaling)
+  const speed = 0.0007;  // Speed for the orbiting dot
+
+  const earthTexture = useLoader(TextureLoader, '/earthtexture.jpg');  // Replace with the path to your Earth texture image
 
   // Scroll handler to adjust globe position
   useEffect(() => {
@@ -43,19 +48,7 @@ const Globe = () => {
     };
   }, []);
 
-  // Initialize dots with 3 equally spaced dots per orbit
-  useEffect(() => {
-    const newDots = orbitPlanes.flatMap((plane) => 
-      Array(2).fill(0).map((_, i) => ({
-        angle: (i * (Math.PI * 2)) / 2,  // Space dots equally
-        speed: speed,
-        plane,
-      }))
-    );
-    setDots(newDots);
-  }, []);
-
-  // Animate the globe and the dots independently
+  // Animate the globe and the dot independently
   useFrame(() => {
     if (globeRef.current) {
       // Globe rotation based on scroll
@@ -73,12 +66,16 @@ const Globe = () => {
 
       // Handle opacity for fade-in effect
       if (opacity < 1) {
-        setOpacity((prevOpacity) => Math.min(prevOpacity + 0.01, 1));
+        setOpacity((prevOpacity) => Math.min(prevOpacity + 0.01, 1));  // Gradually increase opacity
       }
 
-      // Apply rotation
-      globeRef.current.rotation.y += 0.003;
+      // Start fading in the OrbitDot after the globe has reached full opacity
+      if (opacity === 1 && dotOpacity < 1) {
+        setDotOpacity((prevDotOpacity) => Math.min(prevDotOpacity + 0.02, 1));  // Delayed fade-in
+      }
 
+      // Apply rotation to the globe
+      globeRef.current.rotation.y += 0.003;
       globeRef.current.material.opacity = opacity;
       globeRef.current.material.transparent = true;
 
@@ -87,50 +84,24 @@ const Globe = () => {
         const newXPosition = Math.min(2.5 + scrollY * 0.01, 4.5);  // Max slide distance: 5 units
         globeRef.current.position.x = newXPosition;
       } else {
-        globeRef.current.position.x = 2.5;  // No movement for screens smaller than 900px
+        globeRef.current.position.x = 2.5;  // No movement for smaller screens
       }
 
-      // Update the position of each dot along its orbit, accounting for scale and translation
-      orbitRefs.current.forEach((dotRef, index) => {
-        if (dotRef) {
-          const dot = dots[index];
-          
-          // Reverse the direction for dots on the YZ-plane
-          if (dot.plane.axis1 === 'x' && dot.plane.axis2 === 'y') {
-            dot.angle += dot.speed;  // Reverse the angle for YZ-plane
-          } else {
-            dot.angle -= dot.speed;  // Regular angle update for other planes
-          }
-      
-          const { axis1, axis2 } = dot.plane;
-          const currentAngle = dot.angle;
-      
-          const position = new THREE.Vector3();
-      
-          // Standard orbit with cos/sin on primary and secondary axes
-          position[axis1] = baseRadius * scale * Math.cos(currentAngle);  // Primary axis
-          position[axis2] = baseRadius * scale * Math.sin(currentAngle);  // Secondary axis
-      
-          // Apply the globe's rotation to the dots
-          
+      // Update the position of the single dot along its orbit
+      if (orbitRef.current) {
+        const angle = (Date.now() * speed) % (Math.PI * 2);  // Update the angle over time
 
-          if (axis1 === 'x' && axis2 === 'z') {
-            const additionalRotationMatrix = new THREE.Matrix4().makeRotationX(globeRef.current.rotation.z + 0.35);
-            position.applyMatrix4(additionalRotationMatrix);
-          }
-          else {
-            const globeRotationMatrix = new THREE.Matrix4().makeRotationY(globeRef.current.rotation.y);
-            position.applyMatrix4(globeRotationMatrix);  // Apply the globe's rotation to the dot
-          }
-      
-          const globePosition = globeRef.current.position;  // Globe's position for translation
-          dotRef.position.set(
-            globePosition.x + position.x,
-            globePosition.y + position.y,
-            globePosition.z + position.z
-          );  // Adjust for the globe's position
-        }
-      });
+        const position = new THREE.Vector3();
+        position.x = baseRadius * scale * Math.cos(angle);  // Horizontal orbit (x-axis changes)
+        position.z = baseRadius * scale * Math.sin(angle);  // z-axis changes for circular orbit
+
+        const globePosition = globeRef.current.position;  // Globe's position for translation
+        orbitRef.current.position.set(
+          globePosition.x + position.x,
+          globePosition.y + position.y,
+          globePosition.z + position.z
+        );  // Adjust for the globe's position
+      }
     }
   });
 
@@ -138,18 +109,13 @@ const Globe = () => {
     <group>
       {/* The main globe sphere */}
       <Sphere ref={globeRef} args={[1, 64, 64]}>
-        <meshStandardMaterial color="#8488FF" wireframe={false} opacity={opacity} transparent />
+        <meshStandardMaterial color="#C0C0C0" map={earthTexture} opacity={opacity}/>
       </Sphere>
 
-      {/* Render orbiting dots (3 per orbit plane) */}
-      {dots.map((dot, index) => (
-        <group
-          key={index}
-          ref={(el) => (orbitRefs.current[index] = el)}  // Ref for each orbit
-        >
-          <OrbitDot position={[0, 0, 0]} color="#36ffe7" size={0.065} />
-        </group>
-      ))}
+      {/* Render the single orbiting dot with texture and rotation */}
+      <group ref={orbitRef}>
+        <OrbitDot position={[0, 0, 0]} texturePath="/moontexture.jpg" size={0.09 * scale} opacity={dotOpacity} />
+      </group>
     </group>
   );
 };

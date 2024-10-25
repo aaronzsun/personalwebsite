@@ -8,22 +8,12 @@ import { useSpring, animated } from '@react-spring/three';  // Import useSpring 
 
 const Cube = () => {
   const cubeRef = useRef();
-  const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);  // Track whether we're on mobile
 
   const cobbleTexture = useLoader(TextureLoader, '/cobbletexture.png');  // Replace with the path to your Earth texture image
 
 
   // Scroll handler to rotate the cube
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);  // Get the current scroll position
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   // Check screen size and update isMobile state
   useEffect(() => {
@@ -56,8 +46,8 @@ const Cube = () => {
   useFrame(() => {
     if (cubeRef.current) {
       // Set the rotation based directly on the scroll position
-      cubeRef.current.rotation.y = scrollY * 0.005;  // Adjust the factor for the desired speed
-      cubeRef.current.rotation.x = scrollY * 0.005;
+      cubeRef.current.rotation.y += 0.005;  // Adjust the factor for the desired speed
+      cubeRef.current.rotation.x += 0.005;
     }
   });
 
@@ -65,7 +55,7 @@ const Cube = () => {
     <group>
       {/* The cube with animated position */}
       <animated.group position={springPosition}>
-        <Box ref={cubeRef} args={[2, 2, 2]}>
+        <Box ref={cubeRef} args={[1.8, 1.8, 1.8]}>
           <meshStandardMaterial map={cobbleTexture} />
         </Box>
       </animated.group>

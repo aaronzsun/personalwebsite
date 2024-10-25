@@ -12,8 +12,10 @@ import localFont from "next/font/local";
 
 import Globe from './components/Globe'
 import Cube from './components/Cube'
-import DodecahedronGeometry from './components/Dodecahedron';
-import TorusKnotGeometry from './components/TorusKnot';
+// import DodecahedronGeometry from './components/Dodecahedron';
+// import TorusKnotGeometry from './components/TorusKnot';
+import Saturn from './components/Saturn';
+import Sun from './components/Sun';
 // import TextGeometryComponent from './components/Text';
 
 
@@ -172,7 +174,7 @@ export default function Three() {
             {/* Sections */}
             <Box
               width="100%"
-              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p:0, m:0 }}
               className='fade-in topSection'
             >
               <Box className="section-content">
@@ -182,7 +184,7 @@ export default function Three() {
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "500", ml: 0.5, mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '1.3rem', sm: '2.45rem', md: '2.45rem' }  }}>
                   <span style={{ color: 'white' }}> This is my Three.JS Playground. </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 3, sm: 3, md: 5}, fontSize: { xs: '1rem', sm: '1.7rem', md: '1.7rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 3, sm: 5, md: 5}, fontSize: { xs: '0.8rem', sm: '1.5rem', md: '1.5rem' }  }}>
                   <span style={{ color: '#afafaf' }}> I like building cool stuff with three. </span>
                 </Typography>
                 <Button 
@@ -211,9 +213,6 @@ export default function Three() {
                           transform: 'none', 
                           boxShadow: 'none', 
                       }
-                      },
-                      '@media (max-width: 600px)': {
-                      size: 'large', // Use small size variant on small screens
                       }
                   }}
                   >
@@ -226,7 +225,7 @@ export default function Three() {
                 ref={sectionRef}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
-                <Box className="section-content" sx={{ pt: 10, position: 'relative', width: { xs: "90%", sm: "600px", md: "600px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
                     <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                     <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> Earth & Moon
                     </Typography>
@@ -245,7 +244,7 @@ export default function Three() {
                 width="100%"
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             >
-                <Box className="section-content" sx={{ textAlign: 'right', position: 'relative', width: { xs: "90%", sm: "600px", md: "600px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                <Box className="section-content" sx={{ overflow: 'visible', textAlign: 'right', position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
                     <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                     <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>02.</span> Minecraft Cobblestone
                     </Typography>
@@ -264,9 +263,9 @@ export default function Three() {
                 width="100%"
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
-                <Box className="section-content" sx={{ position: 'relative', width: { xs: "90%", sm: "600px", md: "600px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                <Box className="section-content" sx={{ overflow: 'visible',position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
                     <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Dodecahedron
+                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Saturn & Rings
                     </Typography>
                     <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
                     {/* Wrap the Globe in Canvas */}
@@ -274,7 +273,7 @@ export default function Three() {
                         <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
                         <ambientLight intensity={0.5} />
                         <directionalLight position={[5, 5, 5]} castShadow />
-                            <DodecahedronGeometry/>
+                            <Saturn/>
                         </Canvas>
                     </Box>
                 </Box>
@@ -283,9 +282,9 @@ export default function Three() {
                 width="100%"
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             >
-                <Box className="section-content" sx={{ textAlign: 'right', position: 'relative', width: { xs: "90%", sm: "600px", md: "600px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                <Box sx={{ p:0, m:0, overflow: 'visible', textAlign: 'right', position: 'relative', width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
                     <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
-                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>04.</span> Torus Knot
+                    <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>04.</span> The Sun (Me)
                     </Typography>
                     <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
                     {/* Wrap the Globe in Canvas */}
@@ -293,7 +292,7 @@ export default function Three() {
                         <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
                         <ambientLight intensity={0.5} />
                         <directionalLight position={[5, 5, 5]} castShadow />
-                            <TorusKnotGeometry/>
+                            <Sun/>
                         </Canvas>
                     </Box>
                 </Box>
