@@ -432,18 +432,27 @@ export default function Three() {
 
             <Box sx={{ width: '100%', position: 'relative', minHeight: '80vh', height: '80vh', alignItems: 'center', justifyContent: 'center' }}>
                 {transitioning && (
-                      <div className={`preloader ${transitioning ? 'fade-out' : ''}`} style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <div className="preloader-inner">
-                          <svg viewBox="0 0 100 100" width="150" height="150">
-                            <path
-                              className="infinity-line"
-                              d="M50 50 C20 90, 80 90, 50 50 C20 10, 80 10, 50 50"
-                              stroke="#36ffe7"
-                              fill="none"
-                              strokeWidth="2"
-                            />
-                          </svg>
-                        </div>
+                    <div className={`preloader ${transitioning ? 'fade-out' : ''}`} style={{ 
+                      position: 'absolute', 
+                      top: '30%',
+                      width: '100%', 
+                      height: '100%', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center' 
+                      }}
+                    >
+                      <div className="preloader-inner">
+                        <svg viewBox="0 0 100 100" width="150" height="150">
+                          <path
+                            className="infinity-line"
+                            d="M50 50 C20 90, 80 90, 50 50 C20 10, 80 10, 50 50"
+                            stroke="#36ffe7"
+                            fill="none"
+                            strokeWidth="2"
+                          />
+                        </svg>
+                      </div>
                     </div>
                 )}
                 <Box sx={{ opacity: fadeIn ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
