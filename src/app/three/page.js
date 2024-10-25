@@ -264,10 +264,14 @@ export default function Three() {
                         borderColor: '#36ffe7', 
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
                         boxShadow: '0px 0px 0px #36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: activeCategory === 'planets' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
+                        backgroundColor: activeCategory === 'planets' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
+                        transform: activeCategory === 'planets' ? 'translate(-5px, -3px)' : 'none',
+                        cursor: "pointer",
                         '&:hover': {
                         transform: 'translate(-5px, -3px)', 
                         boxShadow: '5px 5px 0px #36ffe7', 
-                        borderColor: '#36ffe7', 
                         backgroundColor: 'rgba(54, 255, 231, 0.1)', 
                         cursor: "pointer"
                         },
@@ -296,10 +300,14 @@ export default function Three() {
                         borderColor: '#36ffe7', 
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
                         boxShadow: '0px 0px 0px #36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: activeCategory === 'blocks' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
+                        backgroundColor: activeCategory === 'blocks' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
+                        transform: activeCategory === 'blocks' ? 'translate(-5px, -3px)' : 'none',
+                        cursor: "pointer",
                         '&:hover': {
                         transform: 'translate(-5px, -3px)', 
                         boxShadow: '5px 5px 0px #36ffe7', 
-                        borderColor: '#36ffe7', 
                         backgroundColor: 'rgba(54, 255, 231, 0.1)', 
                         cursor: "pointer"
                         },
