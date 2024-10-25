@@ -35,7 +35,7 @@ const BlogPost5 = () => {
         {/* Blog Post Title */}
         <Typography variant="h6" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, color: 'white' }}>
           <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Oct 14:</Typography>
-            A Collection of Random Quotes I Like
+            A Collection of Random Quotes
         </Typography>
       </Box>
 
@@ -43,7 +43,7 @@ const BlogPost5 = () => {
       <Collapse in={isExpanded}>
         <Box sx={{ marginTop: 2, paddingLeft: '32px', pb: 4 }}>  {/* Align with title */}
           <Typography variant="body1" sx={{ color: '#afafaf' }}>
-            There&apos;s a lot of quotes I really like. Some help me think about life or the world, and some I just like (if you can&apos;t tell, I really like
+            There&apos;s a lot of quotes I really like. Some help me think about life or the world, and some are just funny (if you can&apos;t tell, I really like
             Calvin and Hobbes). <br/><br/><br/>
             <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf' }}>
                 <ArrowRightIcon
