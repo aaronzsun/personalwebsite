@@ -312,7 +312,7 @@ export default function Three() {
                   textAlign: 'center',  // Center the text inside this Box as well
                 }}>
                   <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.6rem', sm: '1.6rem', md: '1.6rem' } }}>
-                    SELECT CATEGORY
+                    BUILD CATEGORIES
                   </Typography>
                   <Button 
                     variant="outlined" 
@@ -496,7 +496,7 @@ export default function Three() {
                       flexDirection: { xs: 'column', sm: 'row' },
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      border: '1px solid #36ffe7',
+                      border: '0px solid #36ffe7',
                     }}
                   >
                     <Box>
@@ -562,9 +562,9 @@ export default function Three() {
                         display: 'block',
                       }}
                     >
-                      <StarField numStars={8000} radius={90} />
-                      <ambientLight intensity={1} />
-                      <pointLight position={[0, 0, 0]} intensity={10} distance={100} decay={2} castShadow />
+                      <StarField numStars={10000} radius={100} />
+                      <ambientLight intensity={0.15} />
+                      <pointLight position={[0, 0, 0]} intensity={100} distance={1000} decay={2} castShadow />
                       <AlwaysLookingCamera position={[0, yPosition, 36]} zoom={cameraZoom} rotationXZ={rotationXZ} />
 
                       <SolarSystem />

@@ -18,11 +18,11 @@ const SolarSystem = () => {
 
   const planets = [
     { component: <SSMercury />, distance: 5 * distanceScale, speed: 0.5 },
-    { component: <SSVenus />, distance: 6.5 * distanceScale, speed: 0.4 },
+    { component: <SSVenus />, distance: 6.5 * distanceScale, speed: 0.38 },
     { component: <SSEarth />, distance: 9 * distanceScale, speed: 0.25 },
-    { component: <SSMars />, distance: 11 * distanceScale, speed: 0.35 },
-    { component: <SSJupiter />, distance: 17 * distanceScale, speed: 0.25 },
-    { component: <SSSaturn />, distance: 21 * distanceScale, speed: 0.32 },
+    { component: <SSMars />, distance: 11 * distanceScale, speed: 0.55 },
+    { component: <SSJupiter />, distance: 17 * distanceScale, speed: 0.15 },
+    { component: <SSSaturn />, distance: 21 * distanceScale, speed: 0.23 },
     { component: <SSUranus />, distance: 25 * distanceScale, speed: 0.15 },
     { component: <SSNeptune />, distance: 30 * distanceScale, speed: 0.34 },
   ];
