@@ -34,7 +34,9 @@ const BlogPost5 = () => {
         />
         {/* Blog Post Title */}
         <Typography variant="h6" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, color: 'white' }}>
-          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Oct 14:</Typography>
+          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>
+            2024 Sep 27:
+          </Typography>
             A Collection of Random Quotes
         </Typography>
       </Box>
