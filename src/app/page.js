@@ -528,6 +528,43 @@ export default function Home() {
                 >
                   <ProjectDisplayMobileWebsite/>
                 </Box>
+                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 3, mt:  { xs: 5, sm: 5, md: 6 }, fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }}}>
+                    Some Three.JS stuff I made.
+                  </Typography>
+                  <Button 
+                    component="a" 
+                    href="/three" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined" 
+                    size="large"
+                    sx={{
+                      textDecoration: 'none',
+                      fontFamily: 'var(--font-iosevka), monospace',
+                      width: { xs: "250px", sm: "250px", md: "250px" },
+                      color: '#36ffe7', 
+                      borderColor: '#36ffe7', 
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                      boxShadow: '0px 0px 0px #36ffe7', 
+                      '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        borderColor: '#36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                      },
+                      '@media (hover: none)': {
+                        '&:hover': {
+                          transform: 'none', 
+                          boxShadow: 'none', 
+                        }
+                      }
+                    }}
+                  >
+                    Three.JS Playground
+                  </Button>
+                </Box>
               </Box>
             </Box>
             <Box
