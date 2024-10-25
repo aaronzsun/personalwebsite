@@ -4,8 +4,8 @@ import { Box, Typography, Button, Link } from '@mui/material';
 const Blog = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', }}>
-        <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 4, mt:  { xs: 2, sm: 4, md: 4 }, fontSize: { xs: '0.9rem', sm: '1rem', md: '1rem' }}}>
-            Sometimes I write about things I find interesting. Sometimes I just ramble on about my thoughts. Sometimes I write cool and informative articles.
+        <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 5, mt:  { xs: 2, sm: 4, md: 4 }, fontSize: { xs: '1rem', sm: '1.1rem', md: '1.1rem' }}}>
+            Sometimes I talk about things that are interesting. <br/> Sometimes I just ramble on about my thoughts. <br/> Sometimes I write cool & informative articles.
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <Link href="/blog" sx = {{
@@ -37,7 +37,7 @@ const Blog = () => {
                     }
                     }}
                 >
-                    Blog
+                    My Blog
                 </Button>
             </Link>
         </Box> 
