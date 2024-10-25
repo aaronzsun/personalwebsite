@@ -511,7 +511,7 @@ export default function Three() {
                       </Typography>
                       <Slider
                         value={cameraZoom}
-                        min={1}
+                        min={10}
                         max={50}
                         step={1}
                         onChange={(e, value) => setCameraZoom(value)}
