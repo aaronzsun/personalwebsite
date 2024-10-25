@@ -10,6 +10,7 @@ import BlogPost1 from './components/BlogPost1';
 import BlogPost2 from './components/BlogPost2';
 import BlogPost3 from './components/BlogPost3';
 import BlogPost4 from './components/BlogPost4';
+import BlogPost5 from './components/BlogPost5';
 
 
 
@@ -240,6 +241,7 @@ export default function Blog() {
                   <span style={{ color: 'white' }}> Other Posts </span>
                 </Typography>
                 <BlogPost2/>
+                <BlogPost5/>
                 <BlogPost1/>
                 <BlogPost4/>
               </Box>
