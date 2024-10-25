@@ -38,7 +38,7 @@ const Cube = () => {
 
   // Define the position spring using react-spring based on whether it's mobile or desktop
   const { position: springPosition } = useSpring({
-    position: isMobile ? [0, 0, 0] : [-1, 0.5, 0],  // Mobile or desktop position
+    position: isMobile ? [0, 0, 0] : [1, 0.5, 0],  // Mobile or desktop position
     config: { mass: 1, tension: 280, friction: 60 },  // Adjust the spring configuration for smoothness
   });
 
