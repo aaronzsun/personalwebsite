@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
 
-import { Box, Typography, Button, Link } from '@mui/material';
+import { Box, Typography, Button, Link, Slider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 
 import theme from "../theme/theme"
@@ -16,7 +16,40 @@ import Saturn from './components/Saturn';
 import Sun from './components/Sun';
 import Cube2 from './components/Cube2';
 import Cube3 from './components/Cube3';
+import Mercury from './components/Mercury';
+import Venus from './components/Venus';
+import Jupiter from './components/Jupiter';
+import Uranus from './components/Uranus';
+import Neptune from './components/Neptune';
+import Mars from './components/Mars';
 
+import SolarSystem from './components/SolarSystem';
+import StarField from './components/StarField';
+
+const AlwaysLookingCamera = ({ position, zoom }) => {
+  const { camera } = useThree();
+
+  useFrame(() => {
+    camera.position.set(position[0], position[1], position[2]);
+    camera.lookAt(0, 0, 0);
+    camera.zoom = zoom - (position[1] * 0.05); // Adjust zoom based on Y position
+    camera.updateProjectionMatrix();
+  });
+
+  return <OrthographicCamera makeDefault position={position} zoom={zoom} />;
+};
+
+
+// const AngledCamera = () => {
+//   const { camera } = useThree();
+
+//   // Set an angled position and focus on the origin
+//   camera.position.set(0, 40, 0); // Higher Y for a top-down view
+//   camera.lookAt(0, 0, 0);          // Center of the solar system
+//   camera.zoom = 80;                // Adjust zoom to fit
+
+//   return null;
+// };
 
 
 const interTight = localFont({
@@ -48,36 +81,8 @@ export default function Three() {
   const [activeCategory, setActiveCategory] = useState('planets'); // Default to planets
   const [transitioning, setTransitioning] = useState(false); // Added for transition effect
   const [fadeIn, setFadeIn] = useState(true); // For content fade-in
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const loadTimeout = setTimeout(() => {
-      setPreloaderVisible(false);
-      setTimeout(() => {
-        setLoading(false);
-        setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true), 300);
-      }, 1000);
-    }, 3000);
-
-    if (!loading) {
-      return () => {
-        clearTimeout(loadTimeout);
-      };
-    }
-  }, [loading]);
-  
-  const handleToggle = (category) => {
-    setTransitioning(true); // Show preloader during transition
-    setFadeIn(false); // Reset fade-in
-    setTimeout(() => {
-      setActiveCategory(category); // Set new category
-      setTransitioning(false); // End transition
-      setTimeout(() => setFadeIn(true), 300)
-    }, 2000); // Duration of the preloader
-  };
-
+  const [cameraZoom, setCameraZoom] = useState(16); // Default zoom level
+  const [yPosition, setYPosition] = useState(20); // Initial Y position
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -102,6 +107,50 @@ export default function Three() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const updateZoom = () => {
+      setCameraZoom(window.innerWidth < 600 ? 13 : 16); // Zoom out on small screens
+    };
+
+    // Initial check and add resize event listener
+    updateZoom();
+    window.addEventListener('resize', updateZoom);
+
+    // Cleanup the event listener on unmount
+    return () => window.removeEventListener('resize', updateZoom);
+  }, []);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const loadTimeout = setTimeout(() => {
+      setPreloaderVisible(false);
+      setTimeout(() => {
+        setLoading(false);
+        setMenuLoaded(true);
+        setTimeout(() => setShowMenu(true), 500);
+      }, 500);
+    }, 2500);
+
+    if (!loading) {
+      return () => {
+        clearTimeout(loadTimeout);
+      };
+    }
+  }, [loading]);
+
+
+  const handleToggle = (category) => {
+    setTransitioning(true); // Show preloader during transition
+    setFadeIn(false); // Reset fade-in
+    setTimeout(() => {
+      setActiveCategory(category); // Set new category
+      setTransitioning(false); // End transition
+      setTimeout(() => setFadeIn(true), 100)
+    }, 2000); // Duration of the preloader
+  };
 
 
   // Slide the menu down on initial load
@@ -150,9 +199,9 @@ export default function Three() {
               }}
             >
               <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
-                <Link href="/" passHref sx={{ textDecoration: 'none' }}>
+                <Link href="/" sx={{ textDecoration: 'none' }}>
                     <Button 
-                    component="a" 
+                    component="h1" 
                     variant="outlined" 
                     size="small"
                     sx={{
@@ -202,7 +251,7 @@ export default function Three() {
                 </Typography>
                 <Button 
                   variant="outlined" 
-                  component="a" 
+                  component="h1" 
                   onClick={() => scrollToSection()}
                   size="large"
                   sx={{
@@ -237,29 +286,29 @@ export default function Three() {
                 width="100%"
                 ref={sectionRef}
                 sx={{ 
+                  mb: 10,
                   pt: 5,
                   display: 'flex', 
                   justifyContent: 'center', 
-                  height: { xs: '20vh', sm: '20vh', md: '20vh' },
                   minHeight: { xs: '20vh', sm: '20vh', md: '20vh' }
                 }}
             >
                 <Box sx={{ 
-                  width: { xs: '90%', md: '540px' },
+                  width: { xs: '90%', md: '700px' },
                   textAlign: 'center',  // Center the text inside this Box as well
                 }}>
-                  <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.2rem', sm: '1.6rem', md: '1.6rem' } }}>
+                  <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.6rem', sm: '1.6rem', md: '1.6rem' } }}>
                     SELECT CATEGORY
                   </Typography>
                   <Button 
                     variant="outlined" 
+                    component="h1"
                     onClick={() => handleToggle('planets')}
                     size="large"
                     sx={{
-                        mr: 3,
+                        m: 3,
                         fontFamily: 'var(--font-iosevka), monospace',
-                        width: { xs: "100px", sm: "140px", md: "140px" },
-                        mt: 4,
+                        width: { xs: "140px", sm: "140px", md: "140px" },
                         color: '#36ffe7', 
                         borderColor: '#36ffe7', 
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
@@ -290,12 +339,13 @@ export default function Three() {
                   </Button>
                   <Button 
                     variant="outlined" 
+                    component="h1"
                     onClick={() => handleToggle('blocks')}
                     size="large"
                     sx={{
                         fontFamily: 'var(--font-iosevka), monospace',
-                        width: { xs: "100px", sm: "140px", md: "140px" },
-                        mt: 4,
+                        width: { xs: "140px", sm: "140px", md: "140px" },
+                        m: 3,
                         color: '#36ffe7', 
                         borderColor: '#36ffe7', 
                         transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
@@ -323,7 +373,44 @@ export default function Three() {
                     }}
                     >
                     Blocks
-                  </Button>          
+                  </Button>  
+                  <Button 
+                    variant="outlined" 
+                    component="h1"
+                    onClick={() => handleToggle('system')}
+                    size="large"
+                    sx={{
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        width: { xs: "140px", sm: "140px", md: "140px" },
+                        m: 3,
+                        color: '#36ffe7', 
+                        borderColor: '#36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: '0px 0px 0px #36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: activeCategory === 'system' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
+                        backgroundColor: activeCategory === 'system' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
+                        transform: activeCategory === 'system' ? 'translate(-5px, -3px)' : 'none',
+                        cursor: "pointer",
+                        '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                        },
+                        '@media (hover: none)': {
+                        '&:hover': {
+                            transform: 'none', 
+                            boxShadow: 'none', 
+                        }
+                        },
+                        '@media (max-width: 600px)': {
+                        size: 'small', // Use small size variant on small screens
+                        }
+                    }}
+                    >
+                    Solar System
+                  </Button>        
                 </Box>
             </Box>
             <Box sx={{ width: '100%', position: 'relative', minHeight: '80vh', height: '80vh', alignItems: 'center', justifyContent: 'center' }}>
@@ -349,7 +436,7 @@ export default function Three() {
                             width="100%"
                             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                            <Box className="three-content-left">
                                 <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                                 <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>01.</span> Earth & Moon
                                 </Typography>
@@ -368,7 +455,7 @@ export default function Three() {
                             width="100%"
                             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                         >
-                            <Box className="section-content" sx={{ overflow: 'visible', textAlign: 'right', position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"},  minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                            <Box className="three-content-right">
                                 <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                                 <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>02.</span> The Sun
                                 </Typography>
@@ -387,7 +474,7 @@ export default function Three() {
                             width="100%"
                             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                            <Box className="three-content-left">
                                 <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                                 <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Saturn & Rings
                                 </Typography>
@@ -401,7 +488,121 @@ export default function Three() {
                                     </Canvas>
                                 </Box>
                             </Box>
-                        </Box>
+                          </Box>
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                          >
+                            <Box className="three-content-right">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>04.</span> Mercury
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Mercury/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box>
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                          >
+                            <Box className="three-content-left">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>05.</span> Venus
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Venus/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box>
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                          >
+                            <Box className="three-content-right">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>06.</span> Jupiter
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Jupiter/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box>
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                          >
+                            <Box className="three-content-left">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>07.</span> Uranus
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Uranus/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box>
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                          >
+                            <Box className="three-content-right">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>08.</span> Neptune
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Neptune/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box> 
+                          <Box
+                            width="100%"
+                            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                          >
+                            <Box className="three-content-left">
+                                <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
+                                <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>09.</span> Mars
+                                </Typography>
+                                <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                {/* Wrap the Globe in Canvas */}
+                                    <Canvas>
+                                    <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[5, 5, 5]} castShadow />
+                                        <Mars/>
+                                    </Canvas>
+                                </Box>
+                            </Box>
+                          </Box>
                     </Box>
                 )}
                 {!transitioning && activeCategory === 'blocks' && (
@@ -448,13 +649,13 @@ export default function Three() {
                             width="100%"
                             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', midWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
+                            <Box className="section-content" sx={{ overflow: 'visible', pt: 10, position: 'relative', minWidth: { xs: '320px', sm: '600px', md: '800px' }, width: { xs: "100%", sm: "800px", md: "800px"}, minHeight: { xs: '400px', sm: '500px', md: '600px'}, height: { xs: '80vh', sm: '70vh', md: '70vh'} }}>
                                 <Typography variant="h6" component="h1" color="#dbdbdb" sx={{ fontWeight: 'bold', fontSize: { xs: '1.4rem', sm: '1.4rem', md: '1.4rem' } }}>
                                 <span style={{ color: '#36ffe7', fontSize: '0.8em', fontFamily: 'var(--font-iosevka), monospace', }}>03.</span> Snowy Grass
                                 </Typography>
                                 <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
                                 {/* Wrap the Globe in Canvas */}
-                                    <Canvas>
+                                    <Canvas >
                                     <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
                                     <ambientLight intensity={0.5} />
                                     <directionalLight position={[5, 5, 5]} castShadow />
@@ -464,6 +665,91 @@ export default function Three() {
                             </Box>
                         </Box>
                     </Box>
+                )}
+                {!transitioning && activeCategory === 'system' && (
+                  
+                <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  width: '100%',
+                  minHeight: '100vh', // Set full height of viewport for better scaling
+                  overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
+                  pb: 20,
+                }}
+                >
+                  <Box
+                    sx={{
+                      width: { xs: '150px', sm: '240px', md: '240px' },
+                      p: 2,
+                      pl: 4,
+                      pr: 4,
+                      background: 'transparent',
+                      borderRadius: 2,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      border: '2px solid #36ffe7',
+                    }}
+                  >
+                    <Typography
+                      variant="h3"
+                      component="h1"
+                      sx={{
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        fontWeight: "500",
+                        mb: { xs: 1, sm: 1.5, md: 1.5 },
+                        fontSize: { xs: '0.6rem', sm: '1rem', md: '1rem' },
+                      }}
+                    >
+                      <span style={{ color: '#36ffe7' }}> Adjust Y-View </span>
+                    </Typography>
+                    <Slider
+                      value={yPosition}
+                      min={0}
+                      max={50}
+                      step={1}
+                      onChange={(e, value) => setYPosition(value)}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="y-position-slider"
+                      sx={{
+                        height: 4, // Slim slider height
+                        color: '#36ffe7',
+                      }}
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      width: '90%',
+                      height: '90vh', // Set full height of viewport for better scaling
+                      minHeight: { xs: '500px', sm: '600px', md: '700px'},
+                      overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
+                      mt: 10,
+                      border: "1px solid #36ffe7",
+                      borderRadius: "2px"
+                    }}
+                    >
+                    <Canvas
+                      style={{
+                        display: 'block',
+                      }}
+                    >
+                      <StarField numStars={5000} radius={100} />
+                      <ambientLight intensity={1} />
+                      <pointLight position={[0, 0, 0]} intensity={10} distance={100} decay={2} castShadow />
+                      <AlwaysLookingCamera position={[0, yPosition, 36]} zoom={cameraZoom} />
+
+                      <SolarSystem />
+                    </Canvas>
+                  </Box>
+                </Box>
                 )}
                 </Box>
             </Box>

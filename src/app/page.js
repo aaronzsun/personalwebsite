@@ -94,9 +94,9 @@ export default function Home() {
       setTimeout(() => {
         setLoading(false);
         setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true), 300);
-      }, 1500);
-    }, 2000);
+        setTimeout(() => setShowMenu(true), 500);
+      }, 500);
+    }, 2500);
 
     if (!loading && typedElement.current) {
       const options = {

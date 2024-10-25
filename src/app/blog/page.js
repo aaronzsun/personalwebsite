@@ -49,7 +49,7 @@ export default function Blog() {
     if (scrollY < 0) return;
 
     const isMobile = window.innerWidth <= 768;  // Adjust the width as per your breakpoint
-    const threshold = isMobile ? 150 : 300;
+    const threshold = isMobile ? 150 : 200;
 
     if (scrollY < threshold && scrollY < lastScrollY.current) {
       setShowMenu(true);
@@ -77,9 +77,9 @@ export default function Blog() {
       setTimeout(() => {
         setLoading(false);
         setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true), 300);
-      }, 0);
-    }, 3000);
+        setTimeout(() => setShowMenu(true), 100);
+      }, 500);
+    }, 2500);
 
     if (!loading) {
       return () => {
@@ -132,7 +132,7 @@ export default function Blog() {
               }}
             >
               <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
-                <Link href="/" passHref sx={{ textDecoration: 'none' }}>
+                <Link href="/" sx={{ textDecoration: 'none' }}>
                     <Button 
                     component="a" 
                     variant="outlined" 

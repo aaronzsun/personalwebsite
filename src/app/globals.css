@@ -16,6 +16,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   margin: 20px;
+  overflow: visible;
 }
 
 /* Typed Text */
@@ -99,7 +100,7 @@ body {
 /* Fade-in Animation */
 .fade-in {
   opacity: 0;
-  animation: fadeInUp 2.5s ease forwards;  /* Fade in and move upwards */
+  animation: fadeInUp 1.5s ease forwards;  /* Fade in and move upwards */
 }
 
 /* Section Styling */
@@ -195,6 +196,54 @@ body {
 
   h6, p {
     font-size: 0.9rem;
+  }
+}
+
+/* Three Content Styling */
+
+.three-content-left {
+  display: block;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  position: relative;
+  min-width: 800px;
+  width: 800px;
+  min-height: 600px;
+  height: 70vh;
+}
+
+.three-content-right {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  text-align: right;
+  position: relative;
+  min-width: 800px;
+  width: 800px;
+  min-height: 600px;
+  height: 70vh;
+}
+
+@media (max-width: 900px) {
+  .three-content-left,
+  .three-content-right {
+    min-width: 600px;
+    width: 800px;
+    min-height: 500px;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .three-content-left,
+  .three-content-right {
+    min-width: 320px;
+    width: 100%;
+    min-height: 400px;
+    height: 80vh;
   }
 }
 
