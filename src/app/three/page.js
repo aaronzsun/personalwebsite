@@ -87,7 +87,6 @@ export default function Three() {
   const [preloaderVisible, setPreloaderVisible] = useState(true);
 
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
-  const [menuLoaded, setMenuLoaded] = useState(false); // For initial load
   const lastScrollY = useRef(0);
 
   const [activeCategory, setActiveCategory] = useState('planets'); // Default to planets
@@ -103,9 +102,10 @@ export default function Three() {
     if (scrollY < 0) return;
 
     const isMobile = window.innerWidth <= 768;  // Adjust the width as per your breakpoint
-    const threshold = isMobile ? 100 : 200;
+    const threshold = isMobile ? 150 : 300;
 
     if (scrollY < threshold && scrollY < lastScrollY.current) {
+      console.log(scrollY);
       setShowMenu(true);
     } else {
       setShowMenu(false);
@@ -124,20 +124,19 @@ export default function Three() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const loadTimeout = setTimeout(() => {
-      setPreloaderVisible(false);
-      setTimeout(() => {
-        setLoading(false);
-        setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true), 500);
-      }, 500);
-    }, 2500);
-
     if (!loading) {
       return () => {
         clearTimeout(loadTimeout);
       };
     }
+
+    const loadTimeout = setTimeout(() => {
+      setPreloaderVisible(false);
+      setTimeout(() => {
+        setLoading(false);
+        setTimeout(() => setShowMenu(true), 800);
+      }, 500);
+    }, 3000);
   }, [loading]);
 
   useEffect(() => {

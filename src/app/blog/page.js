@@ -34,13 +34,10 @@ const iosevkaMed = localFont({
 
 
 export default function Blog() {
-  const typedElement = useRef(null);
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
-  const [menuLoaded, setMenuLoaded] = useState(false); // For initial load
   const lastScrollY = useRef(0);
 
   const handleScroll = () => {
@@ -72,20 +69,21 @@ export default function Blog() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const loadTimeout = setTimeout(() => {
-      setPreloaderVisible(false);
-      setTimeout(() => {
-        setLoading(false);
-        setMenuLoaded(true);
-        setTimeout(() => setShowMenu(true), 100);
-      }, 500);
-    }, 2500);
-
     if (!loading) {
       return () => {
         clearTimeout(loadTimeout);
       };
     }
+
+    const loadTimeout = setTimeout(() => {
+      setPreloaderVisible(false);
+      setTimeout(() => {
+        setLoading(false);
+        setTimeout(() => setShowMenu(true), 100);
+      }, 500);
+    }, 2500);
+
+    
   }, [loading]);
 
 

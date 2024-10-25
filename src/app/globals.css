@@ -100,7 +100,7 @@ body {
 /* Fade-in Animation */
 .fade-in {
   opacity: 0;
-  animation: fadeInUp 1.5s ease forwards;  /* Fade in and move upwards */
+  animation: fadeInUp 0.8s ease-in forwards;  /* Fade in and move upwards */
 }
 
 /* Section Styling */
@@ -128,12 +128,12 @@ body {
 }
 
 .section3 {
-  min-height: 80vh;
+  min-height: 168vh;
 }
 
 
 .section4 {
-  min-height: 50vh;
+  min-height: 70vh;
 }
 
 
@@ -166,11 +166,11 @@ body {
   }
 
   .section4 {
-    min-height: 60vh;
+    min-height: 70vh;
   }
 
   .section5 {
-    min-height: 60vh;
+    min-height: 50vh;
   }
 
   h1, h3 {
@@ -277,7 +277,7 @@ body {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(100px);  /* Start with element slightly down */
+    transform: translateY(60px);  /* Start with element slightly down */
   }
   to {
     opacity: 1;
