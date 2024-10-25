@@ -6,12 +6,11 @@ const Blog = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', }}>
         <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 4, mt:  { xs: 2, sm: 4, md: 4 }, fontSize: { xs: '0.9rem', sm: '1rem', md: '1rem' }}}>
             Sometimes I write about things I find interesting. Sometimes I just ramble on about my thoughts. Sometimes I write cool and informative articles.
-            <br/><br/> Check them all out on my blog.
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <Link href="/blog" sx = {{
                 textDecoration: 'none'
-            }}passHref>
+            }}>
                 <Button 
                     component="a" 
                     variant="outlined" 

@@ -58,14 +58,15 @@ const ProjectDisplay = () => {
             <ProjectDisplayMobileWebsite/>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 3, mt:  { xs: 5, sm: 5, md: 6 }, fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }}}>
+            <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mt:  { xs: 8, sm: 8, md: 8 }, fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem' }}}>
                 Some things I built with Three.JS
+            </Typography>
+            <Typography variant="subtitle2" component="h2" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 5, fontSize: { xs: '0.7rem', sm: '0.7rem', md: '0.9rem' }}}>
+                [mobile users be warned]
             </Typography>
             <Button 
                 component="a" 
                 href="/three" 
-                target="_blank"
-                rel="noopener noreferrer"
                 variant="outlined" 
                 size="large"
                 sx={{
