@@ -485,52 +485,22 @@ export default function Three() {
                 >
                   <Box
                     sx={{
-                      width: { xs: '200px', sm: '500px', md: '500px' },
+                      width: { xs: '150px', sm: '500px', md: '500px' },
+                      minHeight: { xs: '270px', sm: 0, md: 0 },
                       p: 2,
-                      pl: 4,
-                      pr: 4,
+                      pl: 3,
+                      pr: 3,
                       background: 'transparent',
                       borderRadius: 2,
                       display: 'flex',
-                      gap: 2,
                       flexDirection: { xs: 'column', sm: 'row' },
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      border: '2px solid #36ffe7',
+                      border: '1px solid #36ffe7',
                     }}
                   >
                     <Box>
-                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
-                        Rotate Y
-                      </Typography>
-                      <Slider
-                        value={yPosition}
-                        min={-70}
-                        max={70}
-                        step={1}
-                        onChange={(e, value) => setYPosition(value)}
-                        valueLabelDisplay="auto"
-                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
-                      />
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
-                        Scale Zoom
-                      </Typography>
-                      <Slider
-                        value={cameraZoom}
-                        min={10}
-                        max={50}
-                        step={1}
-                        onChange={(e, value) => setCameraZoom(value)}
-                        valueLabelDisplay="auto"
-                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
-                      />
-                    </Box>
-
-                    <Box>
-                      <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                      <Typography variant="h6" component="h1" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
                         Rotate X
                       </Typography>
                       <Slider
@@ -540,7 +510,35 @@ export default function Three() {
                         step={1}
                         onChange={(e, value) => setRotationXZ(value)}
                         valueLabelDisplay="auto"
-                        sx={{ height: 4, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
+                        sx={{ height: 2, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
+                      />
+                    </Box>
+                    <Box>
+                      <Typography variant="h6" component="h1" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                        Rotate Y
+                      </Typography>
+                      <Slider
+                        value={yPosition}
+                        min={-70}
+                        max={70}
+                        step={1}
+                        onChange={(e, value) => setYPosition(value)}
+                        valueLabelDisplay="auto"
+                        sx={{ height: 2, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' },}}
+                      />
+                    </Box>
+                    <Box>
+                      <Typography variant="h6" component="h1" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                        Scale Zoom
+                      </Typography>
+                      <Slider
+                        value={cameraZoom}
+                        min={10}
+                        max={50}
+                        step={1}
+                        onChange={(e, value) => setCameraZoom(value)}
+                        valueLabelDisplay="auto"
+                        sx={{ height: 2, color: '#36ffe7', width:  { xs: '120px', sm: '120px', md: '120px' } }}
                       />
                     </Box>
                   </Box>
