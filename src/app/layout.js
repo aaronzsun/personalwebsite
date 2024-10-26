@@ -1,5 +1,7 @@
 // import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react"
+
 
 // const openSans = localFont({
 //   src: "./fonts/OpenSans.ttf",
@@ -19,6 +21,7 @@ export default function RootLayout({ children }) {
         // className={`${openSans.variable} antialiased`}
       >
         {children}
+        <Analytics/>
       </body>
     </html>
   );
