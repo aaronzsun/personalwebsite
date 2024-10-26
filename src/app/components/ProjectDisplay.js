@@ -62,7 +62,7 @@ const ProjectDisplay = () => {
                 Some things I built with Three.JS
             </Typography>
             <Typography variant="subtitle2" component="h2" color="#36ffe7" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 5, fontSize: { xs: '0.7rem', sm: '0.7rem', md: '0.9rem' }}}>
-                [mobile users be warned]
+                [3D Renderings]
             </Typography>
             <Button 
                 component="a" 

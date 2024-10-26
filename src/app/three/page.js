@@ -29,6 +29,7 @@ import StarField from './components/StarField';
 
 import PlanetsDisplay from './components/PlanetsDisplay'
 import BlocksDisplay from './components/BlocksDisplay';
+import DinoRave from './components2/DinoRave';
 
 const AlwaysLookingCamera = ({ position, zoom, rotationXZ }) => {
   const { camera } = useThree();
@@ -92,10 +93,10 @@ export default function Three() {
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const lastScrollY = useRef(0);
 
-  const [activeCategory, setActiveCategory] = useState('planets'); // Default to planets
+  const [activeCategory, setActiveCategory] = useState(''); // Default to planets
   const [transitioning, setTransitioning] = useState(false); // Added for transition effect
   const [fadeIn, setFadeIn] = useState(true); // For content fade-in
-  const [cameraZoom, setCameraZoom] = useState(20); // Default zoom level
+  const [cameraZoom, setCameraZoom] = useState(27); // Default zoom level
   const [yPosition, setYPosition] = useState(20); // Initial Y position
   const [rotationXZ, setRotationXZ] = useState(0);
 
@@ -127,24 +128,23 @@ export default function Three() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (!loading) {
-      return () => {
-        clearTimeout(loadTimeout);
-      };
-    }
-
     const loadTimeout = setTimeout(() => {
+      if (!loading) {
+        return () => {
+          clearTimeout(loadTimeout);
+        };
+      }
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);
-        setTimeout(() => setShowMenu(true), 1200);
-      }, 1500);
-    }, 6000);
+        setTimeout(() => setShowMenu(true), 800);
+      }, 500);
+    }, 3000);
   }, [loading]);
 
   useEffect(() => {
     const updateZoom = () => {
-      setCameraZoom(window.innerWidth < 600 ? 13 : 16); // Zoom out on small screens
+      setCameraZoom(window.innerWidth < 600 ? 16 : 27); // Zoom out on small screens
     };
 
     // Initial check and add resize event listener
@@ -159,13 +159,22 @@ export default function Three() {
   const handleToggle = (category) => {
     if (transitioning) return;
 
+    if (category === activeCategory) {
+      setFadeIn(false);
+      setActiveCategory('');
+      setTimeout(() => {
+        setFadeIn(true);
+      }, 200)
+      return;
+    }
+
     setTransitioning(true); // Show preloader during transition
     setFadeIn(false); // Reset fade-in
     setTimeout(() => {
       setActiveCategory(category); // Set new category
       setTransitioning(false); // End transition
-      setTimeout(() => setFadeIn(true), 100)
-    }, 2000); // Duration of the preloader
+      setTimeout(() => setFadeIn(true), 200)
+    }, 2900); // Duration of the preloader
   };
 
 
@@ -180,11 +189,11 @@ export default function Three() {
   return (
     <>
       {loading && (
-        <div className={`preloader2 ${!preloaderVisible ? 'fade-out' : ''}`}>
-          <div className="preloader2-inner">
+        <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
+          <div className="preloader-inner">
             <svg viewBox="0 0 100 100" width="150" height="150">
               <path
-                className="infinity-line2"
+                className="infinity-line"
                 d="M50 50 C20 90, 80 90, 50 50 C20 10, 80 10, 50 50"
                 stroke="#36ffe7"
                 fill="none"
@@ -261,7 +270,7 @@ export default function Three() {
                   <span style={{ color: 'white' }}> This is my Three.JS Playground. </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 3, sm: 5, md: 5}, fontSize: { xs: '0.8rem', sm: '1.5rem', md: '1.5rem' }  }}>
-                  <span style={{ color: '#afafaf' }}> I like building cool stuff with three. </span>
+                  <span style={{ color: '#afafaf' }}> I like building random stuff with three. </span>
                 </Typography>
                 <Button 
                   variant="outlined" 
@@ -300,19 +309,114 @@ export default function Three() {
                 width="100%"
                 ref={sectionRef}
                 sx={{ 
-                  mb: 10,
+                  mb: 5,
                   pt: 5,
                   display: 'flex', 
+                  flexDirection: 'column', 
                   justifyContent: 'center', 
+                  alignItems: 'center',
                   minHeight: { xs: '20vh', sm: '20vh', md: '20vh' }
                 }}
             >
+                <Box sx={{ 
+                    width: { xs: '90%', md: '700px' },
+                    textAlign: 'center',  // Center the text inside this Box as well
+                    mb: 4,
+                  }}
+                >
+                  <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.8rem', sm: '1.8rem', md: '2rem' } }}>
+                    THREE.JS BUILDS
+                  </Typography> 
+                </Box>
+                <Box sx={{ 
+                  width: { xs: '90%', md: '700px' },
+                  textAlign: 'center',  // Center the text inside this Box as well
+                  mb: 4,
+                }}>
+                  <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.6rem', sm: '1.6rem', md: '1.6rem' } }}>
+                    PROJECTS
+                  </Typography> 
+                  <Button 
+                    variant="outlined" 
+                    component="h1"
+                    onClick={() => handleToggle('system')}
+                    size="large"
+                    sx={{
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        width: { xs: "140px", sm: "140px", md: "140px" },
+                        m: 3,
+                        color: '#36ffe7', 
+                        borderColor: '#36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: '0px 0px 0px #36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: activeCategory === 'system' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
+                        backgroundColor: activeCategory === 'system' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
+                        transform: activeCategory === 'system' ? 'translate(-5px, -3px)' : 'none',
+                        cursor: "pointer",
+                        '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                        },
+                        '@media (hover: none)': {
+                        '&:hover': {
+                            transform: 'none', 
+                            boxShadow: 'none', 
+                        }
+                        },
+                        '@media (max-width: 600px)': {
+                        size: 'small', // Use small size variant on small screens
+                        }
+                    }}
+                    >
+                    Solar System
+                  </Button>
+                  <Button 
+                    variant="outlined" 
+                    component="h1"
+                    onClick={() => handleToggle('dinorave')}
+                    size="large"
+                    sx={{
+                        fontFamily: 'var(--font-iosevka), monospace',
+                        width: { xs: "140px", sm: "140px", md: "140px" },
+                        m: 3,
+                        color: '#36ffe7', 
+                        borderColor: '#36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: '0px 0px 0px #36ffe7', 
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                        boxShadow: activeCategory === 'dinorave' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
+                        backgroundColor: activeCategory === 'dinorave' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
+                        transform: activeCategory === 'dinorave' ? 'translate(-5px, -3px)' : 'none',
+                        cursor: "pointer",
+                        '&:hover': {
+                        transform: 'translate(-5px, -3px)', 
+                        boxShadow: '5px 5px 0px #36ffe7', 
+                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                        cursor: "pointer"
+                        },
+                        '@media (hover: none)': {
+                        '&:hover': {
+                            transform: 'none', 
+                            boxShadow: 'none', 
+                        }
+                        },
+                        '@media (max-width: 600px)': {
+                        size: 'small', // Use small size variant on small screens
+                        }
+                    }}
+                    >
+                    Dino Rave
+                  </Button>         
+                </Box>
                 <Box sx={{ 
                   width: { xs: '90%', md: '700px' },
                   textAlign: 'center',  // Center the text inside this Box as well
                 }}>
                   <Typography variant="h6" component="h1" color="white" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.6rem', sm: '1.6rem', md: '1.6rem' } }}>
-                    BUILD CATEGORIES
+                    SIMPLE COMPONENTS
                   </Typography>
                   <Button 
                     variant="outlined" 
@@ -388,51 +492,28 @@ export default function Three() {
                     >
                     Blocks
                   </Button>  
-                  <Button 
-                    variant="outlined" 
-                    component="h1"
-                    onClick={() => handleToggle('system')}
-                    size="large"
-                    sx={{
-                        fontFamily: 'var(--font-iosevka), monospace',
-                        width: { xs: "140px", sm: "140px", md: "140px" },
-                        m: 3,
-                        color: '#36ffe7', 
-                        borderColor: '#36ffe7', 
-                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                        boxShadow: '0px 0px 0px #36ffe7', 
-                        transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                        boxShadow: activeCategory === 'system' ? '5px 5px 0px #36ffe7' : '0px 0px 0px #36ffe7', 
-                        backgroundColor: activeCategory === 'system' ? 'rgba(54, 255, 231, 0.1)' : 'transparent',
-                        transform: activeCategory === 'system' ? 'translate(-5px, -3px)' : 'none',
-                        cursor: "pointer",
-                        '&:hover': {
-                        transform: 'translate(-5px, -3px)', 
-                        boxShadow: '5px 5px 0px #36ffe7', 
-                        backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                        cursor: "pointer"
-                        },
-                        '@media (hover: none)': {
-                        '&:hover': {
-                            transform: 'none', 
-                            boxShadow: 'none', 
-                        }
-                        },
-                        '@media (max-width: 600px)': {
-                        size: 'small', // Use small size variant on small screens
-                        }
-                    }}
-                    >
-                    Solar System
-                  </Button>        
                 </Box>
             </Box>
 
             {/* THREE CONTENT */}
 
             <Box sx={{ width: '100%', position: 'relative', minHeight: '80vh', height: '80vh', alignItems: 'center', justifyContent: 'center' }}>
+                {!transitioning && activeCategory === '' && (
+                  <Box sx={{ opacity: fadeIn ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
+                    <Box
+                      width="100%"
+                      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Box>
+                        <Typography variant="h6" component="h1" color="#36ffe7" sx={{ mt: { xs: 18, sm: 24, md: 24}, fontweight: '500', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1rem', sm: '1.6rem', md: '1.6rem' } }}>
+                          [select a category to begin]
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                )}
                 {transitioning && (
-                    <div className={`preloader ${transitioning ? 'fade-out' : ''}`} style={{ 
+                    <div className={`preloader ${!transitioning ? 'fade-out' : ''}`} style={{ 
                       position: 'absolute', 
                       top: '30%',
                       width: '100%', 
@@ -457,13 +538,13 @@ export default function Three() {
                 )}
                 <Box sx={{ opacity: fadeIn ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
                 {!transitioning && activeCategory === 'planets' && (
-                    <Box
+                   <Box
                         width="100%"
                         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                       >
                         <PlanetsDisplay />
                     </Box>
-                )}
+                )} 
                 {!transitioning && activeCategory === 'blocks' && (
                     <Box>
                         <BlocksDisplay/>
@@ -573,6 +654,31 @@ export default function Three() {
                   </Box>
                 </Box>
                 )}
+                {!transitioning && activeCategory === 'dinorave' && (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%',
+                      height: '100%',
+                      overflow: 'hidden',
+                    }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '90%',
+                        height: '90vh',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <DinoRave />
+                    </Box>
+                  </Box>
+                  
+                )} 
                 </Box>
             </Box>
           </Box>

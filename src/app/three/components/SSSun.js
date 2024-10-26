@@ -53,7 +53,7 @@ const SSSun = () => {
 
       {/* Bloom effect for realistic glowing effect */}
       <EffectComposer>
-        <Bloom intensity={10} luminanceThreshold={0.05} luminanceSmoothing={0.2} />
+        <Bloom intensity={12} luminanceThreshold={0.1} luminanceSmoothing={0.5} />
       </EffectComposer>
     </>
   );

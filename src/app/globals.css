@@ -303,15 +303,15 @@ body {
     stroke-dashoffset: 400;  /* Start unfilled */
     opacity: 1;
   }
-  25% {
+  28% {
     stroke-dashoffset: 0;    /* First fill completed */
     opacity: 1;
   }
-  50% {
+  56% {
     stroke-dashoffset: -400; /* First unfill in the same direction */
     opacity: 1;
   }
-  75% {
+  84% {
     stroke-dashoffset: -800; /* Second fill in the same direction */
     opacity: 1;
   }
