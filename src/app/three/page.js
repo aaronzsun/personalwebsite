@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { OrthographicCamera } from '@react-three/drei';
+import { OrthographicCamera, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 import { Box, Typography, Button, Link, Slider } from '@mui/material';
@@ -54,6 +54,29 @@ const AlwaysLookingCamera = ({ position, zoom, rotationXZ }) => {
   return <OrthographicCamera makeDefault position={position} zoom={zoom} />;
 };
 
+const RotatingCamera = ({ radius, centerPosition, height = 50, speed = 0.25 }) => {
+  const cameraRef = useRef();
+
+  useFrame(({ clock }) => {
+    if (cameraRef.current) {
+      const t = clock.getElapsedTime() * speed;
+      cameraRef.current.position.x = centerPosition[0] + Math.sin(t) * radius;
+      cameraRef.current.position.z = centerPosition[2] + Math.cos(t) * radius;
+      cameraRef.current.position.y = height;
+      cameraRef.current.lookAt(...centerPosition);
+    }
+  });
+
+  return (
+    <PerspectiveCamera
+      makeDefault
+      ref={cameraRef}
+      fov={50}
+      near={0.1}
+      far={1000}
+    />
+  );
+};
 
 // const AngledCamera = () => {
 //   const { camera } = useThree();
@@ -99,6 +122,24 @@ export default function Three() {
   const [cameraZoom, setCameraZoom] = useState(27); // Default zoom level
   const [yPosition, setYPosition] = useState(20); // Initial Y position
   const [rotationXZ, setRotationXZ] = useState(0);
+  const [radius, setRadius] = useState(150);
+
+  useEffect(() => {
+      const updateRadius = () => {
+      if (window.innerWidth >= 900) {
+          setRadius(100); // Larger screen breakpoint
+      } else if (window.innerWidth >= 600) {
+          setRadius(150); // Medium screen breakpoint
+      } else {
+          setRadius(200); // Small screen breakpoint
+      }
+      };
+
+      window.addEventListener('resize', updateRadius);
+      updateRadius(); // Set radius on mount based on initial window size
+
+      return () => window.removeEventListener('resize', updateRadius);
+  }, []);
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -660,26 +701,72 @@ export default function Three() {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
+                      flexDirection: 'column',
                       width: '100%',
-                      height: '100%',
-                      overflow: 'hidden',
-                    }}>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '90%',
-                        height: '90vh',
-                        overflow: 'hidden',
-                      }}
+                      minHeight: '100vh', // Set full height of viewport for better scaling
+                      overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
+                      pb: 10,
+                    }}
                     >
+                      <Box
+                        sx={{
+                          width: { xs: '150px', sm: '150px', md: '150px' },
+                          p: 2,
+                          pl: 3,
+                          pr: 3,
+                          background: 'transparent',
+                          borderRadius: 2,
+                          display: 'flex',
+                          flexDirection: { xs: 'column', sm: 'row' },
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          border: '0px solid #36ffe7',
+                        }}
+                      >
+                        <Box>
+                          <Typography variant="h6" component="h1" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontSize: '0.9rem', mb: 1, textAlign: 'center' }}>
+                            Camera Radius
+                          </Typography>
+                          <Slider
+                            value={radius}
+                            min={50}
+                            max={240}
+                            step={1}
+                            onChange={(e, value) => setRadius(value)}
+                            valueLabelDisplay="auto"
+                            sx={{ height: 2, color: '#36ffe7', width:  { xs: '200px', sm: '200px', md: '200px' } }}
+                          />
+                        </Box>
+                      </Box>
+                    <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      width: '90%',
+                      height: { xs: '70vh', sm: '80vh', md: '80vh'}, // Set full height of viewport for better scaling
+                      minHeight: { xs: '500px', sm: '600px', md: '700px'},
+                      overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
+                      mt: 4,
+                      backgroundColor: "black",
+                      border: "1px solid #36ffe7",
+                      borderRadius: "10px"
+                    }}
+                    >
+                      <Canvas
+                        style={{
+                          display: 'block',
+                        }}
+                      >
+                      <RotatingCamera radius={radius} centerPosition={[0, -5, 0]} height={50} speed={0.25} />
+
                       <DinoRave />
+                      </Canvas>
                     </Box>
                   </Box>
-                  
                 )} 
-                </Box>
+              </Box>
             </Box>
           </Box>
           </main>

@@ -1,44 +1,36 @@
+"use client"
+
 import React, { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrthographicCamera, Box, Sphere } from '@react-three/drei'
+import { useFrame, useLoader } from '@react-three/fiber'
+import { Box, Sphere } from '@react-three/drei'
+import { TextureLoader } from 'three';
+
 import Dinosaurs from './Dinosaurs'
 
-// Custom rotating camera component
-const RotatingCamera = ({ centerPosition, radius = 50, height = 15, speed = 0.05 }) => {
-  const cameraRef = useRef()
-
-  useFrame(({ clock }) => {
-    if (cameraRef.current) {
-      const t = clock.getElapsedTime() * speed
-      cameraRef.current.position.x = centerPosition[0] + Math.sin(t) * radius
-      cameraRef.current.position.z = centerPosition[2] + Math.cos(t) * radius
-      cameraRef.current.position.y = height
-      cameraRef.current.lookAt(...centerPosition)
-    }
-  })
-
-  return <OrthographicCamera makeDefault ref={cameraRef} zoom={10} near={0.1} far={1000} />
-}
 
 // Disco floor component with animated colors
 const DiscoFloor = () => {
-  const rows = 16 // Increase for a bigger floor
-  const cols = 16
+  const rows = 18 // Increase for a bigger floor
+  const cols = 18
   const tileSize = 4.4
   const tilesRef = useRef([])
 
   useFrame(({ clock }) => {
-    const time = clock.getElapsedTime() * 2
+    const time = clock.getElapsedTime();
     tilesRef.current.forEach((tile, index) => {
       if (tile) {
-        const colorOffset = index * 10
-        tile.material.color.setHSL((time * 10 + colorOffset) % 360 / 360, 1, 0.5)
+        // Apply a slower and staggered color change effect
+        const row = Math.floor(index / cols);
+        const col = index % cols;
+        const colorOffset = (row + col) * 0.1; // Smaller offset to slow down
+        const randomHue = (time * 0.5 + colorOffset) % 1; // Reduced speed with time * 0.5
+        tile.material.color.setHSL(randomHue, 1, 0.5);
       }
-    })
-  })
+    });
+  });
 
   return (
-    <group position={[25, -5.8, 0]} rotation={[0, Math.PI / 4, 0]}>
+    <group position={[1, -5.8, 0]} rotation={[0, Math.PI / 4, 0]}>
       {Array.from({ length: rows }).map((_, rowIdx) =>
         Array.from({ length: cols }).map((_, colIdx) => (
           <Box
@@ -60,72 +52,74 @@ const DiscoFloor = () => {
 }
 
 const DiscoBall = () => {
-    const ballRef = useRef()
-    const lightRef1 = useRef()
-    const lightRef2 = useRef()
+    const ballRef = useRef();
+    const lightRef1 = useRef();
+    const lightRef2 = useRef();
   
-    // Rotate the disco ball and lights
+    const discoTexture = useLoader(TextureLoader, '/discoball.jpeg');
+  
     useFrame(({ clock }) => {
+      const time = clock.getElapsedTime();
+      const colorCycleSpeed = 0.1; // Controls the color transition speed for the ball
+      const hue = (time * colorCycleSpeed) % 1; // Generates a normalized hue value
+  
+      // Rotate the disco ball and set dynamic emissive color
       if (ballRef.current) {
-        ballRef.current.rotation.y += 0.2 // Rotate the disco ball
+        ballRef.current.rotation.y += 0.04;
+        ballRef.current.material.emissive.setHSL(hue, 1, 0.3); // Sync with spotlight hue
+        ballRef.current.material.emissiveIntensity = 0.9; // Increase emissive intensity for glow effect
       }
-      const angle = clock.getElapsedTime()
+  
       if (lightRef1.current && lightRef2.current) {
-        lightRef1.current.position.set(15 * Math.sin(angle), 20, 15 * Math.cos(angle))
-        lightRef2.current.position.set(15 * Math.sin(angle + Math.PI), 20, 15 * Math.cos(angle + Math.PI))
+        lightRef1.current.position.set(15 * Math.sin(time), 20, 15 * Math.cos(time));
+        lightRef2.current.position.set(15 * Math.sin(time + Math.PI), 20, 15 * Math.cos(time + Math.PI));
+  
+        // Apply the same hue to both spotlights
+        lightRef1.current.color.setHSL(hue, 1, 0.5);
+        lightRef2.current.color.setHSL(hue, 1, 0.5);
       }
-    })
+    });
   
     return (
-      <>
-        <Sphere ref={ballRef} args={[3, 32, 32]} position={[25, 24, 0]}>
-            <meshStandardMaterial
-            color="#d3d3d3"          // Light gray for base color
-            metalness={1}            // High metalness for reflective surface
-            roughness={0.2}          // Slight roughness to keep the ball reflective but not too shiny
-            emissive="#aaaaaa"       // Soft light gray for subtle glow
-            emissiveIntensity={0.042}  // Reduced intensity for a gentle glow
-            />
-        </Sphere>
-        <spotLight 
-            ref={lightRef1} 
-            position={[25, 25, 5]} 
-            intensity={1000} // Increase brightness
-            angle={0.3} // Widen light spread
-            penumbra={100} // Soften edges
-            castShadow 
-            color="cyan" 
+    <>
+    <ambientLight intensity={10} />
+    <pointLight position={[0, 50, 50]} intensity={1} />
+
+    <Sphere ref={ballRef} args={[3, 32, 32]} position={[0, 24, 0]}>
+        <meshStandardMaterial
+        map={discoTexture}
+        metalness={0.95}
+        roughness={0.2}
+        emissiveIntensity={0.6}
         />
-        <spotLight 
-            ref={lightRef2} 
-            position={[25, 25, -5]} 
-            intensity={1000} // Increase brightness
-            angle={0.3} // Widen light spread
-            penumbra={100} // Soften edges
-            castShadow 
-            color="magenta" 
-        />
-      </>
-    )
+    </Sphere>
+    <spotLight
+        ref={lightRef1}
+        position={[0, 25, 0]}
+        intensity={1000}
+        angle={0.8}
+        penumbra={0.5}
+        castShadow
+    />
+    <spotLight
+        ref={lightRef2}
+        position={[0, 25, 0]}
+        intensity={1000}
+        angle={0.8}
+        penumbra={0.5}
+        castShadow
+    />
+    </>
+);
 };
+  
 
 const DinoRave = () => {
-  const centerPosition = [25, -5, 0] // Centered for dinosaurs and disco floor alignment
 
   return (
-    <Canvas
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'block',
-      }}
-      resize={{ scroll: true, debounce: { scroll: 50, resize: 50 } }}
-      shadows
-    >
-      <RotatingCamera centerPosition={centerPosition} radius={50} height={15} speed={0.25} />
-
+    <>
       <ambientLight intensity={10} />
-      <pointLight position={[25, -5, 10]}/>
+      <pointLight position={[0, -5, 10]}/>
 
       <DiscoBall/>
 
@@ -135,7 +129,7 @@ const DinoRave = () => {
       <group position={[0, -5, 0]}>
         <Dinosaurs castShadow />
       </group>
-    </Canvas>
+    </>
   )
 }
 

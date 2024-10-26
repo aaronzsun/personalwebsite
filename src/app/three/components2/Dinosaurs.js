@@ -49,12 +49,12 @@ const Dinosaur = ({ url, position, clipName }) => {
 const Dinosaurs = () => {
   // Array of dinosaur file paths and animation names
   const dinosaurFiles = [
-    { url: '/Trex.fbx', clipName: 'Armature|TRex_Jump' },
-    { url: '/Stegosaurus.fbx', clipName: 'Armature|Stegosaurus_Jump' },
+    { url: '/Trex.fbx', clipName: 'Armature|TRex_Attack' },
+    { url: '/Stegosaurus.fbx', clipName: 'Armature|Stegosaurus_Attack' },
     { url: '/Velociraptor.fbx', clipName: 'Armature|Velociraptor_Jump' },
-    { url: '/Triceratops.fbx', clipName: 'Armature|Triceratops_Jump' },
+    { url: '/Triceratops.fbx', clipName: 'Armature|Triceratops_Attack' },
     { url: '/Parasaurolophus.fbx', clipName: 'Armature|Parasaurolophus_Jump' },
-    { url: '/Apatosaurus.fbx', clipName: 'Armature|Apatosaurus_Jump' },
+    { url: '/Apatosaurus.fbx', clipName: 'Armature|Apatosaurus_Run' },
   ]
 
   return (
@@ -63,7 +63,7 @@ const Dinosaurs = () => {
         <Dinosaur
           key={dino.url}
           url={dino.url}
-          position={[index * 10, 0, 0]} // Spacing each model on the X-axis
+          position={[-25 + index * 10, 0, 0]} // Spacing each model on the X-axis
           clipName={dino.clipName} // Specify animation name
         />
       ))}
