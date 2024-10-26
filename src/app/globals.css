@@ -273,6 +273,58 @@ body {
   animation: draw-line 4s linear forwards, fade-out 0.5s 2.5s forwards;
 }
 
+.preloader2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;  /* Fade-out */
+}
+
+.preloader2-inner svg {
+  transform: rotate(90deg);  /* Rotate SVG to make the infinity horizontal */
+}
+
+.infinity-line2 {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: fill-unfill-fade 7s linear forwards;
+}
+
+@keyframes fill-unfill-fade {
+  0% {
+    stroke-dashoffset: 400;  /* Start unfilled */
+    opacity: 1;
+  }
+  25% {
+    stroke-dashoffset: 0;    /* First fill completed */
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: -400; /* First unfill in the same direction */
+    opacity: 1;
+  }
+  75% {
+    stroke-dashoffset: -800; /* Second fill in the same direction */
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -800; /* Hold position after second fill and fade out */
+    opacity: 0;
+  }
+}
+
+
+
+/* Keyframes */
+
 /* Keyframes for Animations */
 @keyframes fadeInUp {
   from {
@@ -288,6 +340,15 @@ body {
 @keyframes draw-line {
   to {
     stroke-dashoffset: 0;  /* Fully draw the line */
+  }
+}
+
+@keyframes unfill-line {
+  from {
+    stroke-dashoffset: 0; /* Start with line fully drawn */
+  }
+  to {
+    stroke-dashoffset: 400; /* Unfill the line */
   }
 }
 

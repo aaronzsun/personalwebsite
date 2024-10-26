@@ -138,8 +138,8 @@ export default function Three() {
       setTimeout(() => {
         setLoading(false);
         setTimeout(() => setShowMenu(true), 1200);
-      }, 1000);
-    }, 3000);
+      }, 1500);
+    }, 6000);
   }, [loading]);
 
   useEffect(() => {
@@ -180,11 +180,11 @@ export default function Three() {
   return (
     <>
       {loading && (
-        <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
-          <div className="preloader-inner">
+        <div className={`preloader2 ${!preloaderVisible ? 'fade-out' : ''}`}>
+          <div className="preloader2-inner">
             <svg viewBox="0 0 100 100" width="150" height="150">
               <path
-                className="infinity-line"
+                className="infinity-line2"
                 d="M50 50 C20 90, 80 90, 50 50 C20 10, 80 10, 50 50"
                 stroke="#36ffe7"
                 fill="none"
