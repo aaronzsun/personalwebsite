@@ -53,7 +53,7 @@ const Globe = () => {
     if (globeRef.current) {
       // Globe rotation based on scroll
       if (screenWidth >= 600) {
-        const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 2.5);
+        const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 3);
 
         setScale(scrollScaleFactor);
 
@@ -81,7 +81,7 @@ const Globe = () => {
 
       // Slide the globe horizontally as you scroll
       if (screenWidth >= 600) {
-        const newXPosition = Math.min(2.5 + scrollY * 0.01, 4.5);  // Max slide distance: 5 units
+        const newXPosition = Math.min(4 + scrollY * 0.01, 7.5);  // Max slide distance: 5 units
         globeRef.current.position.x = newXPosition;
       } else {
         globeRef.current.position.x = 2.5;  // No movement for smaller screens

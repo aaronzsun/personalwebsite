@@ -553,6 +553,7 @@ export default function Three() {
                       minHeight: { xs: '500px', sm: '600px', md: '700px'},
                       overflow: 'hidden', // Ensures no overflow if content exceeds boundaries
                       mt: 4,
+                      backgroundColor: "black",
                       border: "1px solid #36ffe7",
                       borderRadius: "10px"
                     }}
@@ -563,7 +564,7 @@ export default function Three() {
                       }}
                     >
                       <StarField numStars={10000} radius={100} />
-                      <ambientLight intensity={0.15} />
+                      <ambientLight intensity={0.18} />
                       <pointLight position={[0, 0, 0]} intensity={100} distance={1000} decay={2} castShadow />
                       <AlwaysLookingCamera position={[0, yPosition, 36]} zoom={cameraZoom} rotationXZ={rotationXZ} />
 
