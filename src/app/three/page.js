@@ -30,6 +30,7 @@ import StarField from './components/StarField';
 import PlanetsDisplay from './components/PlanetsDisplay'
 import BlocksDisplay from './components/BlocksDisplay';
 import DinoRave from './components2/DinoRave';
+import BackgroundFlashes from './components2/BackgroundFlashes'
 
 const AlwaysLookingCamera = ({ position, zoom, rotationXZ }) => {
   const { camera } = useThree();
@@ -759,6 +760,7 @@ export default function Three() {
                           display: 'block',
                         }}
                       >
+                      <BackgroundFlashes />
                       <RotatingCamera radius={radius} centerPosition={[0, -5, 0]} height={50} speed={0.25} />
 
                       <DinoRave />
