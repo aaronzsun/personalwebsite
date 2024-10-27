@@ -186,7 +186,7 @@ export default function Three() {
 
   useEffect(() => {
     const updateZoom = () => {
-      setCameraZoom(window.innerWidth < 600 ? 16 : 27); // Zoom out on small screens
+      setCameraZoom(window.innerWidth < 600 ? 18 : 27); // Zoom out on small screens
     };
 
     // Initial check and add resize event listener
