@@ -344,10 +344,19 @@ export default function Home() {
                   height: '100%',
                   zIndex: -1,
                 }}
+                shadows
               >
                 <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[5, 5, 5]} castShadow />
+                <ambientLight intensity={0.2} />
+                <pointLight 
+                  position={[0, 0, 4]} 
+                  intensity={50} 
+                  distance={1000} 
+                  decay={1} 
+                  castShadow 
+                  shadow-mapSize-width={1024} 
+                  shadow-mapSize-height={1024} 
+                />
                 <Globe />
               </Canvas>
             </div>
