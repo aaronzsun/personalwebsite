@@ -53,7 +53,7 @@ const AboutMePanel = () => {
                 <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> Python
                 </Typography>
                 <Typography component="li" variant="body2" color="#afafaf" sx={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-iosevka), monospace' }}>
-                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> Three.js
+                <ArrowRightIcon sx={{ color: '#36ffe7', marginRight: '5px' }} /> Three
                 </Typography>
             </Box>
             </Box>
