@@ -81,7 +81,7 @@ const Globe = () => {
 
       // Slide the globe horizontally as you scroll
       if (screenWidth >= 600) {
-        const newXPosition = Math.min(4 + scrollY * 0.01, 7.5);  // Max slide distance: 5 units
+        const newXPosition = Math.min(4 + scrollY * 0.01, 7.8);  // Max slide distance: 5 units
         globeRef.current.position.x = newXPosition;
       } else {
         globeRef.current.position.x = 2.5;  // No movement for smaller screens
