@@ -68,14 +68,13 @@ export default function Blog() {
   // Slide the menu down on initial load
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    if (!loading) {
-      return () => {
-        clearTimeout(loadTimeout);
-      };
-    }
-
+    
     const loadTimeout = setTimeout(() => {
+      if (!loading) {
+        return () => {
+          clearTimeout(loadTimeout);
+        };
+      }
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);

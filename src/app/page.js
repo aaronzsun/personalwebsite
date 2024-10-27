@@ -116,14 +116,16 @@ export default function Home() {
       };
 
       const typed = new Typed(typedElement.current, options);
-    
-      return () => {
-        clearTimeout(loadTimeout);
-        typed.destroy();
-      };
     }
 
     const loadTimeout = setTimeout(() => {
+  
+       if (!loading) {
+        return () => {
+          typed.destroy();
+          clearTimeout(loadTimeout);
+        };
+      }
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);

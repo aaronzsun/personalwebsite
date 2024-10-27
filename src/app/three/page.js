@@ -179,8 +179,8 @@ export default function Three() {
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);
-        setTimeout(() => setShowMenu(true), 800);
-      }, 500);
+        setTimeout(() => setShowMenu(true), 200);
+      }, 0);
     }, 3000);
   }, [loading]);
 
