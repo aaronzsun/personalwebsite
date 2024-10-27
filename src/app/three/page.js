@@ -48,7 +48,7 @@ const AlwaysLookingCamera = ({ position, zoom, rotationXZ }) => {
     camera.lookAt(0, 0, 0);                 // Always look at the center (sun)
     
     // Adjust zoom based on Y position
-    camera.zoom = zoom - (position[1] * 0.05);
+    camera.zoom = zoom - (position[1] * 0.02);
     camera.updateProjectionMatrix();
   });
 
