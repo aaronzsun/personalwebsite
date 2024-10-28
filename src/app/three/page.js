@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrthographicCamera, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
@@ -232,6 +233,9 @@ export default function Three() {
 
   return (
     <>
+      <Helmet>
+        <title>Three Playground</title>
+      </Helmet>
       {loading && (
         <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
           <div className="preloader-inner">

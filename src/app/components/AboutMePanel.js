@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Grid2 from '@mui/material/Grid2'; 
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
@@ -18,20 +18,7 @@ const AboutMePanel = () => {
             <Box component="p">
                 When I&apos;m offline, you can usually find me playing soccer, exploring San Francisco, or cooking whatever yummy recipe I saw on YouTube that day. 
                 In case you&apos;re wondering, that&apos;s a picture of me next to the Broad Street Pump, the source of the London Cholera epidemic of 1854 
-                (epidemiology nerds know what I&apos;m talking about). Also, I have a <Link
-                  href="/blog"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{
-                  color: '#36ffe7',
-                  textDecoration: 'none',
-                  '&:hover': {
-                      textDecoration: 'underline', 
-                  },
-                  }}
-                >
-                blog
-                </Link> if you want to read some of my random thoughts.
+                (epidemiology nerds know what I&apos;m talking about). 
             </Box>
             </Typography> 
             <Box sx={{ mt: 3 }}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 import { Box, Typography, Button, Link } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme/theme"
@@ -95,6 +96,9 @@ export default function Blog() {
 
   return (
     <>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       {loading && (
         <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
           <div className="preloader-inner">
