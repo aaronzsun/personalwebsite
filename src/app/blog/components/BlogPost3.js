@@ -34,7 +34,7 @@ const BlogPost3 = () => {
         />
         {/* Blog Post Title */}
         <Typography variant="h6" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, color: 'white' }}>
-          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Sep 18:</Typography>
+          <Typography variant="h6" component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.2rem' }, fontFamily: 'var(--font-iosevka), monospace', color: '#36ffe7', mr: 1 }}>2024 Oct 20:</Typography>
             Cool Pairwise Comparison Sorting with LLMs
         </Typography>
       </Box>
@@ -43,9 +43,9 @@ const BlogPost3 = () => {
       <Collapse in={isExpanded}>
         <Box sx={{ marginTop: 2, paddingLeft: '32px' }}>  {/* Align with title */}
           <Typography variant="body1" sx={{ color: '#afafaf' }}>
-            I&apos;ll admit it: the AI hype might be real. With the release of ChatGPT and now model 4o, every product, company, 
-            and developer is looking to utilize AI in their applications. Recently, I&apos;ve been working with OpenAI&apos;s API to implement the power of
-            LLMs (large language models) into my projects. One particularly interesting use case I&apos;ve been looking to tackle is using OpenAI&apos;s 
+            So the AI hype might be real. With the release of ChatGPT and now model 4o, every product, company, 
+            and developer is looking to utilize AI in their applications. Recently, I&apos;ve was working on a project at a startup where I used OpenAI&apos;s API to implement the power of
+            LLMs (large language models) into a project. The problem I was looking to tackle was using OpenAI&apos;s 
             LLM for sorting algorithms with only pairwise comparisons. Typically, we sort things by some value (e.g. [1, 2, 3, 4])- but sometimes thats
             just not possible for certain tasks. Imagine scenarios like these:
             <Box sx={{ display: 'flex', alignItems: 'flex-start', color: '#afafaf', mt: 2 }}>

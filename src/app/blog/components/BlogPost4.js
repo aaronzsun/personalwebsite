@@ -43,7 +43,7 @@ const BlogPost4 = () => {
       <Collapse in={isExpanded}>
         <Box sx={{ marginTop: 2, paddingLeft: '32px' }}>  {/* Align with title */}
           <Typography variant="body1" sx={{ color: '#afafaf' }}>
-            Okay, I won&apos;t lie: Halloween was super fun as a kid. I liked dressing up as my favorite superhero and running around amassing a giant
+            Halloween was super fun as a kid. I liked dressing up as my favorite superhero and running around amassing a giant
             sack of candy. Also I got to stay up late. My parents took most of my candy the next day, though I still enjoyed the process. <br/><br/>
             But now, I realized I don&apos;t get Halloween at all. Firstly, it&apos;s interesting to me that every household just accepts this agreement 
             that they&apos;ll buy candy to give out to kids. Also, I know the US is trying to be healthier, but isn&apos;t giving kids literal
