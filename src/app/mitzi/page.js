@@ -6,7 +6,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme/theme"
 import localFont from "next/font/local";
 import axios from 'axios';
-import Head from 'next/head';
+import { Helmet } from 'react-helmet';
+// import Head from 'next/head';
 
 
 const interTight = localFont({
@@ -117,9 +118,9 @@ export default function Mitzi() {
 
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Mitzi</title>
-      </Head>
+      </Helmet>
       {loading && (
         <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
           <div className="preloader-inner">
