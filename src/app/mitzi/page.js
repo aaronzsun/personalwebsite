@@ -38,12 +38,19 @@ export default function Mitzi() {
 
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const lastScrollY = useRef(0);
+  const [sessionId, setSessionId] = useState(null);
+
 
   // Generate session ID if it doesn’t exist
-  if (!localStorage.getItem('mitziSessionId')) {
-    localStorage.setItem('mitziSessionId', uuidv4());
-  }
-  const sessionId = localStorage.getItem('mitziSessionId');
+  useEffect(() => {
+    // Check if sessionId already exists; if not, create and save it
+    let storedSessionId = localStorage.getItem('mitziSessionId');
+    if (!storedSessionId) {
+      storedSessionId = uuidv4();
+      localStorage.setItem('mitziSessionId', storedSessionId);
+    }
+    setSessionId(storedSessionId);
+  }, []);
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -105,7 +112,7 @@ export default function Mitzi() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSendMessage = async () => {
-    if (!userInput) return;
+    if (!sessionId || !userInput) return;  // Ensure sessionId is set and user input exists
   
     const newMessages = [...messages, { sender: 'user', text: userInput }];
     setMessages(newMessages);
