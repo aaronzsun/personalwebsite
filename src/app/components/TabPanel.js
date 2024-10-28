@@ -457,12 +457,11 @@ export default function VerticalTabsComponent() {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <Typography variant="subtitle1" component="h2" color="#afafaf" sx={{ mb: 3, mt:  { xs: 1, sm: 1, md: 4 }, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+      <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: 3, mt:  { xs: 1, sm: 1, md: 4 }, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
         Want to learn more about my work?
       </Typography>
       <Button 
-        component="a" 
-        href="https://aaronzsun.com/resume" 
+        href="/resume" 
         target="_blank"
         rel="noopener noreferrer"
         variant="outlined" 

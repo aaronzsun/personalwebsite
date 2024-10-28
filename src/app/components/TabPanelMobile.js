@@ -475,8 +475,7 @@ export default function HorizontalTabsComponent() {
         Want to learn more about my work?
       </Typography>
       <Button 
-        component="a" 
-        href="https://aaronzsun.com/resume" 
+        href="/resume" 
         target="_blank"
         rel="noopener noreferrer"
         variant="outlined" 

@@ -10,7 +10,7 @@ import { OrthographicCamera } from '@react-three/drei';
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./theme/theme"
-import { Box, Typography, Link, Button } from '@mui/material';
+import { Avatar, Box, Typography, Link, Button } from '@mui/material';
 
 import TabPanel from './components/TabPanel';
 import TabPanelMobile from './components/TabPanelMobile'
@@ -434,6 +434,47 @@ export default function Home() {
                 <AboutMePanel />
               </Box>
             </Box>
+            <Box sx={{ mt: {xs: 5, sm: 0, md: 0}, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: "100%", minHeight: "20vh", mb: 10 }}>
+                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
+                <Avatar
+                  alt="Mitzi Avatar"
+                  src="/mitzi.png" // Ensure the correct path to the avatar image
+                  sx={{ width: 40, height: 40, mr: 2 }}
+                />
+                <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace',  fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
+                  Learn more with my AI friend Mitzi!
+                </Typography>
+                </Box>
+                <Button 
+                  href="/mitzi" 
+                  variant="outlined" 
+                  size="large"
+                  sx={{
+                    textDecoration: 'none',
+                    fontFamily: 'var(--font-iosevka), monospace',
+                    width: { xs: "180px", sm: "180px", md: "180px" },
+                    color: '#36ffe7', 
+                    borderColor: '#36ffe7', 
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                    boxShadow: '0px 0px 0px #36ffe7', 
+                    '&:hover': {
+                      transform: 'translate(-5px, -3px)', 
+                      boxShadow: '5px 5px 0px #36ffe7', 
+                      borderColor: '#36ffe7', 
+                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                      cursor: "pointer"
+                    },
+                    '@media (hover: none)': {
+                      '&:hover': {
+                        transform: 'none', 
+                        boxShadow: 'none', 
+                      }
+                    }
+                  }}
+                >
+                  CHAT WITH MITZI
+                </Button>
+              </Box>
 
             <Box
               ref={sectionRefs[1]}

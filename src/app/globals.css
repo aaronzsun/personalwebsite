@@ -201,8 +201,21 @@ body {
 
 .chat-window {
   border: 1px solid #36ffe7;
-  border-radius: 8px;
+  border-radius: 2px;
   padding: 16px;
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 2px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background-color: white; /* Thumb color */
+  border-radius: 10px;
 }
 
 /* Three Content Styling */
