@@ -60,6 +60,43 @@ const ProjectDisplay = () => {
         >
             <ProjectDisplayMobileSpotifyRec/>
         </Box>
+        <Box sx={{ mb: { xs: 6, sm: 6, md: 10 } }} />
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography variant="subtitle2" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace', mb: { xs: 1.2, sm: 3, md: 3}, fontSize: { xs: '0.7rem', sm: '0.7rem', md: '0.9rem' }}}>
+                [3D Graphics Portfolio]
+            </Typography>
+            <Button 
+                component="a" 
+                href="/three" 
+                variant="outlined" 
+                size="large"
+                sx={{
+                mb: 6,
+                textDecoration: 'none',
+                fontFamily: 'var(--font-iosevka), monospace',
+                width: { xs: "250px", sm: "250px", md: "250px" },
+                color: '#36ffe7', 
+                borderColor: '#36ffe7', 
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
+                boxShadow: '0px 0px 0px #36ffe7', 
+                '&:hover': {
+                    transform: 'translate(-5px, -3px)', 
+                    boxShadow: '5px 5px 0px #36ffe7', 
+                    borderColor: '#36ffe7', 
+                    backgroundColor: 'rgba(54, 255, 231, 0.1)', 
+                    cursor: "pointer"
+                },
+                '@media (hover: none)': {
+                    '&:hover': {
+                    transform: 'none', 
+                    boxShadow: 'none', 
+                    }
+                }
+                }}
+            >
+                Three Playground
+            </Button>
+        </Box> 
     </Box>
   );
 };

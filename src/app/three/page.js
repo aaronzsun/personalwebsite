@@ -212,6 +212,8 @@ export default function Three() {
 
     setTransitioning(true); // Show preloader during transition
     setFadeIn(false); // Reset fade-in
+    window.scrollBy({ top: 100, behavior: 'smooth' });
+    
     setTimeout(() => {
       setActiveCategory(category); // Set new category
       setTransitioning(false); // End transition
@@ -360,16 +362,6 @@ export default function Three() {
                   minHeight: { xs: '20vh', sm: '20vh', md: '20vh' }
                 }}
             >
-                <Box sx={{ 
-                    width: { xs: '90%', md: '700px' },
-                    textAlign: 'center',  // Center the text inside this Box as well
-                    mb: 4,
-                  }}
-                >
-                  <Typography variant="h6" component="h1" color="#36ffe7" sx={{ fontweight: '600', fontFamily: 'var(--font-iosevka), monospace', fontSize: { xs: '1.8rem', sm: '1.8rem', md: '2rem' } }}>
-                    THREE.JS BUILDS
-                  </Typography> 
-                </Box>
                 <Box sx={{ 
                   width: { xs: '90%', md: '700px' },
                   textAlign: 'center',  // Center the text inside this Box as well

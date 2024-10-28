@@ -378,7 +378,7 @@ export default function Home() {
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
                   <span style={{ color: 'white' }}>I&apos;m Aaron Sun. </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ color: '#d7d7d7', fontWeight: "500", mt: { xs: 0, sm: 1, md: 1 }, lineHeight: 1 }} >
+                <Typography variant="h3" component="h1" sx={{ color: 'white', fontWeight: "500", mt: { xs: 0, sm: 1, md: 1 }, lineHeight: 1 }} >
                   <span ref={typedElement} className="typed-text"></span>
                 </Typography>
                 <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>

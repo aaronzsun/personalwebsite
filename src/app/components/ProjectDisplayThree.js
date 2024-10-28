@@ -3,12 +3,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
 
 const ProjectDisplayThree = () => {
-  const title = "Three.JS Playground";
+  const title = "Three Playground";
   const description = "I really like things when websites look cool, so I've been working a lot with Three. If you want check out some of the stuff I've made, you can check out my virtual, interactive playground. Feel free to take anything you like and add it to your website!";
   const technologies = ["React", "Three", "Fiber", "Ammo" ]
   const imageSrc = "threeplayground.png"
   const githubLink = "https://github.com/aaronzsun/personalwebsite/tree/main/src/app/three"
-  const liveLink = "https://aaronzsun.com/three"
+  const liveLink = "/three"
 
   return (
     <Box
