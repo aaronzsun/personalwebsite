@@ -358,7 +358,7 @@ export default function Home() {
             <Avatar
               alt="Mitzi Avatar"
               src="/mitzi.png"
-              sx={{ width: 50, height: 50, mr: 0.4, opacity: 0.7 }}
+              sx={{ width: 50, height: 50, mr: 0.4 }}
             />
             <Box
               sx={{
