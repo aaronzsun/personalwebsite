@@ -199,7 +199,7 @@ export default function Mitzi() {
                   <span style={{ color: '#36ffe7' }}> Hello World! </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "300", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
-                    I'm <span style={{ textDecoration: 'line-through' }}>Aaron</span> Mitzi.
+                    I&apos;m <span style={{ textDecoration: 'line-through' }}>Aaron</span> Mitzi.
                 </Typography>
                 <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>
                   I&apos;m a chat bot and friend of Aaron!
