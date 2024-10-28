@@ -20,6 +20,7 @@ import Contact from './components/Contact'
 import Blog from './components/Blog'
 // import NavMenu from './components/NavMenu';
 // import ProjectDisplay from './components/ProjectDisplay';   
+
 const ProjectDisplay = React.lazy(() => import('./components/ProjectDisplay'));
 
 
@@ -348,14 +349,17 @@ export default function Home() {
               >
                 <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={100} />
                 <ambientLight intensity={0.2} />
-                <pointLight 
-                  position={[0, 0, 4]} 
-                  intensity={50} 
-                  distance={1000} 
-                  decay={1} 
-                  castShadow 
-                  shadow-mapSize-width={1024} 
-                  shadow-mapSize-height={1024} 
+                <spotLight
+                  position={[0, 0.5, 4]}
+                  intensity={4.6}
+                  distance={100000}
+                  angle={1.6}           // Narrower angle for focused light
+                  penumbra={1}        // Increase penumbra for softer edges
+                  decay={0}
+                  castShadow
+                  shadow-mapSize-width={2048}
+                  shadow-mapSize-height={2048}
+                  shadow-radius={4}     // Blur shadow edges
                 />
                 <Globe />
               </Canvas>
@@ -368,16 +372,16 @@ export default function Home() {
               className='fade-in topSection'
             >
               <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 3, md: 2}, fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1.2rem' }  }}>
+              <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 2, md: 2}, fontSize: { xs: '0.8rem', sm: '1.2rem', md: '1.2rem' }  }}>
                   <span style={{ color: '#36ffe7' }}> Hello World! </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 0, md: 2}, fontSize: { xs: '2.5rem', sm: '2.5rem', md: '4rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
                   <span style={{ color: 'white' }}>I&apos;m Aaron Sun. </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ color: '#d7d7d7', fontWeight: "500", mt: { xs: 0, sm: 0, md: 1 }, lineHeight: 1 }} >
+                <Typography variant="h3" component="h1" sx={{ color: '#d7d7d7', fontWeight: "500", mt: { xs: 0, sm: 1, md: 1 }, lineHeight: 1 }} >
                   <span ref={typedElement} className="typed-text"></span>
                 </Typography>
-                <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 3, md: 4 }, mb: { xs: 2, sm: 2, md: 0}, fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1.05rem' } }}>
+                <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>
                   I&apos;m a full stack engineer and data-enthusiast passionate about delivering great digital experiences and
                   producing unique insights from data. I specialize in building full-stack products with elegant and intuitive designs. 
                   I&apos;m currently based in San Francisco seeking new challenges.

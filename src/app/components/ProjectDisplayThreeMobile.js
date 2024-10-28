@@ -2,13 +2,13 @@ import { Box, Typography, Link } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LaunchIcon from '@mui/icons-material/Launch';
 
-const ProjectDisplayMobileSpotifyRec = () => {
-  const title = "Personal Site";
-  const description = "My personal website- and where you are right now. Built entirely from scratch and deployed on Vercel. Responsive design for mobile phones and tablets as well. Took some design inspirations from Brittany Chiang, but all code is mine.";
-  const technologies = ["React", "JavaScript", "MUI", "Three.JS", "NextJS"]
-  const imageSrc = "mywebsite.png"
-  const githubLink = "https://github.com/aaronzsun/personalwebsite/"
-  const liveLink = "https://github.com/aaronzsun/personalwebsite/"
+const ProjectDisplayMobileThree = () => {
+    const title = "Three.JS Playground";
+  const description = "I really like things when websites look cool, so I've been working a lot with Three. If you want check out some of the stuff I've made, you can check out my virtual, interactive playground. Feel free to take anything you like and add it to your website!";
+  const technologies = ["React", "Three", "Fiber", "Ammo" ]
+  const imageSrc = "threeplayground.png"
+  const githubLink = "https://github.com/aaronzsun/personalwebsite/tree/main/src/app/three"
+  const liveLink = "https://aaronzsun.com/three" 
 
   return (
     <Box
@@ -46,7 +46,7 @@ const ProjectDisplayMobileSpotifyRec = () => {
             mb: 1,
             zIndex: 1
           }}>
-          Web Design
+          3D Graphics
         </Typography>
       {/* Project Title */}
       <Typography
@@ -99,4 +99,4 @@ const ProjectDisplayMobileSpotifyRec = () => {
   );
 };
 
-export default ProjectDisplayMobileSpotifyRec;
+export default ProjectDisplayMobileThree;

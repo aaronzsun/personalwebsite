@@ -22,7 +22,7 @@ body {
 /* Typed Text */
 .typed-text {
   display: inline-block;
-  min-height: 1.1rem;
+  min-height: 1rem;
   visibility: visible;
   color: '#d7d7d7';
 }
@@ -33,7 +33,7 @@ body {
 
 @media (max-width: 900px) {
   .typed-text {
-    font-size: 30px;
+    font-size: 31px;
   }
 
 }
@@ -128,7 +128,7 @@ body {
 }
 
 .section3 {
-  min-height: 168vh;
+  min-height: 100vh;
 }
 
 

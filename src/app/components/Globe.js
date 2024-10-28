@@ -18,7 +18,8 @@ const OrbitDot = ({ position, texturePath, size, opacity }) => {
 
   return (
     <Sphere ref={dotRef} position={position} args={[size, 16, 16]} castShadow receiveShadow>
-      <meshStandardMaterial color="#C0C0C0" map={dotTexture} opacity={opacity} transparent />
+      {/* Set Moon color to a gray tone */}
+      <meshStandardMaterial color="#808080" map={dotTexture} opacity={opacity} transparent />
     </Sphere>
   );
 };
@@ -37,19 +38,21 @@ const Globe = () => {
   const earthTexture = useLoader(TextureLoader, '/earthtexture.jpg');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useFrame(() => {
     if (globeRef.current) {
       if (screenWidth >= 600) {
-        const scrollScaleFactor = Math.min(1.5 + scrollY * 0.002, 3);
+        const scrollScaleFactor = Math.min(1.5 + scrollY * 0.0022, 3);
         setScale(scrollScaleFactor);
         globeRef.current.scale.set(scale, scale, scale);
       } else {
@@ -69,7 +72,7 @@ const Globe = () => {
       globeRef.current.material.transparent = true;
 
       if (screenWidth >= 600) {
-        const newXPosition = Math.min(4 + scrollY * 0.01, 8.2);
+        const newXPosition = Math.min(3.5 + scrollY * 0.01, 8.2);
         globeRef.current.position.x = newXPosition;
       } else {
         globeRef.current.position.x = 2.5;
@@ -91,6 +94,9 @@ const Globe = () => {
       }
     }
   });
+
+  // Conditionally render the globe only if the screen width is 600px or more
+  if (screenWidth < 600) return null;
 
   return (
     <group>
