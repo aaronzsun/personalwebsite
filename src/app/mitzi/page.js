@@ -38,6 +38,11 @@ export default function Mitzi() {
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const lastScrollY = useRef(0);
 
+  if (!localStorage.getItem('mitziSessionId')) {
+    localStorage.setItem('mitziSessionId', crypto.randomUUID());
+  }
+  const sessionId = localStorage.getItem('mitziSessionId');
+
   const handleScroll = () => {
     const scrollY = window.scrollY;
 
@@ -106,7 +111,10 @@ export default function Mitzi() {
     setIsLoading(true);
   
     try {
-      const response = await axios.post('/mitzi/api/openai', { message: userInput });
+      const response = await axios.post('/mitzi/api/openai', {
+        message: userInput,
+        sessionId, // Send session ID with each request
+      });
       setMessages([...newMessages, { sender: 'Mitzi', text: response.data.text }]);
     } catch (error) {
       console.error('Error communicating with Mitzi:', error);
