@@ -21,9 +21,7 @@ const Dinosaur = ({ url, position, clipName }) => {
 
       // Initialize animation mixer if there are animations
       mixer.current = new THREE.AnimationMixer(fbx)
-      if (fbx.animations.length > 0) {
-        console.log(`Available animations for ${url}:`, fbx.animations.map((anim) => anim.name))
-        
+      if (fbx.animations.length > 0) {        
         // Find the animation clip by name or use the first clip
         const clip = clipName
           ? fbx.animations.find((anim) => anim.name === clipName) || fbx.animations[0]
