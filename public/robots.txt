@@ -1,0 +1,6 @@
+# Allow all pages by default
+User-agent: *
+Allow: /
+
+# Block /resume for all crawlers
+Disallow: /resume
