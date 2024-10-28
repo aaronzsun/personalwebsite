@@ -199,6 +199,12 @@ body {
   }
 }
 
+.chat-window {
+  border: 1px solid #36ffe7;
+  border-radius: 8px;
+  padding: 16px;
+}
+
 /* Three Content Styling */
 
 .three-content-left {

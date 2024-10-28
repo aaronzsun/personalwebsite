@@ -372,7 +372,7 @@ export default function Home() {
               className='fade-in topSection'
             >
               <Box className="section-content">
-              <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 2, md: 2}, fontSize: { xs: '0.8rem', sm: '1.2rem', md: '1.2rem' }  }}>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 2, md: 2}, fontSize: { xs: '0.8rem', sm: '1.2rem', md: '1.2rem' }  }}>
                   <span style={{ color: '#36ffe7' }}> Hello World! </span>
                 </Typography>
                 <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>

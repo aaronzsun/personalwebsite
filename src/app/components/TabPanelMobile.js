@@ -66,9 +66,6 @@ export default function HorizontalTabsComponent() {
           position="relative"
           className="resumeAppBarMobile"
           elevation={0}
-          variant="scrollable"
-          scrollButtons="auto"
-          allowScrollButtonsMobile
           sx={{
             bgcolor: 'transparent',
             flexDirection: 'row', // Horizontal on small screens, vertical on large screens

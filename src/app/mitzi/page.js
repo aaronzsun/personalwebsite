@@ -1,20 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
-// import Head from 'next/head';
-import { Helmet } from 'react-helmet';
-
-import { Box, Typography, Button, Link } from '@mui/material';
+import { Box, Typography, Button, Link, TextField, Avatar } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../theme/theme"
 import localFont from "next/font/local";
-
-import BlogPost1 from './components/BlogPost1';
-import BlogPost2 from './components/BlogPost2';
-import BlogPost3 from './components/BlogPost3';
-import BlogPost4 from './components/BlogPost4';
-import BlogPost5 from './components/BlogPost5';
-
+import axios from 'axios';
+import Head from 'next/head';
 
 
 const interTight = localFont({
@@ -35,8 +27,10 @@ const iosevkaMed = localFont({
   weight: "100 900",
 });
 
+const mitziAvatar = '/mitzi.png';
 
-export default function Blog() {
+
+export default function Mitzi() {
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
 
@@ -96,11 +90,36 @@ export default function Blog() {
     sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [messages, setMessages] = useState([
+    { sender: 'Mitzi', text: "Hi there! I'm Mitzi. How can I help today?" } // Initial message
+  ]);
+  const [userInput, setUserInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSendMessage = async () => {
+    if (!userInput) return;
+  
+    const newMessages = [...messages, { sender: 'user', text: userInput }];
+    setMessages(newMessages);
+    setUserInput('');
+    setIsLoading(true);
+  
+    try {
+      const response = await axios.post('/mitzi/api/openai', { message: userInput });
+      setMessages([...newMessages, { sender: 'Mitzi', text: response.data.text }]);
+    } catch (error) {
+      console.error('Error communicating with Mitzi:', error);
+      setMessages([...newMessages, { sender: 'Mitzi', text: "Sorry! I'm not feeling great right now :(" }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Blog</title>
-      </Helmet>
+      <Head>
+        <title>Mitzi</title>
+      </Head>
       {loading && (
         <div className={`preloader ${!preloaderVisible ? 'fade-out' : ''}`}>
           <div className="preloader-inner">
@@ -137,7 +156,6 @@ export default function Blog() {
               <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' }, gap: { xs: 2, sm: 2, md: 2 } }}>
                 <Link href="/" sx={{ textDecoration: 'none' }}>
                     <Button 
-                    component="a" 
                     variant="outlined" 
                     size="small"
                     sx={{
@@ -176,28 +194,25 @@ export default function Blog() {
               className='fade-in topSection'
             >
               <Box className="section-content">
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mb: { xs: 5, sm: 3.5, md: 3.5}, fontSize: { xs: '1rem', sm: '1.4rem', md: '1.4rem' }  }}>
-                  <span style={{ color: '#36ffe7' }}> Hello World! I&apos;m Aaron. </span>
+                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 2, md: 2}, fontSize: { xs: '0.8rem', sm: '1.2rem', md: '1.2rem' }  }}>
+                  <span style={{ color: '#36ffe7' }}> Hello World! </span>
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontWeight: "500", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
-                  <span style={{ color: 'white' }}> This is my blog. </span>
+                <Typography variant="h3" component="h1" sx={{ fontWeight: "300", mb: { xs: 0, sm: 2, md: 2}, fontSize: { xs: '2.5rem', sm: '4rem', md: '4rem' }  }}>
+                    I'm <span style={{ textDecoration: 'line-through' }}>Aaron</span> Mitzi.
                 </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 2, sm: 2, md: 2}, fontSize: { xs: '1.2rem', sm: '1.7rem', md: '1.7rem' }  }}>
-                  <span style={{ color: '#afafaf' }}> I write about random stuff. </span>
-                </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", ml: 0.5, mt: { xs: 2, sm: 2, md: 2}, mb: { xs: 2, sm: 6, md: 6}, fontSize: { xs: '1.2rem', sm: '1.7rem', md: '1.7rem' }  }}>
-                  <span style={{ color: '#afafaf' }}> Or life. </span>
+                <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>
+                  I&apos;m a chat bot and friend of Aaron!
                 </Typography>
                 <Button 
                   variant="outlined" 
-                  component="a" 
-                  onClick={() => scrollToSection()}
+                  onClick={() => scrollToSection(0)}
                   size="large"
                   sx={{
                       textDecoration: 'none',
+                      mr: 3,
                       fontFamily: 'var(--font-iosevka), monospace',
                       width: { xs: "140px", sm: "140px", md: "140px" },
-                      mt: { xs: 4, sm: 1, md: 1 },
+                      mt: 4,
                       color: '#36ffe7', 
                       borderColor: '#36ffe7', 
                       transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
@@ -214,39 +229,80 @@ export default function Blog() {
                           transform: 'none', 
                           boxShadow: 'none', 
                       }
-                      },
-                      '@media (max-width: 600px)': {
-                      size: 'large', // Use small size variant on small screens
                       }
                   }}
                   >
-                  View Posts
+                  Get Chatting
                 </Button>
               </Box>
             </Box>
             <Box
               ref={sectionRef}
-              minHeight="100vh"
+              minHeight="80vh"
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}
             >
-              <Box className="section-content" sx = {{
-                pr: 4
-              }}>
-                <Typography variant="subtitle2" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '0.6rem', sm: '0.8rem', md: '0.8rem' }  }}>
-                  <span style={{ color: '#36ffe7' }}> [click a post to read] </span>
-                </Typography>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem' }  }}>
-                  <span style={{ color: 'white' }}> Featured </span>
-                </Typography>
-                <BlogPost3/>
-                <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.3rem' }, mt: 8  }}>
-                  <span style={{ color: 'white' }}> Other Posts </span>
-                </Typography>
-                <BlogPost2/>
-                <BlogPost5/>
-                <BlogPost1/>
-                <BlogPost4/>
+              <Box className="section-content" sx={{mb: 10}}>
+              <Box>
+                <Box className="chat-window" sx={{ maxHeight: '60vh', overflowY: 'auto', pl: 1, pr: 2, pt: 2, pb: 2, mb: 2 }}>
+                    {messages.map((message, index) => (
+                    <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 1, flexDirection: message.sender === 'user' ? 'row-reverse' : 'row' }}>
+                    {message.sender === 'Mitzi' && (
+                      <Avatar
+                        alt="Mitzi Avatar"
+                        src={mitziAvatar}
+                        sx={{ width: 30, height: 30, mr: message.sender === 'user' ? 0 : 2, ml: message.sender === 'Mitzi' ? 2 : 0 }}
+                      />
+                    )}
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        textAlign: message.sender === 'user' ? 'right' : 'left',
+                        color: message.sender === 'user' ? '#36ffe7' : 'white',
+                        fontWeight: '300',
+                        maxWidth: '70%',
+                        bgcolor: 'transparent',
+                        p: 1,
+                        borderRadius: 1,
+                      }}
+                    >
+                      {message.text}
+                    </Typography>
+                  </Box>
+                    ))}
+                </Box>
+                <TextField
+                    fullWidth
+                    placeholder="Type a message..."
+                    autoComplete='off'
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !isLoading) {
+                          e.preventDefault(); // Prevent newline from being added
+                          handleSendMessage(); // Call the send message function
+                        }
+                      }}
+                    sx={{
+                        input: { 
+                        color: 'white', 
+                        },
+                        '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#36ffe7',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#36ffe7',
+                        },
+                        '&.Mui-focused fieldset': {  // Remove blue highlight on focus
+                            borderColor: '#36ffe7',
+                            outline: 'none',
+                        }
+                        },
+                        mb: 2,
+                    }}
+                />
+                </Box>
               </Box>
             </Box>
           </Box>

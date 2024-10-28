@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
+// import Head from 'next/head';
 import { Helmet } from 'react-helmet';
+
+
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrthographicCamera, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
