@@ -213,7 +213,7 @@ export default function Three() {
 
     setTransitioning(true); // Show preloader during transition
     setFadeIn(false); // Reset fade-in
-    window.scrollBy({ top: 100, behavior: 'smooth' });
+    window.scrollBy({ top: 200, behavior: 'smooth' });
     
     setTimeout(() => {
       setActiveCategory(category); // Set new category
