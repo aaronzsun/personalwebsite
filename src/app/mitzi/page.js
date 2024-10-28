@@ -116,6 +116,12 @@ export default function Mitzi() {
     }
   };
 
+  useEffect(() => {
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <>
       <Helmet>
