@@ -11,7 +11,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: "Aaron Sun",
-  description: "Aaron's Personal Website",
+  description: "I'm a full stack engineer and data-enthusiast passionate about delivering great digital experiences and producing unique insights from data. I specialize in building full-stack products with elegant and intuitive designs. I'm currently based in San Francisco seeking new challenges.",
 };
 
 export default function RootLayout({ children }) {
