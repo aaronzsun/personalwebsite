@@ -7,6 +7,7 @@ import theme from "../theme/theme"
 import localFont from "next/font/local";
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import { v4 as uuidv4 } from 'uuid';
 // import Head from 'next/head';
 
 
@@ -38,8 +39,9 @@ export default function Mitzi() {
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
   const lastScrollY = useRef(0);
 
+  // Generate session ID if it doesn’t exist
   if (!localStorage.getItem('mitziSessionId')) {
-    localStorage.setItem('mitziSessionId', crypto.randomUUID());
+    localStorage.setItem('mitziSessionId', uuidv4());
   }
   const sessionId = localStorage.getItem('mitziSessionId');
 
