@@ -271,7 +271,7 @@ export default function Mitzi() {
             >
               <Box className="section-content" sx={{mb: 10}}>
               <Box>
-                <Box ref={chatBoxRef} className="chat-window" sx={{ maxHeight: '60vh', overflowY: 'auto', pl: 1, pr: 2, pt: 3, pb: 2, mb: 2 }}>
+                <Box ref={chatBoxRef} className="chat-window" sx={{ height: '60vh', maxHeight: '60vh', overflowY: 'auto', pl: 1, pr: 2, pt: 3, pb: 2, mb: 2 }}>
                     {messages.map((message, index) => (
                     <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 1, flexDirection: message.sender === 'user' ? 'row-reverse' : 'row' }}>
                     {message.sender === 'Mitzi' && (
