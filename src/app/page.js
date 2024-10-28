@@ -48,6 +48,7 @@ export default function Home() {
   const typedElement = useRef(null);
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   // State for menu visibility and initial slide-in
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
@@ -131,7 +132,7 @@ export default function Home() {
       setTimeout(() => {
         setLoading(false);
         setTimeout(() => setShowMenu(true), 800);
-      }, 500);
+      }, 1000);
     }, 3000);
   }, [loading]);
 
@@ -335,6 +336,57 @@ export default function Home() {
               </Button>
             </Box>
           </Box>
+          <Box
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            sx={{
+              position: 'fixed',
+              bottom: 20,
+              left: 25,
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              zIndex: 1000,
+              textDecoration: 'none',
+              transform: isHovered ? 'scale(1.1)' : 'scale(1)', // Slightly enlarge on hover
+              transition: 'transform 0.3s ease-in-out', // Smooth transition for both hover and unhover
+            }}
+            component="a"
+            href="/mitzi"
+            target="_blank"
+          >
+            <Avatar
+              alt="Mitzi Avatar"
+              src="/mitzi.png"
+              sx={{ width: 50, height: 50, mr: 0.4, opacity: 0.7 }}
+            />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: 'rgba(128, 128, 128, 0.7)', // Semi-transparent gray background
+                padding: '4px 8px',
+                borderRadius: 1,
+                ml: 1,
+                opacity: isHovered ? 1 : 0, // Smooth opacity transition
+                transition: 'opacity 0.3s ease, transform 0.3s ease',
+              }}
+            >
+              <Typography
+                className="mitzi-text"
+                variant="subtitle1"
+                sx={{
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-iosevka), monospace',
+                  color: 'white',
+                  fontSize: '0.9rem',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Chat with Mitzi!
+              </Typography>
+            </Box>
+          </Box>
             <div>
               <Canvas
                 style={{
@@ -434,47 +486,6 @@ export default function Home() {
                 <AboutMePanel />
               </Box>
             </Box>
-            <Box sx={{ mt: {xs: 5, sm: 0, md: 0}, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: "100%", minHeight: "20vh", mb: 10 }}>
-                <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
-                <Avatar
-                  alt="Mitzi Avatar"
-                  src="/mitzi.png" // Ensure the correct path to the avatar image
-                  sx={{ width: 40, height: 40, mr: 2 }}
-                />
-                <Typography variant="subtitle1" component="h2" color="white" sx={{ fontFamily: 'var(--font-iosevka), monospace',  fontSize: { xs: '0.8rem', sm: '0.8rem', md: '1rem' }}}>
-                  Learn more with my AI friend Mitzi!
-                </Typography>
-                </Box>
-                <Button 
-                  href="/mitzi" 
-                  variant="outlined" 
-                  size="large"
-                  sx={{
-                    textDecoration: 'none',
-                    fontFamily: 'var(--font-iosevka), monospace',
-                    width: { xs: "180px", sm: "180px", md: "180px" },
-                    color: '#36ffe7', 
-                    borderColor: '#36ffe7', 
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease', 
-                    boxShadow: '0px 0px 0px #36ffe7', 
-                    '&:hover': {
-                      transform: 'translate(-5px, -3px)', 
-                      boxShadow: '5px 5px 0px #36ffe7', 
-                      borderColor: '#36ffe7', 
-                      backgroundColor: 'rgba(54, 255, 231, 0.1)', 
-                      cursor: "pointer"
-                    },
-                    '@media (hover: none)': {
-                      '&:hover': {
-                        transform: 'none', 
-                        boxShadow: 'none', 
-                      }
-                    }
-                  }}
-                >
-                  CHAT WITH MITZI
-                </Button>
-              </Box>
 
             <Box
               ref={sectionRefs[1]}
