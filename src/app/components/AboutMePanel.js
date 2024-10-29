@@ -52,7 +52,7 @@ const AboutMePanel = () => {
             sx={{ 
               position: 'relative', 
               maxWidth: '300px', 
-              margin: { xs: '10px auto', md: '0 auto' },  // Center the image on mobile, align left on desktop
+              margin: { xs: '10px auto', sm: '0 auto', md: '0 auto' },  // Center the image on mobile, align left on desktop
               '&:hover .image-border': { transform: 'translate(10px, 10px)' },
               '&:hover img': { filter: 'grayscale(0)', transform: 'scale(1.05)' },
             }}

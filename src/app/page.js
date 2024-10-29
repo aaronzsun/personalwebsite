@@ -49,6 +49,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [showAvatar, setShowAvatar] = useState(false);
 
   // State for menu visibility and initial slide-in
   const [showMenu, setShowMenu] = useState(false); // Initially offscreen
@@ -84,6 +85,10 @@ export default function Home() {
     } else {
       setShowMenu(false);
     }
+
+    const avatarThreshold =  400;
+
+    setShowAvatar(scrollY > avatarThreshold)
 
     lastScrollY.current = scrollY;
   };
@@ -131,7 +136,7 @@ export default function Home() {
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);
-        setTimeout(() => setShowMenu(true), 200);
+        setTimeout(() => setShowMenu(true), 800);
       }, 500);
     }, 3000);
   }, [loading]);
@@ -303,7 +308,7 @@ export default function Home() {
               </Link>
               <Button 
                   component="a" 
-                  href="https://aaronzsun.com/resume" 
+                  href="/resume" 
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="outlined" 
@@ -342,14 +347,14 @@ export default function Home() {
             sx={{
               position: 'fixed',
               bottom: 20,
-              left: 25,
-              display: 'flex',
+              left: showAvatar ? 25: -200,  // Slide in/out from left based on showAvatar
+              display: {xs: 'none', sm: 'none', md: 'flex'},
               alignItems: 'center',
               cursor: 'pointer',
               zIndex: 1000,
               textDecoration: 'none',
               transform: isHovered ? 'scale(1.1)' : 'scale(1)', // Slightly enlarge on hover
-              transition: 'transform 0.3s ease-in-out', // Smooth transition for both hover and unhover
+              transition: 'left 1s ease, transform 0.3s ease-in-out', // Smooth transition for both hover and unhover
             }}
             component="a"
             href="/mitzi"
@@ -358,13 +363,13 @@ export default function Home() {
             <Avatar
               alt="Mitzi Avatar"
               src="/mitzi.png"
-              sx={{ width: 50, height: 50, mr: 0.4 }}
+              sx={{ width: 50, height: 50, mr: 0.4, border: '2px solid #36ffe7' }}
             />
             <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: 'rgba(128, 128, 128, 0.7)', // Semi-transparent gray background
+                backgroundColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent gray background
                 padding: '4px 8px',
                 borderRadius: 1,
                 ml: 1,
@@ -378,7 +383,7 @@ export default function Home() {
                 sx={{
                   textDecoration: 'none',
                   fontFamily: 'var(--font-iosevka), monospace',
-                  color: 'white',
+                  color: 'black',
                   fontSize: '0.9rem',
                   whiteSpace: 'nowrap',
                 }}
@@ -421,7 +426,7 @@ export default function Home() {
             <Box
               width="100%"
               sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              className='fade-in topSection'
+              className='fade-in-home-title topSection'
             >
               <Box className="section-content">
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 3, sm: 2, md: 2}, fontSize: { xs: '0.8rem', sm: '1.2rem', md: '1.2rem' }  }}>

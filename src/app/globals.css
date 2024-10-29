@@ -103,6 +103,12 @@ body {
   animation: fadeInUp 0.8s ease-in forwards;  /* Fade in and move upwards */
 }
 
+.fade-in-home-title {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-in forwards;  /* Fade in and move upwards */
+  animation-delay: 1s;
+}
+
 /* Section Styling */
 .section {
   opacity: 0;
