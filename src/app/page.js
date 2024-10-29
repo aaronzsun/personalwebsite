@@ -131,8 +131,8 @@ export default function Home() {
       setPreloaderVisible(false);
       setTimeout(() => {
         setLoading(false);
-        setTimeout(() => setShowMenu(true), 800);
-      }, 1000);
+        setTimeout(() => setShowMenu(true), 200);
+      }, 500);
     }, 3000);
   }, [loading]);
 
