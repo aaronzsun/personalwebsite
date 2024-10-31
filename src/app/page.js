@@ -352,6 +352,7 @@ export default function Home() {
               alignItems: 'center',
               cursor: 'pointer',
               zIndex: 1000,
+              opacity: 0.7,
               textDecoration: 'none',
               transform: isHovered ? 'scale(1.1)' : 'scale(1)', // Slightly enlarge on hover
               transition: 'left 1s ease, transform 0.3s ease-in-out', // Smooth transition for both hover and unhover
