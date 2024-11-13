@@ -131,18 +131,60 @@ export default function HorizontalTabsComponent() {
               height: 'auto'
             }}
           >
-            <Tab className="tabMobile" label="Optiver" {...a11yProps(0)} disableRipple />
-            <Tab className="tabMobile" label="HubSpot" {...a11yProps(1)} disableRipple />
-            <Tab className="tabMobile" label="NIH" {...a11yProps(2)} disableRipple />
-            <Tab className="tabMobile" label="NASA" {...a11yProps(3)} disableRipple />
-            <Tab className="tabMobile" label="Pakira" {...a11yProps(4)} disableRipple />
+            <Tab className="tabMobile" label="Kalshi" {...a11yProps(0)} disableRipple />
+            <Tab className="tabMobile" label="Optiver" {...a11yProps(1)} disableRipple />
+            <Tab className="tabMobile" label="HubSpot" {...a11yProps(2)} disableRipple />
+            <Tab className="tabMobile" label="NIH" {...a11yProps(3)} disableRipple />
+            <Tab className="tabMobile" label="NASA" {...a11yProps(4)} disableRipple />
+            {/* <Tab className="tabMobile" label="Pakira" {...a11yProps(5)} disableRipple /> */}
           </Tabs>
           </Box>
         </AppBar>
 
 
         <Box className="resumeContentMobile" sx={{ flexGrow: 1, backgroundColor: 'transparent', minHeight: "300px" }}>  {/* Transparent background for content */}
-          <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
+        <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
+            <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
+              Data Scientist @{' '}
+              <a 
+                href="https://kalshi.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: '#36ffe7', textDecoration: 'none' }}
+              >
+                Kalshi
+              </a>
+            </Typography>
+            <Typography variant="body2" component="p" sx={{ fontFamily: 'var(--font-iosevka), monospace', color: '#afafaf', mb: { xs: "15px", sm: "15px", md: "16px" }, fontSize: { xs: '0.6rem', sm: '0.6rem', md: '0.7rem' } }}>
+              Nov 2024 - Present
+            </Typography>
+            <Typography
+              variant="body2"
+              component="p"
+              sx={{
+                mb: 1,
+                fontSize: { xs: '0.8rem', sm: '0.8rem', md: '0.9rem' },
+                color: '#afafaf',
+                textAlign: 'left',  // Justify the content
+                textIndent: '0',       // No negative indentation
+                paddingLeft: '25px',   // Add enough padding to accommodate the bullet point
+                position: 'relative',  // Position relative for the bullet point
+                lineHeight: '1.5',
+              }}
+            >
+              <ArrowRightIcon
+                sx={{
+                  color: '#36ffe7',
+                  position: 'absolute',
+                  left: '0',
+                  display: 'inline-block',
+                }}
+              />
+              Working on data engineering, research and market analysis.
+            </Typography>
+            
+          </TabPanel>
+          <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
               Quantitative Trader Intern @{' '}
               <a 
@@ -208,7 +250,7 @@ export default function HorizontalTabsComponent() {
             </Typography>
           </TabPanel>
 
-          <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>
+          <TabPanel className="fade-in-tabs" value={value} index={2} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
               Software Engineer Intern @{' '}
               <a 
@@ -273,7 +315,7 @@ export default function HorizontalTabsComponent() {
             </Typography>
           </TabPanel>
 
-          <TabPanel className="fade-in-tabs" value={value} index={2} dir={theme.direction}>
+          <TabPanel className="fade-in-tabs" value={value} index={3} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
               Research Fellow @{' '}
               <a 
@@ -338,7 +380,7 @@ export default function HorizontalTabsComponent() {
             </Typography>
           </TabPanel>
 
-          <TabPanel className="fade-in-tabs" value={value} index={3} dir={theme.direction}>
+          <TabPanel className="fade-in-tabs" value={value} index={4} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
               Research Intern @{' '}
               <a 
@@ -403,8 +445,7 @@ export default function HorizontalTabsComponent() {
               Utilized these new spectrographs to model and predict the chemical indicators of massive stars about to form. Got to present my work at the Jet Propulsion Laboratory Symposium.
             </Typography>
           </TabPanel>
-
-          <TabPanel className="fade-in-tabs" value={value} index={4} dir={theme.direction}>
+          {/* <TabPanel className="fade-in-tabs" value={value} index={5} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
               Founding Software Engineer @{' '}
               <a 
@@ -467,7 +508,7 @@ export default function HorizontalTabsComponent() {
               />
               Created the prototype and MVP0 for Pakira. Got to work with the full stack- utilizing a React frontend and Node backend to develop the initial forum and transaction market for 200+ businesses.
             </Typography>
-          </TabPanel>
+          </TabPanel> */}
         </Box>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

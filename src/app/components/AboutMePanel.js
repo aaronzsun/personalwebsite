@@ -13,7 +13,8 @@ const AboutMePanel = () => {
             <Box component="p" sx={{ mb: 2 }}>
                 I graduated from Harvard in Math and CS in May 2024 before moving out to the Bay. From academia to industry to finance,
                 I&apos;ve built and deployed code to tackle all sorts of problems. I love working with all parts of the technical stack, 
-                whether that be manipulating data, building and integrating backend and frontend frameworks, or putting it all together to create scalable applications.
+                whether that be manipulating data, building and integrating backend and frontend frameworks, or putting it all together to create scalable applications. 
+                Currently, I&apos;m a data scientist @ Kalshi, a prediction market exchange looking to change the way we think about trading.
             </Box>
             <Box component="p">
                 When I&apos;m offline, you can usually find me playing soccer, exploring San Francisco, or cooking whatever yummy recipe I saw on YouTube that day. 

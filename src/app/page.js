@@ -341,7 +341,7 @@ export default function Home() {
               </Button>
             </Box>
           </Box>
-          <Box
+          {/* <Box
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             sx={{
@@ -392,7 +392,7 @@ export default function Home() {
                 Chat with Mitzi!
               </Typography>
             </Box>
-          </Box>
+          </Box> */}
             <div>
               <Canvas
                 style={{
@@ -442,7 +442,7 @@ export default function Home() {
                 <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>
                   I&apos;m a full stack engineer and data-enthusiast passionate about delivering great digital experiences and
                   producing unique insights from data. I specialize in building full-stack products with elegant and intuitive designs. 
-                  I&apos;m currently based in San Francisco seeking new challenges.
+                  I&apos;m currently based in San Francisco.
                 </Typography>
                 <Button 
                   variant="outlined" 
