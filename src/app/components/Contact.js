@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <Box sx={{ mx: 'auto', mt: 3 }}>
       <Typography variant="subtitle1" component="h1" color="#afafaf" sx={{ fontSize: { xs: '0.9rem', sm: '1rem', md: '1rem' } }}>
-        I&apos;m currently looking for new opportunities- shoot me an email or message me on LinkedIn if you&apos;d like to chat!
+        Shoot me an email or message me on LinkedIn if you&apos;d like to chat!
       </Typography>
       <Button 
         variant="outlined" 
