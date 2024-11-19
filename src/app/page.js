@@ -440,9 +440,8 @@ export default function Home() {
                   <span ref={typedElement} className="typed-text"></span>
                 </Typography>
                 <Typography variant="subtitle1" color="#afafaf" sx={{ mt: { xs: 3, sm: 4, md: 4 }, mb: { xs: 2, sm: 0, md: 0}, fontSize: { xs: '0.7rem', sm: '1rem', md: '1rem' } }}>
-                  I&apos;m a full stack engineer and data-enthusiast passionate about delivering great digital experiences and
-                  producing unique insights from data. I specialize in building full-stack products with elegant and intuitive designs. 
-                  I&apos;m currently based in San Francisco.
+                  I&apos;m a data scientist and web developer who enjoys solving quantitative problems and building 
+                  full-stack applications. I&apos;m currently based in San Francisco and working on the data team at Kalshi.
                 </Typography>
                 <Button 
                   variant="outlined" 
