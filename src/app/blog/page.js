@@ -239,14 +239,15 @@ export default function Blog() {
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem' }  }}>
                   <span style={{ color: 'white' }}> Featured </span>
                 </Typography>
-                <BlogPost3/>
+                <BlogPost5/>
+                
                 <Typography variant="h3" component="h1" sx={{ fontFamily: 'var(--font-iosevka), monospace', fontWeight: "500", mb: { xs: 4, sm: 4, md: 4}, fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.3rem' }, mt: 8  }}>
                   <span style={{ color: 'white' }}> Other Posts </span>
                 </Typography>
-                <BlogPost2/>
-                <BlogPost5/>
+                {/* <BlogPost2/>
+                <BlogPost3/>
                 <BlogPost1/>
-                <BlogPost4/>
+                <BlogPost4/> */}
               </Box>
             </Box>
           </Box>
