@@ -46,7 +46,7 @@ const ProjectDisplay = () => {
             <ProjectDisplayMobileHub/>
         </Box>
         <Box sx={{ mb: { xs: 6, sm: 6, md: 10 } }}/>
-        <Box
+        {/* <Box
         sx={{
             display: { xs: 'none', sm: 'block', md: 'block' }, // Hidden on small screens, visible on medium screens
         }}
@@ -96,7 +96,7 @@ const ProjectDisplay = () => {
             >
                 Three Playground
             </Button>
-        </Box> 
+        </Box>  */}
     </Box>
   );
 };

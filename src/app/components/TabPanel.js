@@ -131,7 +131,7 @@ export default function VerticalTabsComponent() {
         <Box className="resumeContent" sx={{ flexGrow: 1, backgroundColor: 'transparent', minHeight: "300px" }}>  {/* Transparent background for content */}
           <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: '0.7rem', sm: '1.05rem', md: '1.05rem' }, mb: { xs: "2px", sm: "2px", md: "2px" } }}>
-              Data Scientist @{' '}
+              Data @{' '}
               <a 
                 href="https://kalshi.com/" 
                 target="_blank" 
@@ -166,7 +166,14 @@ export default function VerticalTabsComponent() {
                   display: 'inline-block',
                 }}
               />
-              Working on data engineering, research and market analysis.
+              <a 
+                href="https://kalshi.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: '#36ffe7', textDecoration: 'none' }}
+              >
+                kalshi.com
+              </a>
             </Typography>
           </TabPanel>
           <TabPanel className="fade-in-tabs" value={value} index={1} dir={theme.direction}>

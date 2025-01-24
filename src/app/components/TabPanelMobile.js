@@ -145,7 +145,7 @@ export default function HorizontalTabsComponent() {
         <Box className="resumeContentMobile" sx={{ flexGrow: 1, backgroundColor: 'transparent', minHeight: "300px" }}>  {/* Transparent background for content */}
         <TabPanel className="fade-in-tabs" value={value} index={0} dir={theme.direction}>
             <Typography variant="subtitle1" component="h6" color="#dbdbdb" sx={{ fontWeight: "bold", fontSize: '0.9rem', mb: { xs: "2px", sm: "2px", md: "0px" } }}>
-              Data Scientist @{' '}
+              Data @{' '}
               <a 
                 href="https://kalshi.com/" 
                 target="_blank" 
@@ -180,7 +180,14 @@ export default function HorizontalTabsComponent() {
                   display: 'inline-block',
                 }}
               />
-              Working on data engineering, research and market analysis.
+              <a 
+                href="https://kalshi.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: '#36ffe7', textDecoration: 'none' }}
+              >
+                kalshi.com
+              </a>
             </Typography>
             
           </TabPanel>
